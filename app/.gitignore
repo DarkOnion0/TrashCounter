@@ -23,5 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 # custom
-test/
-css/
+*test*
+*css*
