@@ -1,8 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from "react"
+import { Link } from "react-router-dom"
 
-import "./../css/Nav.css";
-import "./../css/Main.css";
+import "./../css/Nav.css"
+import "./../css/Main.css"
 
 class Nav extends React.Component {
   render() {
@@ -16,8 +16,8 @@ class Nav extends React.Component {
           <li>Dev</li>
         </Link>
       </ul>
-    );
+    )
   }
 }
 
-export default Nav;
+export default Nav
