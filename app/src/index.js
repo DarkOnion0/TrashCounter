@@ -2,13 +2,14 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import reportWebVitals from "./reportWebVitals"
-import { BrowserRouter as Router, Route } from "react-router-dom"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 // css
 import "./index.css"
 
 // pages
 import Dev from "./pages/Dev"
 import Home from "./pages/Home"
+import ErrorPage from "./pages/ErrorPage"
 
 // components
 import Nav from "./components/Nav"
@@ -16,9 +17,19 @@ import Nav from "./components/Nav"
 ReactDOM.render(
   <React.StrictMode>
     <Router>
+      {/* The navigation bar */}
       <Nav />
-      <Route path="/" exact component={Home} />
-      <Route path="/dev" exact component={Dev} />
+
+      <Switch>
+        {/* The project links */}
+        <Route path="/" exact component={Home} />
+        <Route path="/dev" component={Dev} />
+
+        {/* The 404 error page */}
+        <Route path="/">
+          <ErrorPage errorCode="404" />
+        </Route>
+      </Switch>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")
