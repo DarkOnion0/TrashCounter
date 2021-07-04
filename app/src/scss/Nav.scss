@@ -1,9 +1,29 @@
-.flex {
-  flex-wrap: wrap;
-  list-style: none;
+@import "var";
 
-  li {
-    margin-left: 0.5vw;
-    margin-right: 0.5vw;
+#NavBar {
+  height: 100%;
+
+  background-color: $primary-color;
+
+  justify-content: center;
+  align-items: center;
+
+  * {
+    padding: 1.5vh;
+    margin-top: 0.85vh;
+    margin-bottom: 0.85vh;
+
+    text-align: center;
   }
 }
+
+// .flex-col {
+//   flex-wrap: wrap;
+//   list-style: none;
+
+//   .link-normal,
+//   .link-active {
+//     margin-left: 0.5vw;
+//     margin-right: 0.5vw;
+//   }
+// }
