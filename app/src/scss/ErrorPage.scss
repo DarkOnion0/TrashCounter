@@ -1,0 +1,20 @@
+@import "var";
+
+#error-404 {
+  height: 100%;
+  width: 100%;
+
+  align-items: center;
+  justify-content: center;
+
+  img {
+    // margin-top: 10vh;
+    height: 60vmin;
+  }
+
+  strong {
+    color: $primary-color;
+    font-size: 5vh;
+    margin: 4vh;
+  }
+}
