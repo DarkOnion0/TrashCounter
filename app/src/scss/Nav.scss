@@ -17,13 +17,21 @@
   }
 }
 
-// .flex-col {
-//   flex-wrap: wrap;
-//   list-style: none;
+.link-normal {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}
+.link-active {
+  color: $active-color;
+  font-weight: bold;
 
-//   .link-normal,
-//   .link-active {
-//     margin-left: 0.5vw;
-//     margin-right: 0.5vw;
-//   }
-// }
+  margin-left: 0.5vw;
+  background-color: $background;
+}
+
+.link-normal:hover,
+link-active:hover {
+  margin-left: 0.5vw;
+  background-color: whitesmoke;
+}

@@ -26,7 +26,7 @@ class Nav extends React.Component {
           Dev
         </NavLink>
 
-        <spacer></spacer>
+        <p></p>
 
         <NavLink
           to="/settings"
