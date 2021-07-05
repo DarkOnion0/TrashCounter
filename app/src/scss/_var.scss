@@ -1,17 +1,17 @@
-// ALL the color palette are build using the material design tools
+// ALL the color palette are build using the material design tools, the brave accessibility tool and my experiments
 // The color chooser -> https://material.io/design/color/the-color-system.html#tools-for-picking-colors
-// The accessibility tool checker -> https://material.io/resources/color/#!/
+// The accessibility tool checker (not the browser one) -> https://material.io/resources/color/#!/
 
 // COLOR PALETTE 1
 //================
 
-// all text should be black
-$primary-color: #43bff9;
+// all text should be black except on the primary
+$primary-color: rgb(226, 225, 225);
+// $primary-color: #1c00b9;
+// $primary-color: #43bff9;
 $secondary-color: #f96920;
 
-// COLOR PALETTE 2
-//================
-
-// all text should be black except the primary color
-// $primary-color: #1c00b9;
-// $secondary-color: #f96920;
+// $active-color: #61dafb;
+$active-color: darkviolet;
+$overflow-color: #f96820b6;
+$background: white;
