@@ -16,5 +16,5 @@ code {
   display: grid;
   min-height: 100vh;
 
-  grid-template-columns: minmax(67.5px, 6vw) 1fr;
+  grid-template-columns: minmax(81.953px, 6vw) 1fr;
 }
