@@ -1,31 +1,30 @@
 import React from "react"
 import logo404 from "./../images/404/undraw_lost_1.svg"
-import { useHistory } from "react-router-dom"
+import { useHistory, useLocation } from "react-router-dom"
 import "./../css/ErrorPage.css"
 
-class ErrorPage extends React.Component {
-  constructor(props) {
-    super(props)
+function ErrorPage(props) {
+  const history = useHistory()
 
-    this.whichError = this.whichError.bind(this)
+  function goHome() {
+    history.push("/")
   }
 
-  whichError() {
-    if (this.props.errorCode === "404") {
+  function whichError() {
+    if (props.errorCode === "404") {
       return (
         <div id="error-404" className="flex-col">
           <img src={logo404} alt="A lost person with a tree" />
-          <strong onClick={() => useHistory().push("/")}>
-            ERROR 404: Page not found
+          <strong onClick={goHome}>
+            No page found for:{" "}
+            <code>{window.location.host + useLocation().pathname}</code>
           </strong>
         </div>
       )
     }
   }
 
-  render() {
-    return <div>{this.whichError()}</div>
-  }
+  return <div>{whichError()}</div>
 }
 
 export default ErrorPage
