@@ -1,0 +1,44 @@
+@import "var";
+
+#home {
+  border-radius: 50px;
+
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  margin-left: 1vw;
+  margin-right: 1vw;
+
+  padding: 1vw;
+}
+
+#calendar-container,
+#input-container {
+  background-color: $background;
+
+  border-radius: 5px;
+  box-shadow: 0 0 2px 1px $primary-color;
+
+  padding: 2%;
+
+  height: fit-content;
+}
+
+.grid {
+  max-height: 100vh;
+
+  grid-template-columns: minmax(100px, 50vw) 1fr;
+  column-gap: 1vw;
+}
+
+.flex-row {
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  * {
+    margin: 5%;
+  }
+}
+
+#content-1 {
+  min-width: 190px;
+}
