@@ -13,8 +13,9 @@
   }
 
   strong {
-    color: $primary-color;
-    font-size: 5vh;
+    cursor: pointer;
+    color: $active-color;
+    font-size: calc(20px + 2vmin);
     margin: 4vh;
   }
 }
