@@ -44,14 +44,14 @@ class Home extends React.Component {
   handleSubmit(event) {
     var calendar = JSON.parse(localStorage.getItem("calendar"))
 
-    console.log(calendar)
+    // console.log(calendar)
 
     calendar.push({
       title: sessionStorage.getItem("trash-type"),
       date: sessionStorage.getItem("trash-date"),
     })
 
-    console.log(calendar)
+    // console.log(calendar)
 
     localStorage.setItem("calendar", JSON.stringify(calendar))
 
@@ -66,11 +66,11 @@ class Home extends React.Component {
     try {
       const calendar = JSON.parse(localStorage.getItem("calendar"))
 
-      console.log("Events already set:\n", calendar)
+      // console.log("Events already set:\n", calendar)
 
       successCallback(calendar)
     } catch (e) {
-      console.log("No events set yet !")
+      // console.log("No events set yet !")
       failureCallback(null)
     }
   }
