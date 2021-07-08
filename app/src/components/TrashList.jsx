@@ -18,8 +18,8 @@ function TrashList(props) {
         </option>
       ))
 
-      console.log(trashListItems, trashList[0].name.toLowerCase())
-      sessionStorage.setItem("selected-trash", trashList[0].name.toLowerCase())
+      // console.log(trashListItems, trashList[0].name.toLowerCase())
+      sessionStorage.setItem("trash-type", trashList[0].name.toLowerCase())
 
       return trashListItems
     } else {
@@ -31,7 +31,7 @@ function TrashList(props) {
   }
 
   function handleChange(event) {
-    sessionStorage.setItem("selected-trash", event.target.value)
+    sessionStorage.setItem("trash-type", event.target.value)
   }
 
   if (props.type === "select") {
