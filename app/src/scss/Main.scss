@@ -1,3 +1,5 @@
+@import "var";
+
 .flex-row {
   display: flex;
   flex-direction: row;
@@ -16,14 +18,25 @@
   grid-template-rows: auto auto 1fr auto;
 
   height: 100%;
+  width: 100%;
 }
-// a.link-normal {
-//   color: blue;
-// }
-// a.link-normal:hover {
-//   color: aqua;
-// }
+.grid {
+  display: grid;
+  height: 100%;
+  width: 100%;
+}
 
-// a.link-active {
-//   color: red;
-// }
+code {
+  background-color: $primary-color;
+
+  padding-right: 1vw;
+  padding-left: 1vw;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+
+  border-radius: 2px;
+}
+
+h1 {
+  border-bottom-style: medium solid $primary-color;
+}
