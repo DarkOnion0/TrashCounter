@@ -13,6 +13,7 @@ class Nav extends React.Component {
           className="link-normal"
           exact
           activeClassName="link-active"
+          onClick={window.scroll(0, 0)}
         >
           Home
         </NavLink>
@@ -22,6 +23,7 @@ class Nav extends React.Component {
           className="link-normal"
           exact
           activeClassName="link-active"
+          onClick={window.scroll(0, 0)}
         >
           Dev
         </NavLink>
@@ -33,6 +35,7 @@ class Nav extends React.Component {
           className="link-normal"
           exact
           activeClassName="link-active"
+          onClick={window.scroll(0, 0)}
         >
           Settings
         </NavLink>
