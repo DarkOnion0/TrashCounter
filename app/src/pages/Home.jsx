@@ -19,23 +19,60 @@ localStorage.setItem(
   ])
 )
 
+localStorage.setItem(
+  "calendar",
+  JSON.stringify([
+    { title: "Recyclable", date: "2021-07-08" },
+    { title: "Dechet vert", date: "2021-08-08" },
+  ])
+)
+
 class Home extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { value: "Select a trash" }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.calendarSource = this.calendarSource.bind(this)
   }
   handleChange(event) {
     this.setState({ value: event.target.value })
   }
 
+  calendarRef = React.createRef()
+
   handleSubmit(event) {
-    alert(
-      "Your favorite flavor is: " + sessionStorage.getItem("selected-trash")
-    )
+    var calendar = JSON.parse(localStorage.getItem("calendar"))
+
+    console.log(calendar)
+
+    calendar.push({
+      title: sessionStorage.getItem("trash-type"),
+      date: sessionStorage.getItem("trash-date"),
+    })
+
+    console.log(calendar)
+
+    localStorage.setItem("calendar", JSON.stringify(calendar))
+
+    var calendarApi = this.calendarRef.current.getApi()
+
+    calendarApi.refetchEvents()
+
     event.preventDefault()
+  }
+
+  calendarSource(info, successCallback, failureCallback) {
+    try {
+      const calendar = JSON.parse(localStorage.getItem("calendar"))
+
+      console.log("Events already set:\n", calendar)
+
+      successCallback(calendar)
+    } catch (e) {
+      console.log("No events set yet !")
+      failureCallback(null)
+    }
   }
 
   render() {
@@ -44,16 +81,17 @@ class Home extends React.Component {
         <div className="grid">
           <div id="calendar-container">
             <FullCalendar
+              ref={this.calendarRef}
               plugins={[dayGridPlugin]}
               initialView="dayGridMonth"
               weekNumbers={true}
               weekNumberFormat={{ week: "numeric" }}
-              events={localStorage.getItem("calendar")}
+              events={this.calendarSource}
             />
           </div>
           <div id="input-container">
             <h1>Add new event</h1>
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} autoComplete="on">
               <div className="flex-row">
                 <label id="content-1">
                   <h2>Trash Selector</h2>
@@ -66,7 +104,7 @@ class Home extends React.Component {
                 </label>
               </div>
 
-              <input type="submit" value="Create !" />
+              <input type="submit" value="Add" />
             </form>
             {/* <button onClick={calendar.refetchEvents()} /> */}
           </div>
