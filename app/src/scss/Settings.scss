@@ -1,0 +1,33 @@
+#settings {
+  #content-display {
+    display: flex;
+
+    @media screen and (max-width: 885px) {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    @media screen and (min-width: 885px) {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+
+  .display-container {
+    min-width: 300px;
+    min-height: 150px;
+
+    @media screen and (max-width: 885px) {
+      width: 75vw;
+      height: fit-content;
+      margin: 3%;
+    }
+
+    @media screen and (min-width: 885px) {
+      margin: 1.5%;
+      width: 35vw;
+      height: fit-content;
+    }
+  }
+}
