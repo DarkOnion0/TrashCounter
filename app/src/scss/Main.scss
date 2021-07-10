@@ -40,3 +40,25 @@ code {
 h1 {
   border-bottom-style: medium solid $primary-color;
 }
+
+.page-frame {
+  border-radius: 50px;
+
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  margin-left: 1vw;
+  margin-right: 1vw;
+
+  padding: 1vw;
+}
+
+.display-container {
+  background-color: $background;
+
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0.25px $active-color;
+
+  padding: 2%;
+
+  height: fit-content;
+}
