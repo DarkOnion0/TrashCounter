@@ -19,13 +19,13 @@ class Nav extends React.Component {
         </NavLink>
 
         <NavLink
-          to="/dev"
+          to="/stats"
           className="link-normal"
           exact
           activeClassName="link-active"
           onClick={window.scroll(0, 0)}
         >
-          Dev
+          Stats
         </NavLink>
 
         <p></p>

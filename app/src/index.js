@@ -7,9 +7,10 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import "./index.css"
 
 // pages
-import Dev from "./pages/Dev"
 import Home from "./pages/Home"
 import ErrorPage from "./pages/ErrorPage"
+import Settings from "./pages/Settings"
+import Stats from "./pages/Stats"
 
 // components
 import Nav from "./components/Nav"
@@ -23,7 +24,8 @@ ReactDOM.render(
       <Switch>
         {/* The project links */}
         <Route path="/" exact component={Home} />
-        <Route path="/dev" component={Dev} />
+        <Route path="/stats" component={Stats} />
+        <Route path="/settings" component={Settings} />
 
         {/* The 404 error page */}
         <Route path="/">
