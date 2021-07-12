@@ -12,6 +12,20 @@
     margin-top: 2vh;
   }
 }
+.flex-auto-row {
+  display: flex;
+
+  @media screen and (max-width: 885px) {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media screen and (min-width: 885px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
 
 .grid-pancake {
   display: grid;
@@ -53,7 +67,7 @@ h1 {
 }
 
 .display-container {
-  background-color: $background;
+  background-color: $primary-color;
 
   border-radius: 5px;
   box-shadow: 0 0 5px 0.25px $active-color;
@@ -61,4 +75,17 @@ h1 {
   padding: 2%;
 
   height: fit-content;
+}
+
+button,
+.button {
+  border-radius: 5px;
+
+  border: thin solid red;
+
+  cursor: pointer;
+}
+
+#downloadZone {
+  display: none;
 }
