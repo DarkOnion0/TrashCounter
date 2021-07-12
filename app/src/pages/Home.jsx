@@ -14,16 +14,26 @@ import "./../css/Main.css"
 localStorage.setItem(
   "trashlist",
   JSON.stringify([
-    { name: "Recyclable", color: "Yellow" },
-    { name: "Dechet vert", color: "Green" },
+    { name: "Recyclable", color: "Yellow", textColor: "black" },
+    { name: "Dechet vert", color: "Green", textColor: "white" },
   ])
 )
 
 localStorage.setItem(
   "calendar",
   JSON.stringify([
-    { title: "Recyclable", date: "2021-07-08" },
-    { title: "Dechet vert", date: "2021-08-08" },
+    {
+      title: "Recyclable",
+      date: "2021-07-08",
+      color: "Yellow",
+      textColor: "black",
+    },
+    {
+      title: "Dechet vert",
+      date: "2021-08-08",
+      color: "Green",
+      textColor: "white",
+    },
   ])
 )
 
@@ -31,12 +41,8 @@ class Home extends React.Component {
   constructor(props) {
     super(props)
 
-    this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.calendarSource = this.calendarSource.bind(this)
-  }
-  handleChange(event) {
-    this.setState({ value: event.target.value })
   }
 
   calendarRef = React.createRef()
@@ -47,8 +53,10 @@ class Home extends React.Component {
     // console.log(calendar)
 
     calendar.push({
-      title: sessionStorage.getItem("trash-type"),
+      title: sessionStorage.getItem("trash-type").split("-")[0],
       date: sessionStorage.getItem("trash-date"),
+      color: sessionStorage.getItem("trash-type").split("-")[1],
+      textColor: sessionStorage.getItem("trash-type").split("-")[2],
     })
 
     // console.log(calendar)
@@ -77,9 +85,9 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div id="home">
+      <div id="home" className="page-frame">
         <div className="grid">
-          <div id="calendar-container">
+          <div id="calendar-container" className="display-container">
             <FullCalendar
               ref={this.calendarRef}
               plugins={[dayGridPlugin]}
@@ -89,10 +97,10 @@ class Home extends React.Component {
               events={this.calendarSource}
             />
           </div>
-          <div id="input-container">
+          <div id="input-container" className="display-container">
             <h1>Add new event</h1>
             <form onSubmit={this.handleSubmit} autoComplete="on">
-              <div className="flex-row">
+              <div id="input-zone" className="flex-row">
                 <label id="content-1">
                   <h2>Trash Selector</h2>
                   <TrashList type="select" />
@@ -104,7 +112,7 @@ class Home extends React.Component {
                 </label>
               </div>
 
-              <input type="submit" value="Add" />
+              <input className="button" type="submit" value="Add" />
             </form>
             {/* <button onClick={calendar.refetchEvents()} /> */}
           </div>
