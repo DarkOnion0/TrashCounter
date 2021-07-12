@@ -21,6 +21,8 @@ ReactDOM.render(
       {/* The navigation bar */}
       <Nav />
 
+      <div id="downloadZone"></div>
+
       <Switch>
         {/* The project links */}
         <Route path="/" exact component={Home} />
