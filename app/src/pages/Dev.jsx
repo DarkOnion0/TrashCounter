@@ -1,10 +1,12 @@
-import logo from "./../images/logo.svg"
-import "./../css/Dev.css"
 import React from "react"
+import logo from "./../images/logo.svg"
+
+import "./../css/Main.css"
+import "./../css/Dev.css"
 
 function App() {
   return (
-    <div className="App">
+    <div className="App page-frame">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
