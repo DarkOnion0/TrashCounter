@@ -9,36 +9,76 @@ function TrashList(props) {
     if (trashList) {
       trashList = JSON.parse(trashList)
 
-      const trashListItems = trashList.map((trashList) => (
-        <option
-          value={trashList.name.toLowerCase()}
-          key={trashList.name.toString()}
-        >
-          {trashList.name}
-        </option>
-      ))
+      if (props.type === "select") {
+        const trashListItems = trashList.map((trashList) => (
+          <option
+            value={
+              trashList.name.toLowerCase() +
+              "-" +
+              trashList.color.toLowerCase() +
+              "-" +
+              trashList.textColor.toLowerCase()
+            }
+            key={trashList.name.toString()}
+          >
+            {trashList.name}
+          </option>
+        ))
 
-      // console.log(trashListItems, trashList[0].name.toLowerCase())
-      sessionStorage.setItem("trash-type", trashList[0].name.toLowerCase())
+        // console.log(trashListItems, trashList[0].name.toLowerCase())
+        sessionStorage.setItem(
+          "trash-type",
+          trashList[0].name.toLowerCase() +
+            "-" +
+            trashList[0].color.toLowerCase() +
+            "-" +
+            trashList[0].textColor.toLowerCase()
+        )
 
-      return trashListItems
-    } else {
-      alert(
-        "We detect that you haven't set any Trash to follow yet !\nPlease go in the settings an set at least one trash type"
-      )
-      return <option></option>
+        return trashListItems
+      } else if (props.type === "settings") {
+        const trashListItems = trashList.map((trashList) => (
+          <li
+            value={
+              trashList.name.toLowerCase() +
+              "-" +
+              trashList.color.toLowerCase() +
+              "-" +
+              trashList.textColor.toLowerCase()
+            }
+            key={trashList.name.toString()}
+          >
+            {trashList.name}
+          </li>
+        ))
+
+        return trashListItems
+      } else {
+        alert(
+          "We detect that you haven't set any Trash to follow yet !\nPlease go in the settings an set at least one trash type"
+        )
+        return <option></option>
+      }
     }
   }
 
-  function handleChange(event) {
+  function handleChangeList(event) {
     sessionStorage.setItem("trash-type", event.target.value)
   }
 
   if (props.type === "select") {
     return (
-      <select required name="TrashList" onChange={handleChange}>
+      <select required name="TrashList" onChange={handleChangeList}>
         {getList()}
       </select>
+    )
+  } else if (props.type === "settings") {
+    return (
+      <div id="trashListContainer">
+        <h3>Existing trash</h3>
+
+        <ul className="trashList">{getList()}</ul>
+      </div>
     )
   } else {
     return null
