@@ -12,7 +12,7 @@ import "./../css/Main.css"
 
 // Only for dev testing, it must be remove in production
 localStorage.setItem(
-  "trashlist",
+  "trashList",
   JSON.stringify([
     { name: "Recyclable", color: "Yellow", textColor: "black" },
     { name: "Dechet vert", color: "Green", textColor: "white" },
@@ -25,8 +25,20 @@ localStorage.setItem(
     {
       title: "Recyclable",
       date: "2021-07-08",
-      color: "Yellow",
-      textColor: "black",
+      color: (() => {
+        const trashType = sessionStorage.getItem("trashType")
+        const trashList = JSON.parse(localStorage.getItem("trashList"))
+        const index = trashType.split("-")[1]
+
+        return trashList[index].color
+      })(),
+      textColor: (() => {
+        const trashType = sessionStorage.getItem("trashType")
+        const trashList = JSON.parse(localStorage.getItem("trashList"))
+        const index = trashType.split("-")[1]
+
+        return trashList[index].textColor
+      })(),
     },
     {
       title: "Dechet vert",
@@ -48,26 +60,30 @@ class Home extends React.Component {
   calendarRef = React.createRef()
 
   handleSubmit(event) {
-    var calendar = JSON.parse(localStorage.getItem("calendar"))
+    event.preventDefault()
+    const calendar = JSON.parse(localStorage.getItem("calendar"))
+    const trashList = JSON.parse(localStorage.getItem("trashList"))
 
+    // console.log(calendar)
+    const trashType = sessionStorage.getItem("trashType")
+
+    const index = trashType.split("-")[1]
+
+    // console.log(index)
     // console.log(calendar)
 
     calendar.push({
-      title: sessionStorage.getItem("trash-type").split("-")[0],
-      date: sessionStorage.getItem("trash-date"),
-      color: sessionStorage.getItem("trash-type").split("-")[1],
-      textColor: sessionStorage.getItem("trash-type").split("-")[2],
+      title: trashType.split("-")[0],
+      date: sessionStorage.getItem("trashDate"),
+      color: trashList[index].color,
+      textColor: trashList[index].textColor,
     })
-
-    // console.log(calendar)
 
     localStorage.setItem("calendar", JSON.stringify(calendar))
 
     var calendarApi = this.calendarRef.current.getApi()
 
     calendarApi.refetchEvents()
-
-    event.preventDefault()
   }
 
   calendarSource(info, successCallback, failureCallback) {
