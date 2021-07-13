@@ -20,26 +20,17 @@ localStorage.setItem(
 )
 
 localStorage.setItem(
-  "calendar",
+  "calendarRECYCLABLE",
   JSON.stringify([
     {
       title: "Recyclable",
       date: "2021-07-08",
-      color: (() => {
-        const trashType = sessionStorage.getItem("trashType")
-        const trashList = JSON.parse(localStorage.getItem("trashList"))
-        const index = trashType.split("-")[1]
-
-        return trashList[index].color
-      })(),
-      textColor: (() => {
-        const trashType = sessionStorage.getItem("trashType")
-        const trashList = JSON.parse(localStorage.getItem("trashList"))
-        const index = trashType.split("-")[1]
-
-        return trashList[index].textColor
-      })(),
     },
+  ])
+)
+localStorage.setItem(
+  "calendarDECHET VERT",
+  JSON.stringify([
     {
       title: "Dechet vert",
       date: "2021-08-08",
@@ -59,27 +50,56 @@ class Home extends React.Component {
 
   calendarRef = React.createRef()
 
-  handleSubmit(event) {
-    event.preventDefault()
-    const calendar = JSON.parse(localStorage.getItem("calendar"))
+  componentDidMount() {
+    let calendarApi = this.calendarRef.current.getApi()
+
     const trashList = JSON.parse(localStorage.getItem("trashList"))
 
-    // console.log(calendar)
-    const trashType = sessionStorage.getItem("trashType")
+    for (let i = 0; i < trashList.length; i++) {
+      calendarApi.addEventSource({
+        events: (info, successCallback, failureCallback) => {
+          try {
+            const calendar = JSON.parse(
+              localStorage.getItem(`calendar${trashList[i].name.toUpperCase()}`)
+            )
 
+            console.log(calendar)
+
+            successCallback(calendar)
+          } catch (e) {
+            console.error(e)
+            failureCallback([{}])
+          }
+        },
+        color: trashList[i].color,
+        textColor: trashList[i].textColor,
+        id: `calendar${trashList[i].name.toUpperCase()}`,
+      })
+
+      calendarApi.refetchEvents()
+    }
+  }
+
+  handleSubmit(event) {
+    event.preventDefault()
+    const trashList = JSON.parse(localStorage.getItem("trashList"))
+    const trashType = sessionStorage.getItem("trashType")
     const index = trashType.split("-")[1]
+    const calendarName = "calendar" + trashList[index].name.toUpperCase()
 
     // console.log(index)
     // console.log(calendar)
 
+    const calendar = JSON.parse(localStorage.getItem(calendarName))
+
     calendar.push({
       title: trashType.split("-")[0],
       date: sessionStorage.getItem("trashDate"),
-      color: trashList[index].color,
-      textColor: trashList[index].textColor,
+      // color: trashList[index].color,
+      // textColor: trashList[index].textColor,
     })
 
-    localStorage.setItem("calendar", JSON.stringify(calendar))
+    localStorage.setItem(calendarName, JSON.stringify(calendar))
 
     var calendarApi = this.calendarRef.current.getApi()
 
@@ -110,7 +130,6 @@ class Home extends React.Component {
               initialView="dayGridMonth"
               weekNumbers={true}
               weekNumberFormat={{ week: "numeric" }}
-              events={this.calendarSource}
             />
           </div>
           <div id="input-container" className="display-container">
