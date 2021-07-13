@@ -40,7 +40,7 @@ function Settings(props) {
   function exportData() {
     const localData = {}
 
-    let trashList = localStorage.getItem("trashlist")
+    let trashList = localStorage.getItem("trashList")
     let calendar = localStorage.getItem("calendar")
 
     // localData.push(JSON.parse(trashList))

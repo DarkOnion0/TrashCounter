@@ -5,20 +5,14 @@ import "./../css/TrashList.css"
 
 function TrashList(props) {
   function getList() {
-    var trashList = localStorage.getItem("trashlist")
+    var trashList = localStorage.getItem("trashList")
     if (trashList) {
       trashList = JSON.parse(trashList)
 
       if (props.type === "select") {
-        const trashListItems = trashList.map((trashList) => (
+        const trashListItems = trashList.map((trashList, index) => (
           <option
-            value={
-              trashList.name.toLowerCase() +
-              "-" +
-              trashList.color.toLowerCase() +
-              "-" +
-              trashList.textColor.toLowerCase()
-            }
+            value={trashList.name.toLowerCase() + "-" + index.toString()}
             key={trashList.name.toString()}
           >
             {trashList.name}
@@ -27,12 +21,8 @@ function TrashList(props) {
 
         // console.log(trashListItems, trashList[0].name.toLowerCase())
         sessionStorage.setItem(
-          "trash-type",
-          trashList[0].name.toLowerCase() +
-            "-" +
-            trashList[0].color.toLowerCase() +
-            "-" +
-            trashList[0].textColor.toLowerCase()
+          "trashType",
+          trashList[0].name.toLowerCase() + "-" + "0"
         )
 
         return trashListItems
@@ -63,7 +53,7 @@ function TrashList(props) {
   }
 
   function handleChangeList(event) {
-    sessionStorage.setItem("trash-type", event.target.value)
+    sessionStorage.setItem("trashType", event.target.value)
   }
 
   if (props.type === "select") {

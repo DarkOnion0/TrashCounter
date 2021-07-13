@@ -4,10 +4,10 @@ import "./../css/Main.css"
 import "./../css/DateSelector.css"
 
 function DateSelector(props) {
-  sessionStorage.setItem("trash-date", null)
+  sessionStorage.setItem("trashDate", null)
 
   function handleChange(event) {
-    sessionStorage.setItem("trash-date", event.target.value)
+    sessionStorage.setItem("trashDate", event.target.value)
   }
 
   return <input type="date" onChange={handleChange} />
