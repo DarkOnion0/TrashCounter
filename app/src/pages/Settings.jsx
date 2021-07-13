@@ -25,8 +25,17 @@ function Settings(props) {
             // console.log(textJSON)
 
             for (const i in textJSON) {
-              // console.log(i, textJSON[i])
-              localStorage.setItem(i, JSON.stringify(textJSON[i]))
+              // console.log(i, textJSON[i])*
+              if (i === "calendar") {
+                for (const iCalendar in textJSON[i]) {
+                  localStorage.setItem(
+                    iCalendar,
+                    JSON.stringify(textJSON[i][iCalendar])
+                  )
+                }
+              } else {
+                localStorage.setItem(i, JSON.stringify(textJSON[i]))
+              }
             }
             importData.remove()
           })
@@ -39,15 +48,24 @@ function Settings(props) {
 
   function exportData() {
     const localData = {}
+    const calendar = {}
 
     let trashList = localStorage.getItem("trashList")
-    let calendar = localStorage.getItem("calendar")
+    localData["trashList"] = JSON.parse(trashList)
 
     // localData.push(JSON.parse(trashList))
     // localData.push(JSON.parse(calendar))
 
-    localData["calendar"] = JSON.parse(calendar)
-    localData["trashlist"] = JSON.parse(trashList)
+    for (let i = 0; i < localData["trashList"].length; i++) {
+      calendar[`calendar${localData["trashList"][i].name.toUpperCase()}`] =
+        JSON.parse(
+          localStorage.getItem(
+            `calendar${localData["trashList"][i].name.toUpperCase()}`
+          )
+        )
+    }
+
+    localData["calendar"] = calendar
 
     const file = new Blob([JSON.stringify(localData)], {
       type: "application/json",
