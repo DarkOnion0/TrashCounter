@@ -86,7 +86,6 @@ function Settings(props) {
 
   return (
     <div id="settings" className="page-frame">
-      {/* {exportData()} */}
       <div id="content-display">
         <div id="data-container" className="display-container">
           <h2>Data</h2>
