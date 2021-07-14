@@ -63,7 +63,7 @@ class Home extends React.Component {
               localStorage.getItem(`calendar${trashList[i].name.toUpperCase()}`)
             )
 
-            console.log(calendar)
+            // console.log(calendar)
 
             successCallback(calendar)
           } catch (e) {
@@ -134,14 +134,14 @@ class Home extends React.Component {
           </div>
           <div id="input-container" className="display-container">
             <h1>Add new event</h1>
-            <form onSubmit={this.handleSubmit} autoComplete="on">
+            <form onSubmit={this.handleSubmit} autoComplete="on" required>
               <div id="input-zone" className="flex-row">
                 <label id="content-1">
                   <h2>Trash Selector</h2>
                   <TrashList type="select" />
                 </label>
 
-                <label id="content-2">
+                <label id="content-2" required>
                   <h2>Time picker</h2>
                   <DateSelector />
                 </label>
