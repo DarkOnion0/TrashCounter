@@ -95,4 +95,13 @@
       width: fit-content;
     }
   }
+
+  #buttonContainer {
+    justify-content: flex-end;
+
+    * {
+      margin: 1%;
+      margin-bottom: 0;
+    }
+  }
 }

@@ -22,7 +22,7 @@ function TrashList(props) {
         // console.log(trashListItems, trashList[0].name.toLowerCase())
         sessionStorage.setItem(
           "trashType",
-          trashList[0].name.toLowerCase() + "-" + "0"
+          `${trashList[0].name.toLowerCase()}-0`
         )
 
         return trashListItems
@@ -99,13 +99,16 @@ function TrashList(props) {
       <div id="trashListContainer">
         <h3>Existing trash</h3>
         <ul className="trashList">{getList()}</ul>
-        <button
-          onClick={() => {
-            document.getElementById("popupContainer").style.display = "block"
-          }}
-        >
-          Add new trash
-        </button>
+        <div id="buttonContainer" className="flex-row">
+          <button
+            onClick={() => {
+              document.getElementById("popupContainer").style.display = "block"
+            }}
+          >
+            Add new trash
+          </button>
+        </div>
+
         <div id="popupContainer">
           <div id="bgPopup"></div>
 
