@@ -49,11 +49,43 @@ function TrashList(props) {
         )
         return <option></option>
       }
+    } else {
+      return null
     }
   }
 
   function handleChangeList(event) {
     sessionStorage.setItem("trashType", event.target.value)
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    // console.log("Form has been submitted")
+
+    let trashName = document.getElementById("trashNameAdd").value
+    let trashColor = document.getElementById("trashColorAdd").value
+    let trashTextColor = document.getElementById("trashTextColorAdd").value
+
+    const trashList = JSON.parse(localStorage.getItem("trashList"))
+
+    trashList.push({
+      name: trashName,
+      color: trashColor,
+      textColor: trashTextColor,
+    })
+
+    localStorage.setItem("trashList", JSON.stringify(trashList))
+    localStorage.setItem(
+      `calendar${trashName.toUpperCase()}`,
+      JSON.stringify([{}])
+    )
+
+    closePopup(event)
+  }
+
+  function closePopup(event) {
+    event.preventDefault()
+    document.getElementById("popupContainer").style.display = "none"
   }
 
   if (props.type === "select") {
@@ -66,8 +98,58 @@ function TrashList(props) {
     return (
       <div id="trashListContainer">
         <h3>Existing trash</h3>
-
         <ul className="trashList">{getList()}</ul>
+        <button
+          onClick={() => {
+            document.getElementById("popupContainer").style.display = "block"
+          }}
+        >
+          Add new trash
+        </button>
+        <div id="popupContainer">
+          <div id="bgPopup"></div>
+
+          <div id="popupDialog">
+            <div id="modalDialog">
+              <div id="addPopup" className="grid-pancake">
+                <div id="addPopupHeader" className="flex-row">
+                  <div id="addPopupTitle">
+                    <h1>Add a new trash</h1>
+                  </div>
+                  <div id="addPopupButtonT">
+                    <button onClick={closePopup}>Close</button>
+                  </div>
+                </div>
+                <div id="addPopupContent">
+                  <form onSubmit={handleSubmit} autoComplete="off">
+                    <div id="trashName" className="flex-col">
+                      <label id="content-1" required>
+                        <strong>Trash name</strong>
+                        <input id="trashNameAdd" type="text" />
+                      </label>
+
+                      <label id="content-2" required>
+                        <strong>Trash Color (background)</strong>
+                        <input id="trashColorAdd" type="text" />
+                      </label>
+
+                      <label id="content-3" required>
+                        <strong>Trash Color (text)</strong>
+                        <input id="trashTextColorAdd" type="text" />
+                      </label>
+                      <div id="addPopupContentButton" className="flex-row">
+                        <input className="button" type="submit" value="Save" />
+                        <button className="button" onClick={closePopup}>
+                          Discard
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     )
   } else {
