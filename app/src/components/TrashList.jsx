@@ -159,8 +159,8 @@ function TrashList(props) {
                           <a href="https://developer.mozilla.org">
                             Mozilla Documentation
                           </a>
-                          ). You also leave it blank if you just want the blue
-                          default color.
+                          ). You can also leave it blank if you just want the
+                          blue default color.
                         </p>
                       </label>
 
@@ -179,10 +179,10 @@ function TrashList(props) {
                           <a href="https://developer.mozilla.org">
                             Mozilla Documentation
                           </a>
-                          ). You also leave it blank if you just want the white
-                          default text color. If you have changed the default
-                          color (the field above) you should check if can read
-                          the text.
+                          ). You can also leave it blank if you just want the
+                          white default text color. If you have changed the
+                          default color you should check if can read the text on
+                          the selected background.
                         </p>
                       </label>
 
