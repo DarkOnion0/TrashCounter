@@ -59,7 +59,7 @@
     box-sizing: border-box;
     transform: translate(0, 0);
     width: 45vw;
-    margin: 10vh auto;
+    margin: 5vh auto;
   }
 
   #addPopup {
@@ -103,5 +103,20 @@
       margin: 1%;
       margin-bottom: 0;
     }
+  }
+
+  .formTextField {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .labelText {
+    font-style: italic;
+    color: grey;
+  }
+
+  label {
+    min-width: 100%;
   }
 }

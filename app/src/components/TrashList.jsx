@@ -128,18 +128,64 @@ function TrashList(props) {
                     <div id="trashName" className="flex-col">
                       <label id="content-1" required>
                         <strong>Trash name</strong>
-                        <input id="trashNameAdd" type="text" />
+                        <input
+                          id="trashNameAdd"
+                          type="text"
+                          className="formTextField"
+                        />
+                        <p className="labelText">
+                          This params will defined the name of your trash. You
+                          can choose any name you want but <strong>"-"</strong>{" "}
+                          is prohibited (the app will crash if you do that).
+                          This name will also being used as the event name in
+                          the calendar.
+                        </p>
                       </label>
 
                       <label id="content-2" required>
                         <strong>Trash Color (background)</strong>
-                        <input id="trashColorAdd" type="text" />
+
+                        <input
+                          id="trashColorAdd"
+                          type="text"
+                          className="formTextField"
+                        />
+                        <p className="labelText">
+                          This params will defined the event background color.
+                          It can be any css valuable color string like rgb code,
+                          hex or css color name (you can find the color you want
+                          on any color picker, for more details you can check
+                          the{" "}
+                          <a href="https://developer.mozilla.org">
+                            Mozilla Documentation
+                          </a>
+                          ). You also leave it blank if you just want the blue
+                          default color.
+                        </p>
                       </label>
 
                       <label id="content-3" required>
                         <strong>Trash Color (text)</strong>
-                        <input id="trashTextColorAdd" type="text" />
+                        <input
+                          id="trashTextColorAdd"
+                          type="text"
+                          className="formTextField"
+                        />
+                        <p className="labelText">
+                          This params will defined the event text color. It can
+                          be any css valuable color string like rgb code, hex or
+                          css color name (you can find the color you want on any
+                          color picker, for more details you can check the{" "}
+                          <a href="https://developer.mozilla.org">
+                            Mozilla Documentation
+                          </a>
+                          ). You also leave it blank if you just want the white
+                          default text color. If you have changed the default
+                          color (the field above) you should check if can read
+                          the text.
+                        </p>
                       </label>
+
                       <div id="addPopupContentButton" className="flex-row">
                         <input className="button" type="submit" value="Save" />
                         <button className="button" onClick={closePopup}>
