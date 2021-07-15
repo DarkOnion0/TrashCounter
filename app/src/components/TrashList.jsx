@@ -1,5 +1,7 @@
 import React from "react"
 
+import Popup from "./Popup"
+
 import "./../css/Main.css"
 import "./../css/TrashList.css"
 
@@ -85,8 +87,65 @@ function TrashList(props) {
 
   function closePopup(event) {
     event.preventDefault()
+    document.getElementById("trashNameAdd").value = " "
+    document.getElementById("trashColorAdd").value = " "
+    document.getElementById("trashTextColorAdd").value = " "
     document.getElementById("popupContainer").style.display = "none"
   }
+
+  const popupContent = (
+    <form onSubmit={handleSubmit} autoComplete="off">
+      <div id="trashName" className="flex-col">
+        <label id="content-1" required>
+          <strong>Trash name</strong>
+          <input id="trashNameAdd" type="text" className="formTextField" />
+          <p className="labelText">
+            This params will defined the name of your trash. You can choose any
+            name you want but <strong>"-"</strong> is prohibited (the app will
+            crash if you do that). This name will also being used as the event
+            name in the calendar.
+          </p>
+        </label>
+
+        <label id="content-2" required>
+          <strong>Trash Color (background)</strong>
+
+          <input id="trashColorAdd" type="text" className="formTextField" />
+          <p className="labelText">
+            This params will defined the event background color. It can be any
+            css valuable color string like rgb code, hex or css color name (you
+            can find the color you want on any color picker, for more details
+            you can check the{" "}
+            <a href="https://developer.mozilla.org">Mozilla Documentation</a>
+            ). You can also leave it blank if you just want the blue default
+            color.
+          </p>
+        </label>
+
+        <label id="content-3" required>
+          <strong>Trash Color (text)</strong>
+          <input id="trashTextColorAdd" type="text" className="formTextField" />
+          <p className="labelText">
+            This params will defined the event text color. It can be any css
+            valuable color string like rgb code, hex or css color name (you can
+            find the color you want on any color picker, for more details you
+            can check the{" "}
+            <a href="https://developer.mozilla.org">Mozilla Documentation</a>
+            ). You can also leave it blank if you just want the white default
+            text color. If you have changed the default color you should check
+            if can read the text on the selected background.
+          </p>
+        </label>
+
+        <div id="buttonContainer" className="buttonContainer">
+          <input className="button" type="submit" value="Save" />
+          <button className="button" onClick={closePopup}>
+            Discard
+          </button>
+        </div>
+      </div>
+    </form>
+  )
 
   if (props.type === "select") {
     return (
@@ -99,7 +158,7 @@ function TrashList(props) {
       <div id="trashListContainer">
         <h3>Existing trash</h3>
         <ul className="trashList">{getList()}</ul>
-        <div id="buttonContainer" className="flex-row">
+        <div className="buttonContainer">
           <button
             onClick={() => {
               document.getElementById("popupContainer").style.display = "block"
@@ -109,96 +168,11 @@ function TrashList(props) {
           </button>
         </div>
 
-        <div id="popupContainer">
-          <div id="bgPopup"></div>
-
-          <div id="popupDialog">
-            <div id="modalDialog">
-              <div id="addPopup" className="grid-pancake">
-                <div id="addPopupHeader" className="flex-row">
-                  <div id="addPopupTitle">
-                    <h1>Add a new trash</h1>
-                  </div>
-                  <div id="addPopupButtonT">
-                    <button onClick={closePopup}>Close</button>
-                  </div>
-                </div>
-                <div id="addPopupContent">
-                  <form onSubmit={handleSubmit} autoComplete="off">
-                    <div id="trashName" className="flex-col">
-                      <label id="content-1" required>
-                        <strong>Trash name</strong>
-                        <input
-                          id="trashNameAdd"
-                          type="text"
-                          className="formTextField"
-                        />
-                        <p className="labelText">
-                          This params will defined the name of your trash. You
-                          can choose any name you want but <strong>"-"</strong>{" "}
-                          is prohibited (the app will crash if you do that).
-                          This name will also being used as the event name in
-                          the calendar.
-                        </p>
-                      </label>
-
-                      <label id="content-2" required>
-                        <strong>Trash Color (background)</strong>
-
-                        <input
-                          id="trashColorAdd"
-                          type="text"
-                          className="formTextField"
-                        />
-                        <p className="labelText">
-                          This params will defined the event background color.
-                          It can be any css valuable color string like rgb code,
-                          hex or css color name (you can find the color you want
-                          on any color picker, for more details you can check
-                          the{" "}
-                          <a href="https://developer.mozilla.org">
-                            Mozilla Documentation
-                          </a>
-                          ). You can also leave it blank if you just want the
-                          blue default color.
-                        </p>
-                      </label>
-
-                      <label id="content-3" required>
-                        <strong>Trash Color (text)</strong>
-                        <input
-                          id="trashTextColorAdd"
-                          type="text"
-                          className="formTextField"
-                        />
-                        <p className="labelText">
-                          This params will defined the event text color. It can
-                          be any css valuable color string like rgb code, hex or
-                          css color name (you can find the color you want on any
-                          color picker, for more details you can check the{" "}
-                          <a href="https://developer.mozilla.org">
-                            Mozilla Documentation
-                          </a>
-                          ). You can also leave it blank if you just want the
-                          white default text color. If you have changed the
-                          default color you should check if can read the text on
-                          the selected background.
-                        </p>
-                      </label>
-
-                      <div id="addPopupContentButton" className="flex-row">
-                        <input className="button" type="submit" value="Save" />
-                        <button className="button" onClick={closePopup}>
-                          Discard
-                        </button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Popup
+          id="popupContainer"
+          content={popupContent}
+          title="Add a new trash"
+        />
       </div>
     )
   } else {
