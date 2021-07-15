@@ -6,6 +6,9 @@ import "./../css/Main.css"
 import "./../css/TrashList.css"
 
 function TrashList(props) {
+  // this state is just here for re-rendering the component when a new trash is added
+  const [update, setUpdate] = React.useState(true)
+
   function getList() {
     var trashList = localStorage.getItem("trashList")
     if (trashList) {
@@ -60,7 +63,7 @@ function TrashList(props) {
     sessionStorage.setItem("trashType", event.target.value)
   }
 
-  function handleSubmit(event) {
+  function handleSubmitAdd(event) {
     event.preventDefault()
     // console.log("Form has been submitted")
 
@@ -82,19 +85,25 @@ function TrashList(props) {
       JSON.stringify([{}])
     )
 
-    closePopup(event)
+    closePopup(event, true)
   }
 
-  function closePopup(event) {
+  function closePopup(event, submit) {
+    const isSubmited = submit || false
+
     event.preventDefault()
     document.getElementById("trashNameAdd").value = " "
     document.getElementById("trashColorAdd").value = " "
     document.getElementById("trashTextColorAdd").value = " "
     document.getElementById("popupContainer").style.display = "none"
+
+    if (isSubmited === true) {
+      setUpdate((prevCount) => !prevCount)
+    }
   }
 
-  const popupContent = (
-    <form onSubmit={handleSubmit} autoComplete="off">
+  const popupContentAdd = (
+    <form onSubmit={handleSubmitAdd} autoComplete="off">
       <div id="trashName" className="flex-col">
         <label id="content-1" required>
           <strong>Trash name</strong>
@@ -170,7 +179,7 @@ function TrashList(props) {
 
         <Popup
           id="popupContainer"
-          content={popupContent}
+          content={popupContentAdd}
           title="Add a new trash"
         />
       </div>
