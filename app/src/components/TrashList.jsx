@@ -113,9 +113,9 @@ function TrashList(props) {
           <input id="trashColorAdd" type="text" className="formTextField" />
           <p className="labelText">
             This params will defined the event background color. It can be any
-            css valuable color string like rgb code, hex or css color name (you
-            can find the color you want on any color picker, for more details
-            you can check the{" "}
+            css color format like rgb code, hex or css color name (you can find
+            the color you want on any color picker, for more details you can
+            check the{" "}
             <a href="https://developer.mozilla.org">Mozilla Documentation</a>
             ). You can also leave it blank if you just want the blue default
             color.
@@ -127,7 +127,7 @@ function TrashList(props) {
           <input id="trashTextColorAdd" type="text" className="formTextField" />
           <p className="labelText">
             This params will defined the event text color. It can be any css
-            valuable color string like rgb code, hex or css color name (you can
+            color format string like rgb code, hex or css color name (you can
             find the color you want on any color picker, for more details you
             can check the{" "}
             <a href="https://developer.mozilla.org">Mozilla Documentation</a>
