@@ -87,6 +87,33 @@ button,
   cursor: pointer;
 }
 
-#downloadZone {
+.formTextField {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.labelText {
+  font-style: italic;
+  color: grey;
+}
+
+label {
+  min-width: 100%;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: flex-end;
+  * {
+    width: fit-content;
+    margin: 1%;
+    margin-bottom: 0;
+  }
+}
+
+#invisibleZone {
   display: none;
 }
