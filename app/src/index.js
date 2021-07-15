@@ -21,7 +21,7 @@ ReactDOM.render(
       {/* The navigation bar */}
       <Nav />
 
-      <div id="downloadZone"></div>
+      <div id="invisibleZone"></div>
 
       <Switch>
         {/* The project links */}

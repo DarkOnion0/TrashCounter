@@ -10,7 +10,7 @@ function Settings(props) {
     importData.setAttribute("type", "file")
     importData.setAttribute("id", "inputDoc")
 
-    document.getElementById("downloadZone").appendChild(importData)
+    document.getElementById("invisibleZone").appendChild(importData)
 
     importData.click()
 
@@ -77,7 +77,7 @@ function Settings(props) {
     exportData.setAttribute("href", fileUrl)
     exportData.setAttribute("download", "TrashCounterSettings.json")
 
-    document.getElementById("downloadZone").appendChild(exportData)
+    document.getElementById("invisibleZone").appendChild(exportData)
 
     exportData.click()
 
