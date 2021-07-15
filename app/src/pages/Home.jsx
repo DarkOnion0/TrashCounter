@@ -147,7 +147,9 @@ class Home extends React.Component {
                 </label>
               </div>
 
-              <input className="button" type="submit" value="Add" />
+              <div className="buttonContainer">
+                <input className="button" type="submit" value="Add" />
+              </div>
             </form>
             {/* <button onClick={calendar.refetchEvents()} /> */}
           </div>
