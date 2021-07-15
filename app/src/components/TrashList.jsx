@@ -89,7 +89,7 @@ function TrashList(props) {
   }
 
   function closePopup(event, submit) {
-    const isSubmited = submit || false
+    const isSubmitted = submit || false
 
     event.preventDefault()
     document.getElementById("trashNameAdd").value = " "
@@ -97,7 +97,7 @@ function TrashList(props) {
     document.getElementById("trashTextColorAdd").value = " "
     document.getElementById("popupContainer").style.display = "none"
 
-    if (isSubmited === true) {
+    if (isSubmitted === true) {
       setUpdate((prevCount) => !prevCount)
     }
   }
