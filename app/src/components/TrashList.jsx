@@ -21,12 +21,12 @@ function TrashList(props) {
   // this useEffect re-render the content of the popup when the color, the name or the text color is changed
   useEffect(() => {
     const action = sessionStorage.getItem("action")
-    console.log(action)
+    // console.log(action)
     if (action === "add") {
       setContent(contentAdd)
-      console.log("adding content")
+      // console.log("adding content")
     } else if (action === "update") {
-      console.log("updating content")
+      // console.log("updating content")
       setContent(contentUpdate)
     }
   }, [trashName, trashColor, trashTextColor, title])
@@ -105,7 +105,7 @@ function TrashList(props) {
             value={trashTextColor}
             onChange={(event) => {
               setTrashTextColor(() => {
-                console.log(event.target.value)
+                // console.log(event.target.value)
 
                 return event.target.value
               })
@@ -168,7 +168,7 @@ function TrashList(props) {
             value={trashTextColor}
             onChange={(event) => {
               setTrashTextColor(() => {
-                console.log(event.target.value)
+                // console.log(event.target.value)
 
                 return event.target.value
               })
@@ -241,7 +241,7 @@ function TrashList(props) {
 
                   setTitle(() => `Edit trash: ${trash.name}`)
 
-                  console.log(trash.name, trash.color, trash.textColor)
+                  // console.log(trash.name, trash.color, trash.textColor)
 
                   setContent(contentUpdate)
                   // setAction("add")
@@ -371,7 +371,7 @@ function TrashList(props) {
               onClick={() => {
                 sessionStorage.setItem("action", "add")
 
-                console.log(content)
+                // console.log(content)
 
                 setTrashName(() => "")
                 setTrashColor(() => "#3788d8")
@@ -379,7 +379,7 @@ function TrashList(props) {
 
                 setTitle(() => "Add a new trash")
 
-                console.log(trashName, trashColor, trashTextColor)
+                // console.log(trashName, trashColor, trashTextColor)
 
                 setContent(contentAdd)
 
