@@ -1,28 +1,30 @@
 @import "var";
 
-.grid {
-  max-height: 100vh;
+#home {
+  .grid {
+    max-height: 100vh;
 
-  grid-template-columns: minmax(100px, 50vw) 1fr;
-  column-gap: 1vw;
-}
-
-.flex-row {
-  justify-content: space-between;
-  flex-wrap: wrap;
-
-  * {
-    margin: 5%;
+    grid-template-columns: minmax(100px, 50vw) 1fr;
+    column-gap: 1vw;
   }
-}
 
-#content-1,
-#content-2 {
-  min-width: 190px;
-  max-width: fit-content;
-  max-height: fit-content;
-}
+  .flex-row {
+    justify-content: space-between;
+    flex-wrap: wrap;
 
-#input-zone {
-  border-radius: 10px;
+    * {
+      margin: 5%;
+    }
+  }
+
+  #content-1,
+  #content-2 {
+    min-width: 190px;
+    max-width: fit-content;
+    max-height: fit-content;
+  }
+
+  #input-zone {
+    border-radius: 10px;
+  }
 }
