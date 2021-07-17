@@ -14,8 +14,8 @@ import "./../css/Main.css"
 localStorage.setItem(
   "trashList",
   JSON.stringify([
-    { name: "Recyclable", color: "Yellow", textColor: "black" },
-    { name: "Dechet vert", color: "Green", textColor: "white" },
+    { name: "Recyclable", color: "#fbff00", textColor: "#000000" },
+    { name: "Dechet vert", color: "#59ff00", textColor: "#ffffff" },
   ])
 )
 
@@ -45,7 +45,6 @@ class Home extends React.Component {
     super(props)
 
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.calendarSource = this.calendarSource.bind(this)
   }
 
   calendarRef = React.createRef()
@@ -84,16 +83,16 @@ class Home extends React.Component {
     event.preventDefault()
     const trashList = JSON.parse(localStorage.getItem("trashList"))
     const trashType = sessionStorage.getItem("trashType")
-    const index = trashType.split("-")[1]
+    const index = trashType.split("#")[1]
+    console.log(index)
     const calendarName = "calendar" + trashList[index].name.toUpperCase()
 
-    // console.log(index)
     // console.log(calendar)
 
     const calendar = JSON.parse(localStorage.getItem(calendarName))
 
     calendar.push({
-      title: trashType.split("-")[0],
+      title: trashType.split("#")[0],
       date: sessionStorage.getItem("trashDate"),
       // color: trashList[index].color,
       // textColor: trashList[index].textColor,
@@ -104,19 +103,6 @@ class Home extends React.Component {
     var calendarApi = this.calendarRef.current.getApi()
 
     calendarApi.refetchEvents()
-  }
-
-  calendarSource(info, successCallback, failureCallback) {
-    try {
-      const calendar = JSON.parse(localStorage.getItem("calendar"))
-
-      // console.log("Events already set:\n", calendar)
-
-      successCallback(calendar)
-    } catch (e) {
-      // console.log("No events set yet !")
-      failureCallback(null)
-    }
   }
 
   render() {
