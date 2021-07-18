@@ -133,7 +133,7 @@ class Home extends React.Component {
                 </label>
               </div>
 
-              <div className="buttonContainer">
+              <div className="buttonContainerSi">
                 <input className="button" type="submit" value="Add" />
               </div>
             </form>
