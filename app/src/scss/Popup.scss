@@ -53,12 +53,6 @@
     grid-template-rows: auto 1fr;
   }
 
-  .popupContent {
-    * {
-      width: 100%;
-    }
-  }
-
   .popupHeader {
     width: 100%;
     justify-content: space-between;
@@ -67,17 +61,6 @@
 
     * {
       margin: 0;
-    }
-  }
-
-  .popupContentButton {
-    justify-content: flex-end;
-
-    * {
-      margin: 1%;
-      margin-bottom: 0;
-
-      width: fit-content;
     }
   }
 }
