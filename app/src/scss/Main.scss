@@ -102,15 +102,34 @@ label {
   min-width: 100%;
 }
 
-.buttonContainer {
+.buttonContainerSi {
   display: flex;
   flex-direction: row;
 
   justify-content: flex-end;
+
   * {
     width: fit-content;
     margin: 1%;
     margin-bottom: 0;
+  }
+}
+
+.buttonContainerMul {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+  align-items: center;
+
+  * {
+    width: fit-content;
+
+    .button {
+      width: fit-content;
+      margin: 1%;
+      margin-bottom: 0;
+    }
   }
 }
 
