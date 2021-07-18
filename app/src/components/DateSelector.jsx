@@ -1,7 +1,7 @@
 import React from "react"
 
 import "./../css/Main.css"
-import "./../css/DateSelector.css"
+// import "./../css/DateSelector.css"
 
 function DateSelector(props) {
   sessionStorage.setItem("trashDate", null)
