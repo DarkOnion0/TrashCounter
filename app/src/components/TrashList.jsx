@@ -292,7 +292,7 @@ function TrashList(props) {
     let trashColor = document.getElementById("trashColorAdd").value
     let trashTextColor = document.getElementById("trashTextColorAdd").value
 
-    const trashList = JSON.parse(localStorage.getItem("trashList"))
+    const trashList = JSON.parse(localStorage.getItem("trashList")) || []
     const action = sessionStorage.getItem("action")
 
     trashName = trashName || null
