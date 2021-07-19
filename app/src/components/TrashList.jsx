@@ -203,7 +203,9 @@ function TrashList(props) {
 
   function getList() {
     var trashList = localStorage.getItem("trashList")
+
     if (trashList) {
+      // console.log(trashList)
       trashList = JSON.parse(trashList)
 
       if (props.type === "select") {
@@ -269,13 +271,12 @@ function TrashList(props) {
         ))
 
         return trashListItems
-      } else {
-        alert(
-          "We detect that you haven't set any Trash to follow yet !\nPlease go in the settings an set at least one trash type"
-        )
-        return null
       }
     } else {
+      if (props.type === "select") {
+        return <option>Please set a trash in the settings</option>
+      }
+
       return null
     }
   }

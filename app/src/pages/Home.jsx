@@ -44,6 +44,10 @@ class Home extends React.Component {
   constructor(props) {
     super(props)
 
+    this.state = {
+      disabled: false,
+    }
+
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
@@ -54,28 +58,36 @@ class Home extends React.Component {
 
     const trashList = JSON.parse(localStorage.getItem("trashList"))
 
-    for (let i = 0; i < trashList.length; i++) {
-      calendarApi.addEventSource({
-        events: (info, successCallback, failureCallback) => {
-          try {
-            const calendar = JSON.parse(
-              localStorage.getItem(`calendar${trashList[i].name.toUpperCase()}`)
-            )
+    if (trashList) {
+      this.setState({ disabled: false })
 
-            // console.log(calendar)
+      for (let i = 0; i < trashList.length; i++) {
+        calendarApi.addEventSource({
+          events: (info, successCallback, failureCallback) => {
+            try {
+              const calendar = JSON.parse(
+                localStorage.getItem(
+                  `calendar${trashList[i].name.toUpperCase()}`
+                )
+              )
 
-            successCallback(calendar)
-          } catch (e) {
-            console.error(e)
-            failureCallback([{}])
-          }
-        },
-        color: trashList[i].color,
-        textColor: trashList[i].textColor,
-        id: `calendar${trashList[i].name.toUpperCase()}`,
-      })
+              // console.log(calendar)
+
+              successCallback(calendar)
+            } catch (e) {
+              console.error(e)
+              failureCallback([{}])
+            }
+          },
+          color: trashList[i].color,
+          textColor: trashList[i].textColor,
+          id: `calendar${trashList[i].name.toUpperCase()}`,
+        })
+      }
 
       calendarApi.refetchEvents()
+    } else {
+      this.setState({ disabled: true })
     }
   }
 
@@ -134,10 +146,14 @@ class Home extends React.Component {
               </div>
 
               <div className="buttonContainerSi">
-                <input className="button" type="submit" value="Add" />
+                <input
+                  disabled={this.state.disabled}
+                  className="button"
+                  type="submit"
+                  value="Add"
+                />
               </div>
             </form>
-            {/* <button onClick={calendar.refetchEvents()} /> */}
           </div>
         </div>
       </div>
