@@ -191,7 +191,7 @@ function TrashList(props) {
           {p3}
         </label>
 
-        <div id="buttonContainer" className="buttonContainer">
+        <div id="buttonContainer" className="buttonContainerSi">
           <input className="button" type="submit" value="Save" />
           <button className="button" onClick={closePopup}>
             Discard
@@ -379,7 +379,7 @@ function TrashList(props) {
             <ul className="trashList">{getList()}</ul>
           </div>
 
-          <div className="buttonContainer">
+          <div className="buttonContainerSi">
             <button
               onClick={() => {
                 sessionStorage.setItem("action", "add")
