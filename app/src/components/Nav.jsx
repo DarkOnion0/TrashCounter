@@ -18,7 +18,7 @@ class Nav extends React.Component {
           activeClassName="link-active"
           onClick={window.scroll(0, 0)}
         >
-          <FontAwesomeIcon icon={faHome} />
+          <FontAwesomeIcon size="lg" icon={faHome} />
         </NavLink>
 
         <NavLink
@@ -28,7 +28,7 @@ class Nav extends React.Component {
           activeClassName="link-active"
           onClick={window.scroll(0, 0)}
         >
-          <FontAwesomeIcon icon={faChartArea} />
+          <FontAwesomeIcon size="lg" icon={faChartArea} />
         </NavLink>
 
         <p></p>
@@ -40,7 +40,7 @@ class Nav extends React.Component {
           activeClassName="link-active"
           onClick={window.scroll(0, 0)}
         >
-          <FontAwesomeIcon icon={faCog} />
+          <FontAwesomeIcon size="lg" icon={faCog} />
         </NavLink>
       </div>
     )
