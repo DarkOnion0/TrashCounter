@@ -99,7 +99,7 @@ class Home extends React.Component {
     const trashList = JSON.parse(localStorage.getItem("trashList"))
     const trashType = sessionStorage.getItem("trashType")
     const index = trashType.split("#")[1]
-    console.log(index)
+    // console.log(index)
     const calendarName = "calendar" + trashList[index].name.toUpperCase()
 
     // console.log(calendar)
