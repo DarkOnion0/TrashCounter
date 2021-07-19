@@ -23,9 +23,11 @@ function TrashList(props) {
   const [title, setTitle] = useState(null)
   // const [action, setAction] = useState("none")
   const [content, setContent] = useState(<p>Anythings has been set</p>)
+
   const [trashName, setTrashName] = useState("none")
   const [trashColor, setTrashColor] = useState("none")
   const [trashTextColor, setTrashTextColor] = useState("none")
+  const [trashIndex, setTrashIndex] = useState("none")
 
   // this useEffect re-render the content of the popup when the color, the name or the text color is changed
   useEffect(() => {
@@ -126,12 +128,7 @@ function TrashList(props) {
 
         <div id="buttonContainerTL" className="buttonContainerMul">
           <div id="buttonContainer1">
-            <button
-              className="button buttonIcon"
-              onClick={() =>
-                console.log("remove the current trash " + trashName)
-              }
-            >
+            <button className="button buttonIcon" onClick={removeTrash}>
               <FontAwesomeIcon icon={faTrashAlt} />
               <p>Delete Trash</p>
             </button>
@@ -266,14 +263,16 @@ function TrashList(props) {
                     const trashList = JSON.parse(
                       localStorage.getItem("trashList")
                     )
-                    const trashType = sessionStorage.getItem("trashType")
+                    const trashType = event.target.value
                     const trash = trashList[trashType.split("#")[1]]
 
-                    console.log(event.target, trash, trashType)
+                    // console.log(event.target, trash, trashType)
 
                     setTrashName(() => trash.name)
                     setTrashTextColor(() => trash.textColor)
                     setTrashColor(() => trash.color)
+
+                    setTrashIndex(() => trashType.split("#")[1])
 
                     setTitle(() => `Edit trash: ${trash.name}`)
 
@@ -387,6 +386,20 @@ function TrashList(props) {
     if (isSubmitted === true) {
       setUpdate((prevCount) => !prevCount)
     }
+  }
+
+  function removeTrash(event) {
+    event.preventDefault()
+
+    const trashList = JSON.parse(localStorage.getItem("trashList"))
+    trashList.pop(trashIndex)
+
+    localStorage.setItem("trashList", JSON.stringify(trashList))
+    localStorage.removeItem(`calendar${trashName.toUpperCase()}`)
+
+    setUpdate((prevCount) => !prevCount)
+
+    closePopup(event)
   }
 
   if (props.type === "select") {
