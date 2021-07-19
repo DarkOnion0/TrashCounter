@@ -11,34 +11,34 @@ import "./../css/Home.css"
 import "./../css/Main.css"
 
 // Only for dev testing, it must be remove in production
-localStorage.setItem(
-  "trashList",
-  JSON.stringify([
-    { name: "Recyclable", color: "#fbff00", textColor: "#000000" },
-    { name: "Dechet vert", color: "#59ff00", textColor: "#ffffff" },
-  ])
-)
+// localStorage.setItem(
+//   "trashList",
+//   JSON.stringify([
+//     { name: "Recyclable", color: "#fbff00", textColor: "#000000" },
+//     { name: "Dechet vert", color: "#59ff00", textColor: "#ffffff" },
+//   ])
+// )
 
-localStorage.setItem(
-  "calendarRECYCLABLE",
-  JSON.stringify([
-    {
-      title: "Recyclable",
-      date: "2021-07-08",
-    },
-  ])
-)
-localStorage.setItem(
-  "calendarDECHET VERT",
-  JSON.stringify([
-    {
-      title: "Dechet vert",
-      date: "2021-08-08",
-      color: "Green",
-      textColor: "white",
-    },
-  ])
-)
+// localStorage.setItem(
+//   "calendarRECYCLABLE",
+//   JSON.stringify([
+//     {
+//       title: "Recyclable",
+//       date: "2021-07-08",
+//     },
+//   ])
+// )
+// localStorage.setItem(
+//   "calendarDECHET VERT",
+//   JSON.stringify([
+//     {
+//       title: "Dechet vert",
+//       date: "2021-08-08",
+//       color: "Green",
+//       textColor: "white",
+//     },
+//   ])
+// )
 
 class Home extends React.Component {
   constructor(props) {
