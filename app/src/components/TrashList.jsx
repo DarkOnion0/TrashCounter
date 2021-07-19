@@ -115,11 +115,24 @@ function TrashList(props) {
           {p3}
         </label>
 
-        <div id="buttonContainer" className="buttonContainer">
-          <input className="button" type="submit" value="Save" />
-          <button className="button" onClick={closePopup}>
-            Discard
-          </button>
+        <div id="buttonContainerTL" className="buttonContainerMul">
+          <div id="buttonContainer1">
+            <button
+              className="button"
+              onClick={() =>
+                console.log("remove the current trash " + trashName)
+              }
+            >
+              Delete
+            </button>
+          </div>
+
+          <div id="buttonContainer2" className="flex-row">
+            <input className="button" type="submit" value="Save" />
+            <button className="button" onClick={closePopup}>
+              Discard
+            </button>
+          </div>
         </div>
       </div>
     </form>
