@@ -10,7 +10,7 @@
 ### Idea
 
 - [ ] Update the 404 images to match with the color scheme
-- [ ] Add icons instead of words in the **[`Nav`]("./../app/src/components/Nav.jsx)** components
+- [x] Add icons instead of words in the **[`Nav`]("./../app/src/components/Nav.jsx)** components and globaly
 - [ ] Display the release content after an update
 - [ ] Display a text when the user click on a specific button or overflow during `x` times the navbar
 - [ ] Add a top menu bar for sub categories
