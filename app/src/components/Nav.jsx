@@ -1,6 +1,9 @@
 import React from "react"
 import { NavLink } from "react-router-dom"
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faChartArea, faCog, faHome } from "@fortawesome/free-solid-svg-icons"
+
 import "./../css/Nav.css"
 import "./../css/Main.css"
 
@@ -15,7 +18,7 @@ class Nav extends React.Component {
           activeClassName="link-active"
           onClick={window.scroll(0, 0)}
         >
-          Home
+          <FontAwesomeIcon icon={faHome} />
         </NavLink>
 
         <NavLink
@@ -25,7 +28,7 @@ class Nav extends React.Component {
           activeClassName="link-active"
           onClick={window.scroll(0, 0)}
         >
-          Stats
+          <FontAwesomeIcon icon={faChartArea} />
         </NavLink>
 
         <p></p>
@@ -37,7 +40,7 @@ class Nav extends React.Component {
           activeClassName="link-active"
           onClick={window.scroll(0, 0)}
         >
-          Settings
+          <FontAwesomeIcon icon={faCog} />
         </NavLink>
       </div>
     )

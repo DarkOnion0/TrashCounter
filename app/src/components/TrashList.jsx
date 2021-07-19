@@ -1,5 +1,14 @@
 import React, { useState, useEffect } from "react"
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {
+  faEdit,
+  faPlus,
+  faSave,
+  faTimesCircle,
+  faTrashAlt,
+} from "@fortawesome/free-solid-svg-icons"
+
 import Popup from "./Popup"
 
 import "./../css/Main.css"
@@ -118,19 +127,24 @@ function TrashList(props) {
         <div id="buttonContainerTL" className="buttonContainerMul">
           <div id="buttonContainer1">
             <button
-              className="button"
+              className="button buttonIcon"
               onClick={() =>
                 console.log("remove the current trash " + trashName)
               }
             >
-              Delete
+              <FontAwesomeIcon icon={faTrashAlt} />
+              <p>Delete Trash</p>
             </button>
           </div>
 
-          <div id="buttonContainer2" className="flex-row">
-            <input className="button" type="submit" value="Save" />
-            <button className="button" onClick={closePopup}>
-              Discard
+          <div id="buttonContainer2" className="buttonContainerSi">
+            <button className="button buttonIcon" type="submit">
+              <FontAwesomeIcon icon={faSave} />
+              <p>Save</p>
+            </button>
+            <button className="button buttonIcon" onClick={closePopup}>
+              <FontAwesomeIcon icon={faTimesCircle} />
+              <p>Discard</p>
             </button>
           </div>
         </div>
@@ -192,9 +206,13 @@ function TrashList(props) {
         </label>
 
         <div id="buttonContainer" className="buttonContainerSi">
-          <input className="button" type="submit" value="Save" />
-          <button className="button" onClick={closePopup}>
-            Discard
+          <button className="button buttonIcon" type="submit">
+            <FontAwesomeIcon icon={faSave} />
+            <p>Save</p>
+          </button>
+          <button className="button buttonIcon" onClick={closePopup}>
+            <FontAwesomeIcon icon={faTimesCircle} />
+            <p>Discard</p>
           </button>
         </div>
       </div>
@@ -233,38 +251,43 @@ function TrashList(props) {
             className="contentContainer"
           >
             <div id="trashListContent" className="flex-row">
-              <span>{trashList.name}</span>
+              <strong>{trashList.name}</strong>
               <button
                 value={`${trashList.name.toLowerCase()}#${index.toString()}`}
-                className="editContentButton"
+                className="editContentButton buttonIcon"
                 onClick={(event) => {
-                  sessionStorage.setItem("action", "update")
-                  // setAction("update")
+                  if (event.target.value) {
+                    sessionStorage.setItem("action", "update")
+                    // setAction("update")
 
-                  sessionStorage.setItem("trashType", event.target.value)
-                  // setTrashType(`${event.target.value}`)
+                    sessionStorage.setItem("trashType", event.target.value)
+                    // setTrashType(`${event.target.value}`)
 
-                  const trashList = JSON.parse(
-                    localStorage.getItem("trashList")
-                  )
-                  const trashType = sessionStorage.getItem("trashType")
-                  const trash = trashList[trashType.split("#")[1]]
+                    const trashList = JSON.parse(
+                      localStorage.getItem("trashList")
+                    )
+                    const trashType = sessionStorage.getItem("trashType")
+                    const trash = trashList[trashType.split("#")[1]]
 
-                  setTrashName(() => trash.name)
-                  setTrashTextColor(() => trash.textColor)
-                  setTrashColor(() => trash.color)
+                    console.log(event.target, trash, trashType)
 
-                  setTitle(() => `Edit trash: ${trash.name}`)
+                    setTrashName(() => trash.name)
+                    setTrashTextColor(() => trash.textColor)
+                    setTrashColor(() => trash.color)
 
-                  // console.log(trash.name, trash.color, trash.textColor)
+                    setTitle(() => `Edit trash: ${trash.name}`)
 
-                  setContent(contentUpdate)
-                  // setAction("add")
+                    // console.log(trash.name, trash.color, trash.textColor)
 
-                  document.getElementById(id).style.display = "block"
+                    setContent(contentUpdate)
+                    // setAction("add")
+
+                    document.getElementById(id).style.display = "block"
+                  }
                 }}
               >
-                Edit
+                <FontAwesomeIcon icon={faEdit} />
+                Edit Trash
               </button>
             </div>
           </li>
@@ -382,6 +405,7 @@ function TrashList(props) {
 
           <div className="buttonContainerSi">
             <button
+              className="buttonIcon"
               onClick={() => {
                 sessionStorage.setItem("action", "add")
 
@@ -401,7 +425,8 @@ function TrashList(props) {
                 document.getElementById(id).style.display = "block"
               }}
             >
-              Add new trash
+              <FontAwesomeIcon icon={faPlus} />
+              <p>Add A New Trash</p>
             </button>
           </div>
         </div>

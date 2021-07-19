@@ -2,6 +2,9 @@ import React from "react"
 import FullCalendar from "@fullcalendar/react" // must go before plugins
 import dayGridPlugin from "@fullcalendar/daygrid" // a plugin!
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faPlus } from "@fortawesome/free-solid-svg-icons"
+
 // components
 import DateSelector from "../components/DateSelector"
 import TrashList from "../components/TrashList"
@@ -146,12 +149,14 @@ class Home extends React.Component {
               </div>
 
               <div className="buttonContainerSi">
-                <input
+                <button
                   disabled={this.state.disabled}
-                  className="button"
+                  className="buttonIcon"
                   type="submit"
-                  value="Add"
-                />
+                >
+                  <FontAwesomeIcon icon={faPlus} />
+                  <p>Add A New Trash</p>
+                </button>
               </div>
             </form>
           </div>

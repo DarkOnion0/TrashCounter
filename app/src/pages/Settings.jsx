@@ -1,5 +1,8 @@
 import React from "react"
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faDownload, faUpload } from "@fortawesome/free-solid-svg-icons"
+
 import "./../css/Settings.css"
 import "./../css/Main.css"
 import TrashList from "../components/TrashList"
@@ -92,12 +95,18 @@ function Settings(props) {
 
           <div id="data-button-container" className="flex-row">
             <div>
-              <button onClick={importData}>Import Data</button>
+              <button className="buttonIcon" onClick={importData}>
+                <FontAwesomeIcon icon={faUpload} />
+                <p>Import Data</p>
+              </button>
               {/* <input type="file" id="input"></input> */}
             </div>
 
             <div>
-              <button onClick={exportData}>Export Data</button>
+              <button className="buttonIcon" onClick={exportData}>
+                <FontAwesomeIcon icon={faDownload} />
+                <p>Export Data</p>
+              </button>
             </div>
           </div>
         </div>

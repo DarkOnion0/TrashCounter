@@ -1,5 +1,8 @@
 import React from "react"
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faTimes } from "@fortawesome/free-solid-svg-icons"
+
 import "./../css/Popup.css"
 import "./../css/Main.css"
 
@@ -33,9 +36,10 @@ function Popup(props) {
               <div className="popupTitle">
                 <h1>{props.title}</h1>
               </div>
-              <div className="popupButtonT">
-                <button onClick={closePopup}>Close</button>
-              </div>
+
+              <span className="closeCross" onClick={closePopup}>
+                <FontAwesomeIcon size="lg" icon={faTimes} />
+              </span>
             </div>
             <div className="popupContent">{renderContent()}</div>
           </div>
