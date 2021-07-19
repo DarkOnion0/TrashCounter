@@ -80,11 +80,19 @@ h1 {
 
 button,
 .button {
+  height: fit-content;
+  min-height: 3vh;
+
+  width: fit-content;
+  min-width: 3vh;
+
   border-radius: 5px;
 
   border: thin solid red;
 
   cursor: pointer;
+
+  white-space: nowrap;
 }
 
 .formTextField {
@@ -110,7 +118,7 @@ label {
 
   * {
     width: fit-content;
-    margin: 1%;
+    margin-left: 0.5vw;
     margin-bottom: 0;
   }
 }
@@ -122,15 +130,38 @@ label {
   justify-content: space-between;
   align-items: center;
 
+  white-space: nowrap;
+
   * {
     width: fit-content;
 
     .button {
       width: fit-content;
-      margin: 1%;
+      margin-left: 0.5vw;
       margin-bottom: 0;
     }
   }
+}
+
+.buttonIcon {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: center;
+  align-items: center;
+
+  height: fit-content;
+  min-height: 3vh;
+  width: fit-content;
+  min-width: 3vh;
+
+  * {
+    margin: 2%;
+  }
+}
+
+.closeCross {
+  cursor: pointer;
 }
 
 #invisibleZone {
