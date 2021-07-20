@@ -218,16 +218,25 @@ function TrashList(props) {
 
   function getList() {
     var trashList = localStorage.getItem("trashList")
+    let trashListExist
 
-    if (trashList) {
-      // console.log(trashList)
+    try {
       trashList = JSON.parse(trashList)
+      trashList[0].name
+      trashListExist = true
+    } catch (e) {
+      trashListExist = false
+      console.error(e)
+    }
+
+    if (trashListExist === true) {
+      // console.log(trashList)
 
       if (props.type === "select") {
         const trashListItems = trashList.map((trashList, index) => (
           <option
             value={`${trashList.name.toLowerCase()}#${index.toString()}`}
-            key={trashList.name.toString()}
+            key={trashList.name.toString() + index.toString()}
           >
             {trashList.name}
           </option>
@@ -244,7 +253,7 @@ function TrashList(props) {
         const trashListItems = trashList.map((trashList, index) => (
           <li
             value={`${trashList.name.toLowerCase()}#${index.toString()}`}
-            key={trashList.name.toString()}
+            key={trashList.name.toString() + index.toString()}
             className="contentContainer"
           >
             <div id="trashListContent" className="flex-row">
@@ -324,16 +333,28 @@ function TrashList(props) {
 
     if (trashName) {
       if (action === "add") {
-        trashList.push({
-          name: trashName,
-          color: trashColor,
-          textColor: trashTextColor,
-        })
+        let sameName = false
 
-        localStorage.setItem(
-          `calendar${trashName.toUpperCase()}`,
-          JSON.stringify([{}])
-        )
+        for (let i = 0; i < trashList.length; i++) {
+          if (trashList[i].name.toLowerCase() === trashName.toLowerCase()) {
+            sameName = true
+          }
+        }
+
+        if (sameName === false) {
+          trashList.push({
+            name: trashName,
+            color: trashColor,
+            textColor: trashTextColor,
+          })
+
+          localStorage.setItem(
+            `calendar${trashName.toUpperCase()}`,
+            JSON.stringify([{}])
+          )
+        } else {
+          alert("Please provide a different name than already existing one")
+        }
       } else if (action === "update") {
         const oldValue = sessionStorage.getItem("trashType")
         // const oldValue = trashType

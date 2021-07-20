@@ -59,38 +59,47 @@ class Home extends React.Component {
   componentDidMount() {
     let calendarApi = this.calendarRef.current.getApi()
 
-    const trashList = JSON.parse(localStorage.getItem("trashList"))
+    let trashList = localStorage.getItem("trashList")
 
     if (trashList) {
-      this.setState({ disabled: false })
+      let trashListExist
 
-      for (let i = 0; i < trashList.length; i++) {
-        calendarApi.addEventSource({
-          events: (info, successCallback, failureCallback) => {
-            try {
-              const calendar = JSON.parse(
-                localStorage.getItem(
-                  `calendar${trashList[i].name.toUpperCase()}`
-                )
-              )
+      try {
+        trashList = JSON.parse(trashList)
+        trashList[0].name
+        this.setState({ disabled: false })
+      } catch (e) {
+        this.setState({ disabled: true })
 
-              // console.log(calendar)
-
-              successCallback(calendar)
-            } catch (e) {
-              console.error(e)
-              failureCallback([{}])
-            }
-          },
-          color: trashList[i].color,
-          textColor: trashList[i].textColor,
-          id: `calendar${trashList[i].name.toUpperCase()}`,
-        })
+        console.error(e)
       }
 
-      calendarApi.refetchEvents()
-    } else {
-      this.setState({ disabled: true })
+      if (this.state.disabled === false) {
+        for (let i = 0; i < trashList.length; i++) {
+          calendarApi.addEventSource({
+            events: (info, successCallback, failureCallback) => {
+              try {
+                const calendar = JSON.parse(
+                  localStorage.getItem(
+                    `calendar${trashList[i].name.toUpperCase()}`
+                  )
+                )
+
+                // console.log(calendar)
+
+                successCallback(calendar)
+              } catch (e) {
+                console.error(e)
+                failureCallback([{}])
+              }
+            },
+            color: trashList[i].color,
+            textColor: trashList[i].textColor,
+            id: `calendar${trashList[i].name.toUpperCase()}`,
+          })
+        }
+        calendarApi.refetchEvents()
+      }
     }
   }
 
