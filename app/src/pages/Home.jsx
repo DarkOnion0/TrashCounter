@@ -13,36 +13,6 @@ import TrashList from "../components/TrashList"
 import "./../css/Home.css"
 import "./../css/Main.css"
 
-// Only for dev testing, it must be remove in production
-// localStorage.setItem(
-//   "trashList",
-//   JSON.stringify([
-//     { name: "Recyclable", color: "#fbff00", textColor: "#000000" },
-//     { name: "Dechet vert", color: "#59ff00", textColor: "#ffffff" },
-//   ])
-// )
-
-// localStorage.setItem(
-//   "calendarRECYCLABLE",
-//   JSON.stringify([
-//     {
-//       title: "Recyclable",
-//       date: "2021-07-08",
-//     },
-//   ])
-// )
-// localStorage.setItem(
-//   "calendarDECHET VERT",
-//   JSON.stringify([
-//     {
-//       title: "Dechet vert",
-//       date: "2021-08-08",
-//       color: "Green",
-//       textColor: "white",
-//     },
-//   ])
-// )
-
 class Home extends React.Component {
   constructor(props) {
     super(props)
@@ -62,11 +32,9 @@ class Home extends React.Component {
     let trashList = localStorage.getItem("trashList")
 
     if (trashList) {
-      let trashListExist
-
       try {
         trashList = JSON.parse(trashList)
-        trashList[0].name
+        let a = trashList[0].name
         this.setState({ disabled: false })
       } catch (e) {
         this.setState({ disabled: true })
@@ -112,6 +80,20 @@ class Home extends React.Component {
     const index = trashType.split("#")[1]
     // console.log(index)
     const calendarName = "calendar" + trashList[index].name.toUpperCase()
+    const monthTable = {
+      "01": "January",
+      "02": "February",
+      "03": "March",
+      "04": "April",
+      "05": "May",
+      "06": "June",
+      "07": "July",
+      "08": "August",
+      "09": "September",
+      10: "October",
+      11: "November",
+      12: "December",
+    }
 
     // console.log(calendar)
 
@@ -129,6 +111,127 @@ class Home extends React.Component {
     var calendarApi = this.calendarRef.current.getApi()
 
     calendarApi.refetchEvents()
+
+    var stats = localStorage.getItem("stats")
+
+    const [trashYear, trashMonth, trashDay] = sessionStorage
+      .getItem("trashDate")
+      .split("-")
+    var statsExist
+
+    try {
+      stats = JSON.parse(stats)
+      let a = stats.minYear
+      statsExist = true
+    } catch (e) {
+      statsExist = false
+    }
+
+    if (statsExist === true) {
+      console.log("stats exist")
+      if (stats.minYear > trashYear) {
+        /**
+         * This statement check if the minYear set in the localStorage is superior or not to the event year,
+         * if it's superior the minYear value will be set to the event year
+         */
+
+        stats.minYear = trashYear
+        console.log("minYear is not the minus")
+      }
+      if (stats.maxYear < trashYear) {
+        /**
+         * This statement check if the maxYear set in the localStorage is inferior or not to event year,
+         * if it's inferior the maxYear value will be set to the event year
+         */
+
+        stats.maxYear = trashYear
+        console.log("maxYear is not the biggest one")
+      }
+
+      try {
+        // This block is executed until the end if the event year already exists in the localStorage
+        console.log("check if month exist")
+
+        let monthExist = false
+        for (let i = 0; i < stats.year[trashYear].length; i++) {
+          console.log(i, stats.year[trashYear])
+
+          if (stats.year[trashYear][i].month === monthTable[trashMonth]) {
+            // This statement check if the event month is already set in the event year in the localStorage
+            console.log("month exist")
+            monthExist = true
+
+            if (stats.year[trashYear][i][trashType.split("#")[0]]) {
+              /**
+               * This statement check if the event name is set in the localStorage,
+               * and will just update the count of this trash during the month
+               */
+
+              console.log("trash already exist")
+              stats.year[trashYear][i][trashType.split("#")[0]] =
+                stats.year[trashYear][i][trashType.split("#")[0]] + 1
+            } else {
+              /**
+               * This statement add the new event name and its color (provided by the trashList key in the localStorage)
+               * in the existing month
+               */
+
+              console.log("trash doesn't exist")
+              stats.year[trashYear][i][trashType.split("#")[0]] = 1
+              stats.year[trashYear][i][trashType.split("#")[0] + "Color"] =
+                trashList[index].color
+              console.log(stats.year[trashYear][i][trashType.split("#")[0]])
+            }
+          }
+        }
+
+        if (monthExist === false) {
+          /**
+           * This statement add the new event name, color (provided by the trashList key in the localStorage)
+           * and month in the existing year
+           */
+
+          console.log("month doesn't exist")
+          stats.year[trashYear].push({
+            month: monthTable[trashMonth],
+            [trashType.split("#")[0]]: 1,
+            [trashType.split("#")[0] + "Color"]: trashList[index].color,
+          })
+        }
+      } catch (e) {
+        /**
+         * This block is executed if the year is not set in the stats object,
+         * it will init a new year with the default value provided by the event
+         * (see the doc for more information on the structure of stats localStorage items)
+         */
+        stats.year[trashYear] = [
+          {
+            month: monthTable[trashMonth],
+            [trashType.split("#")[0]]: 1,
+            [trashType.split("#")[0] + "Color"]: trashList[index].color,
+          },
+        ]
+      }
+
+      localStorage.setItem("stats", JSON.stringify(stats))
+    } else {
+      console.log("stats doesn't exist")
+      const stats = {
+        maxYear: trashYear,
+        minYear: trashYear,
+        year: {
+          [trashYear]: [
+            {
+              month: monthTable[trashMonth],
+              [trashType.split("#")[0]]: 1,
+              [trashType.split("#")[0] + "Color"]: trashList[index].color,
+            },
+          ],
+        },
+      }
+
+      localStorage.setItem("stats", JSON.stringify(stats))
+    }
   }
 
   render() {
