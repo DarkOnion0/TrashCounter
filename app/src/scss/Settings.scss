@@ -15,8 +15,8 @@
     }
 
     @media screen and (min-width: 885px) {
-      column-gap: 1%;
-      row-gap: 1%;
+      column-gap: 1vw;
+      row-gap: 2vh;
       display: grid;
       grid-template-rows: 50% 50%;
       grid-template-columns: auto auto;
@@ -43,7 +43,8 @@
     }
 
     @media screen and (min-width: 885px) {
-      margin: 1.5%;
+      box-sizing: border-box;
+      margin: 0%;
       width: 90%;
       height: 90%;
     }
