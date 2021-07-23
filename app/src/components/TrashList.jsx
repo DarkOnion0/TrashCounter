@@ -222,7 +222,7 @@ function TrashList(props) {
 
     try {
       trashList = JSON.parse(trashList)
-      trashList[0].name
+      let a = trashList[0].name
       trashListExist = true
     } catch (e) {
       trashListExist = false
@@ -433,9 +433,7 @@ function TrashList(props) {
     return (
       <div>
         <div id="trashListContainer">
-          <div id="trashTable">
-            <ul className="trashList">{getList()}</ul>
-          </div>
+          <ul className="trashList">{getList()}</ul>
 
           <div className="buttonContainerSi">
             <button
