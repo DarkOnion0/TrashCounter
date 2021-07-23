@@ -236,43 +236,45 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div id="home" className="page-frame">
-        <div className="grid">
-          <div id="calendar-container" className="display-container">
-            <FullCalendar
-              ref={this.calendarRef}
-              plugins={[dayGridPlugin]}
-              initialView="dayGridMonth"
-              weekNumbers={true}
-              weekNumberFormat={{ week: "numeric" }}
-            />
-          </div>
-          <div id="input-container" className="display-container">
-            <h1>Add new event</h1>
-            <form onSubmit={this.handleSubmit} autoComplete="on" required>
-              <div id="input-zone" className="flex-row">
-                <label id="content-1">
-                  <h2>Trash Selector</h2>
-                  <TrashList type="select" />
-                </label>
+      <div className="pageWarper">
+        <div id="home" className="page-frame">
+          <div className="grid">
+            <div id="calendar-container" className="display-container">
+              <FullCalendar
+                ref={this.calendarRef}
+                plugins={[dayGridPlugin]}
+                initialView="dayGridMonth"
+                weekNumbers={true}
+                weekNumberFormat={{ week: "numeric" }}
+              />
+            </div>
+            <div id="input-container" className="display-container">
+              <h1>Add new event</h1>
+              <form onSubmit={this.handleSubmit} autoComplete="on" required>
+                <div id="input-zone" className="flex-row">
+                  <label id="content-1">
+                    <h2>Trash Selector</h2>
+                    <TrashList type="select" />
+                  </label>
 
-                <label id="content-2" required>
-                  <h2>Time picker</h2>
-                  <DateSelector />
-                </label>
-              </div>
+                  <label id="content-2" required>
+                    <h2>Time picker</h2>
+                    <DateSelector />
+                  </label>
+                </div>
 
-              <div className="buttonContainerSi">
-                <button
-                  disabled={this.state.disabled}
-                  className="buttonIcon"
-                  type="submit"
-                >
-                  <FontAwesomeIcon icon={faPlus} />
-                  <p>Add A New Trash</p>
-                </button>
-              </div>
-            </form>
+                <div className="buttonContainerSi">
+                  <button
+                    disabled={this.state.disabled}
+                    className="buttonIcon"
+                    type="submit"
+                  >
+                    <FontAwesomeIcon icon={faPlus} />
+                    <p>Add A New Trash</p>
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>

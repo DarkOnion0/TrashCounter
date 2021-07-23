@@ -59,12 +59,17 @@ h1 {
 .page-frame {
   border-radius: 50px;
 
-  margin-top: 1vh;
-  margin-bottom: 1vh;
-  margin-left: 1vw;
-  margin-right: 1vw;
+  // margin-top: 1vh;
+  // margin-bottom: 1vh;
+  // margin-left: 1vw;
+  // margin-right: 1vw;
 
   padding: 1vw;
+
+  height: 100%;
+  width: 100%;
+
+  margin-left: 90px;
 }
 
 .display-container {
@@ -162,6 +167,16 @@ label {
 
 .closeCross {
   cursor: pointer;
+}
+
+.pageWarper {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: flex-start;
+
+  height: 100%;
+  width: 100%;
 }
 
 #invisibleZone {

@@ -88,43 +88,45 @@ function Settings(props) {
   }
 
   return (
-    <div id="settings" className="page-frame">
-      <div id="content-display">
-        <div id="data-container" className="display-container">
-          <h2>Data</h2>
+    <div className="pageWarper">
+      <div id="settings" className="page-frame">
+        <div id="content-display">
+          <div id="data-container" className="display-container">
+            <h2>Data</h2>
 
-          <div id="data-button-container" className="flex-row">
-            <div>
-              <button className="buttonIcon" onClick={importData}>
-                <FontAwesomeIcon icon={faUpload} />
-                <p>Import Data</p>
-              </button>
-              {/* <input type="file" id="input"></input> */}
-            </div>
+            <div id="data-button-container" className="flex-row">
+              <div>
+                <button className="buttonIcon" onClick={importData}>
+                  <FontAwesomeIcon icon={faUpload} />
+                  <p>Import Data</p>
+                </button>
+                {/* <input type="file" id="input"></input> */}
+              </div>
 
-            <div>
-              <button className="buttonIcon" onClick={exportData}>
-                <FontAwesomeIcon icon={faDownload} />
-                <p>Export Data</p>
-              </button>
+              <div>
+                <button className="buttonIcon" onClick={exportData}>
+                  <FontAwesomeIcon icon={faDownload} />
+                  <p>Export Data</p>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div id="trash-container" className="display-container">
-          <h2>Trash</h2>
-          <TrashList type="settings" />
-        </div>
+          <div id="trash-container" className="display-container">
+            <h2>Trash</h2>
+            <TrashList type="settings" />
+          </div>
 
-        <div id="dangerZone-container" className="display-container">
-          <h2>Danger Zone</h2>
-        </div>
+          <div id="dangerZone-container" className="display-container">
+            <h2>Danger Zone</h2>
+          </div>
 
-        <div id="news-container" className="display-container">
-          <h2>News</h2>
-          <strong>
-            <p>Not working Yet</p>
-          </strong>
+          <div id="news-container" className="display-container">
+            <h2>News</h2>
+            <strong>
+              <p>Not working Yet</p>
+            </strong>
+          </div>
         </div>
       </div>
     </div>
