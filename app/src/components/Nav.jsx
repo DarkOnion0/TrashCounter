@@ -10,38 +10,44 @@ import "./../css/Main.css"
 class Nav extends React.Component {
   render() {
     return (
-      <div id="NavBar" className="grid-pancake">
-        <NavLink
-          to="/"
-          className="link-normal"
-          exact
-          activeClassName="link-active"
-          onClick={window.scroll(0, 0)}
-        >
-          <FontAwesomeIcon size="lg" icon={faHome} />
-        </NavLink>
+      <div id="NavBar">
+        <div id="NavBarContent" className="flex-col">
+          <div id="first" className="flex-row">
+            <NavLink
+              to="/"
+              className="link-normal"
+              exact
+              activeClassName="link-active"
+              onClick={window.scroll(0, 0)}
+            >
+              <FontAwesomeIcon size="lg" icon={faHome} />
+            </NavLink>
+          </div>
 
-        <NavLink
-          to="/stats"
-          className="link-normal"
-          exact
-          activeClassName="link-active"
-          onClick={window.scroll(0, 0)}
-        >
-          <FontAwesomeIcon size="lg" icon={faChartArea} />
-        </NavLink>
+          <div className="flex-row">
+            <NavLink
+              to="/stats"
+              className="link-normal"
+              exact
+              activeClassName="link-active"
+              onClick={window.scroll(0, 0)}
+            >
+              <FontAwesomeIcon size="lg" icon={faChartArea} />
+            </NavLink>
+          </div>
 
-        <p></p>
-
-        <NavLink
-          to="/settings"
-          className="link-normal"
-          exact
-          activeClassName="link-active"
-          onClick={window.scroll(0, 0)}
-        >
-          <FontAwesomeIcon size="lg" icon={faCog} />
-        </NavLink>
+          <div className="flex-row">
+            <NavLink
+              to="/settings"
+              className="link-normal"
+              exact
+              activeClassName="link-active"
+              onClick={window.scroll(0, 0)}
+            >
+              <FontAwesomeIcon size="lg" icon={faCog} />
+            </NavLink>
+          </div>
+        </div>
       </div>
     )
   }
