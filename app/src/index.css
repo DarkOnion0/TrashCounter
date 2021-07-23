@@ -14,8 +14,8 @@ code {
 }
 
 #root {
-  /* display: grid; */
+  display: grid;
   min-height: 100vh;
 
-  /* grid-template-columns: minmax(81.953px, 6vw) 1fr*/
+  grid-template-columns: 80px 1fr;
 }
