@@ -18,6 +18,7 @@
 - [ ] Let the user choose the color of the UI and change colorscheme
 - [ ] Make a desktop **/** mobile app
 - [ ] Let the user create new events by clicking on the calendar
+- [ ] Make a little notice bar like the discord one
 
 ## Bug
 
