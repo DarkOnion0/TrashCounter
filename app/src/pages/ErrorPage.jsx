@@ -13,13 +13,16 @@ function ErrorPage(props) {
   function whichError() {
     if (props.errorCode === "404") {
       return (
-        <div className="pageWarper">
-          <div id="error-404" className="flex-col">
-            <img src={logo404} alt="A lost person with a tree" />
-            <strong onClick={goHome}>
-              No page found for: <code>{window.location.href}</code>
-            </strong>
+        <div className="pageWrapper">
+          <div className="pageScrollContainer">
+            <div id="error-404" className="flex-col">
+              <img src={logo404} alt="A lost person with a tree" />
+              <strong onClick={goHome}>
+                No page found for: <code>{window.location.href}</code>
+              </strong>
+            </div>
           </div>
+          *
         </div>
       )
     }

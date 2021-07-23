@@ -52,7 +52,7 @@ function Stats() {
   }
 
   return (
-    <div className="pageWarper">
+    <div className="pageScrollContainer">
       <div id="stats" className="page-frame">
         <div id="statsContainer" className="grid-container">
           <div id="currentYear">

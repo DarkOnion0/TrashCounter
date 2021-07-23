@@ -88,7 +88,7 @@ function Settings(props) {
   }
 
   return (
-    <div className="pageWarper">
+    <div className="pageScrollContainer">
       <div id="settings" className="page-frame">
         <div id="content-display">
           <div id="data-container" className="display-container">
