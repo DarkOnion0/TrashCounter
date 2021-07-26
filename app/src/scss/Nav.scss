@@ -20,7 +20,7 @@
     background-color: white;
 
     .flex-row {
-      margin-bottom: 7vh;
+      margin-bottom: 5vh;
 
       width: 100%;
 
@@ -28,17 +28,17 @@
       justify-content: center;
     }
 
-    #first {
+    #home {
       margin-top: 3.5vh;
     }
 
-    //  {
-    //   padding: 1.5vh;
-    //   margin-top: 0.85vh;
-    //   margin-bottom: 0.85vh;
+    #stats {
+      margin-bottom: 0;
+    }
 
-    //   text-align: center;
-    // }
+    #settings {
+      margin-top: 0;
+    }
   }
 
   .link-normal {

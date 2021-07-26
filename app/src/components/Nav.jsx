@@ -12,7 +12,7 @@ class Nav extends React.Component {
     return (
       <div id="NavBar">
         <div id="NavBarContent" className="flex-col">
-          <div id="first" className="flex-row">
+          <div id="home" className="flex-row">
             <NavLink
               to="/"
               className="link-normal"
@@ -24,7 +24,7 @@ class Nav extends React.Component {
             </NavLink>
           </div>
 
-          <div className="flex-row">
+          <div id="stats" className="flex-row">
             <NavLink
               to="/stats"
               className="link-normal"
@@ -36,7 +36,9 @@ class Nav extends React.Component {
             </NavLink>
           </div>
 
-          <div className="flex-row">
+          <div className="spacerH"></div>
+
+          <div id="settings" className="flex-row">
             <NavLink
               to="/settings"
               className="link-normal"
