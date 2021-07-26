@@ -23,3 +23,4 @@
 ## Bug
 
 - [x] The _tab style_ in the 404 page is broken
+- [ ] Two scrollbar appeared when the screen width is too small
