@@ -6,6 +6,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-y: hidden;
 }
 
 code {
@@ -14,8 +15,10 @@ code {
 }
 
 #root {
-  display: grid;
-  min-height: 100vh;
+  /* display: grid; */
+  display: flex;
+  height: 100vh;
+  width: 100vw;
 
-  grid-template-columns: 80px 1fr;
+  /* grid-template-columns: 80px 1fr; */
 }
