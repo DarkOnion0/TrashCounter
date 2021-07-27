@@ -226,7 +226,7 @@ function TrashList(props) {
       trashListExist = true
     } catch (e) {
       trashListExist = false
-      console.error(e)
+      console.warn(e)
     }
 
     if (trashListExist === true) {
@@ -383,7 +383,7 @@ function TrashList(props) {
           JSON.stringify(oldCalendar)
         )
       } else {
-        console.error("handleSummit has been called but nothing was done")
+        console.warn("handleSummit has been called but nothing was done")
       }
 
       localStorage.setItem("trashList", JSON.stringify(trashList))

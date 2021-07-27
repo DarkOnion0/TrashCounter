@@ -18,7 +18,7 @@ function Popup(props) {
     } else if (typeof props.content === "object") {
       return props.content
     } else {
-      console.error(
+      console.warn(
         "PLEASE provide an object or a function for the popup content"
       )
       return null
