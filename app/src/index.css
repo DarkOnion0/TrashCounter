@@ -6,7 +6,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 code {
@@ -19,6 +19,7 @@ code {
   display: flex;
   height: 100vh;
   width: 100vw;
+  overflow: hidden;
 
   /* grid-template-columns: 80px 1fr; */
 }
