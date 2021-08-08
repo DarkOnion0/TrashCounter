@@ -4,9 +4,9 @@
 
 ## Data exchange schema
 
-- **[`TrashList`](https://github.com/DarkOnion0/TrashCounter/blob/master/Doc/DataExchangeSchema/trashList.md)**
-- **[`Calendar`](https://github.com/DarkOnion0/TrashCounter/blob/master/Doc/DataExchangeSchema/calendar.md)**
-- **[`Stats`](https://github.com/DarkOnion0/TrashCounter/blob/master/Doc/DataExchangeSchema/stats.md)**
+- **[`TrashList`](https://github.com/DarkOnion0/TrashCounter/blob/master/Doc/DataExchangeSchemata/trashList.md)**
+- **[`Calendar`](https://github.com/DarkOnion0/TrashCounter/blob/master/Doc/DataExchangeSchemata/calendar.md)**
+- **[`Stats`](https://github.com/DarkOnion0/TrashCounter/blob/master/Doc/DataExchangeSchemata/stats.md)**
 
 ## Other
 
