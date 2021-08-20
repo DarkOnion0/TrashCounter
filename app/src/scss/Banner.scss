@@ -1,0 +1,39 @@
+.bannerContainer {
+  display: none;
+  position: relative;
+
+  z-index: 1000;
+
+  padding: 0.5%;
+
+  top: 0;
+  right: 0;
+  left: 0;
+
+  .banner {
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+
+    height: 100%;
+    width: 100%;
+
+    * {
+      margin: 0;
+      font-weight: bold;
+    }
+  }
+}
+
+#bannerErrorContainer.bannerContainer {
+  background-color: salmon;
+}
+
+#bannerInfoContainer.bannerContainer {
+  background-color: springgreen;
+  // background-color: steelblue;
+}
+
+#bannerWarningContainer {
+  background-color: coral;
+}
