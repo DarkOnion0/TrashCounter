@@ -305,7 +305,7 @@ function TrashList(props) {
       }
     } else {
       if (props.type === "select") {
-        return <option>Please set a trash in the settings</option>
+        return <option>Please select a trash</option>
       }
 
       return null
