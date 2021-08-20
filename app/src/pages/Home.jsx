@@ -8,6 +8,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons"
 // components
 import DateSelector from "../components/DateSelector"
 import TrashList from "../components/TrashList"
+import Banner from "../components/Banner"
 
 // css
 import "./../css/Home.css"
@@ -19,6 +20,9 @@ class Home extends React.Component {
 
     this.state = {
       disabled: false,
+      bannerType: "info",
+      bannerContent: <p>No Message has been set</p>,
+      display: false,
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -31,15 +35,18 @@ class Home extends React.Component {
 
     let trashList = localStorage.getItem("trashList")
 
+    this.noTrashSet()
+
     if (trashList) {
+      console.log("trashList EXIST")
       try {
         trashList = JSON.parse(trashList)
         let a = trashList[0].name
         this.setState({ disabled: false })
       } catch (e) {
-        this.setState({ disabled: true })
+        this.noTrashSet()
 
-        console.error(e)
+        console.warn(e)
       }
 
       if (this.state.disabled === false) {
@@ -57,7 +64,7 @@ class Home extends React.Component {
 
                 successCallback(calendar)
               } catch (e) {
-                console.error(e)
+                console.warn(e)
                 failureCallback([{}])
               }
             },
@@ -69,8 +76,33 @@ class Home extends React.Component {
         calendarApi.refetchEvents()
       }
     } else {
-      this.setState({ disabled: true })
+      this.noTrashSet()
     }
+  }
+
+  noTrashSet() {
+    document.querySelector("[type='date']").setAttribute("disabled", "true")
+    document
+      .querySelector("[name='TrashList']")
+      .setAttribute("disabled", "true")
+
+    console.log("trashList DOESNT EXIST")
+
+    this.setState({ disabled: true })
+    this.setState({ bannerType: "warning" })
+    this.setState({
+      bannerContent: (
+        <p
+          className="clickable"
+          onClick={() => {
+            document.querySelector("a[href='/settings']").click()
+          }}
+        >
+          Please set at least one trash in the settings
+        </p>
+      ),
+    })
+    this.setState({ display: true })
   }
 
   handleSubmit(event) {
@@ -237,6 +269,11 @@ class Home extends React.Component {
   render() {
     return (
       <div className="pageWrapper">
+        <Banner
+          type={this.state.bannerType}
+          content={this.state.bannerContent}
+          display={this.state.display}
+        />
         <div className="pageScrollContainer">
           <div id="home" className="page-frame">
             <div className="grid">
