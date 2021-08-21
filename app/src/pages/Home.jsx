@@ -43,6 +43,7 @@ class Home extends React.Component {
         trashList = JSON.parse(trashList)
         let a = trashList[0].name
         this.setState({ disabled: false })
+        this.trashSet()
       } catch (e) {
         this.noTrashSet()
 
@@ -103,6 +104,14 @@ class Home extends React.Component {
       ),
     })
     this.setState({ display: true })
+  }
+
+  trashSet() {
+    this.setState({ display: false })
+    this.setState({ disabled: false })
+
+    document.querySelector("[type='date']").removeAttribute("disabled")
+    document.querySelector("[name='TrashList']").removeAttribute("disabled")
   }
 
   handleSubmit(event) {
