@@ -22,18 +22,26 @@ This object contains all the stats of the app displayed in the stats tab
   "minYear": 2020,
   "maxYear": 2021,
   "year": {
-    "YEAR": [
-      {
-        "month": "January",
-        "trashName": 5,
-        "trashNameColor": "#3788d8"
-      },
-      {
-        "month": "May",
-        "trashName": 15,
-        "trashNameColor": "#3788d8"
-      }
-    ]
+    "YEAR": {
+      "trashName": [
+        {
+          "x": "Jan"
+          "trash": 2
+        }, {
+          "x": "May"
+          "trash": 15
+        }
+      ],
+      "trashName": [
+        {
+          "x": "Feb"
+          "trash": 8
+        }, {
+          "x": "Jul"
+          "trash": 1
+        }
+      ]
+    }
   }
 }
 ```

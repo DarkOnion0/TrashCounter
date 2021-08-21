@@ -122,18 +122,18 @@ class Home extends React.Component {
     // console.log(index)
     const calendarName = "calendar" + trashList[index].name.toUpperCase()
     const monthTable = {
-      "01": "January",
-      "02": "February",
-      "03": "March",
-      "04": "April",
+      "01": "Jan",
+      "02": "Feb",
+      "03": "Mar",
+      "04": "Apr",
       "05": "May",
-      "06": "June",
-      "07": "July",
-      "08": "August",
-      "09": "September",
-      10: "October",
-      11: "November",
-      12: "December",
+      "06": "Jun",
+      "07": "Jul",
+      "08": "Aug",
+      "09": "Sep",
+      10: "Oct",
+      11: "Nov",
+      12: "Dec",
     }
 
     // console.log(calendar)
@@ -169,7 +169,7 @@ class Home extends React.Component {
     }
 
     if (statsExist === true) {
-      console.log("stats exist")
+      console.log("\nstats exist")
       if (stats.minYear > trashYear) {
         /**
          * This statement check if the minYear set in the localStorage is superior or not to the event year,
@@ -191,53 +191,64 @@ class Home extends React.Component {
 
       try {
         // This block is executed until the end if the event year already exists in the localStorage
-        console.log("check if month exist")
+        console.log("check if trash exist")
 
-        let monthExist = false
-        for (let i = 0; i < stats.year[trashYear].length; i++) {
-          console.log(i, stats.year[trashYear])
+        let trashExist = false
 
-          if (stats.year[trashYear][i].month === monthTable[trashMonth]) {
-            // This statement check if the event month is already set in the event year in the localStorage
-            console.log("month exist")
-            monthExist = true
+        if (stats.year[trashYear][trashType.split("#")[0]]) {
+          // This statement check if the event is already set in the event year in the localStorage
+          console.log("trash exist")
+          trashExist = true
+          let monthExist = false
 
-            if (stats.year[trashYear][i][trashType.split("#")[0]]) {
-              /**
-               * This statement check if the event name is set in the localStorage,
-               * and will just update the count of this trash during the month
-               */
+          console.log(stats.year[trashYear][trashType.split("#")[0]].length)
+          console.log(trashYear, trashType.split("#")[0])
 
-              console.log("trash already exist")
-              stats.year[trashYear][i][trashType.split("#")[0]] =
-                stats.year[trashYear][i][trashType.split("#")[0]] + 1
-            } else {
-              /**
-               * This statement add the new event name and its color (provided by the trashList key in the localStorage)
-               * in the existing month
-               */
+          for (
+            let i = 0;
+            i < stats.year[trashYear][trashType.split("#")[0]].length;
+            i++
+          ) {
+            console.log("checking if month exist...")
+            console.log(
+              `stats month: ${
+                stats.year[trashYear][trashType.split("#")[0]][i].x
+              }, monthTable: ${monthTable[trashMonth]}`
+            )
 
-              console.log("trash doesn't exist")
-              stats.year[trashYear][i][trashType.split("#")[0]] = 1
-              stats.year[trashYear][i][trashType.split("#")[0] + "Color"] =
-                trashList[index].color
-              console.log(stats.year[trashYear][i][trashType.split("#")[0]])
+            if (
+              stats.year[trashYear][trashType.split("#")[0]][i].x ===
+              monthTable[trashMonth]
+            ) {
+              monthExist = true
+
+              console.log("trash month is set")
+
+              stats.year[trashYear][trashType.split("#")[0]][i].trash =
+                stats.year[trashYear][trashType.split("#")[0]][i].trash + 1
             }
           }
-        }
 
-        if (monthExist === false) {
+          if (!monthExist) {
+            console.log("trash month is not set")
+            stats.year[trashYear][trashType.split("#")[0]].push({
+              x: monthTable[trashMonth],
+              trash: 1,
+            })
+          }
+        } else {
           /**
            * This statement add the new event name, color (provided by the trashList key in the localStorage)
            * and month in the existing year
            */
 
-          console.log("month doesn't exist")
-          stats.year[trashYear].push({
-            month: monthTable[trashMonth],
-            [trashType.split("#")[0]]: 1,
-            [trashType.split("#")[0] + "Color"]: trashList[index].color,
-          })
+          console.log("trash doesn't exist")
+          stats.year[trashYear][trashType.split("#")[0]] = {
+            x: monthTable[trashMonth],
+            trash: {
+              [trashType.split("#")[0]]: 1,
+            },
+          }
         }
       } catch (e) {
         /**
@@ -245,29 +256,32 @@ class Home extends React.Component {
          * it will init a new year with the default value provided by the event
          * (see the doc for more information on the structure of stats localStorage items)
          */
-        stats.year[trashYear] = [
-          {
-            month: monthTable[trashMonth],
-            [trashType.split("#")[0]]: 1,
-            [trashType.split("#")[0] + "Color"]: trashList[index].color,
-          },
-        ]
+        console.log("year is not set", "\n", e)
+        stats.year[trashYear] = {
+          [trashType.split("#")[0]]: [
+            {
+              x: monthTable[trashMonth],
+              trash: 1,
+            },
+          ],
+        }
       }
 
       localStorage.setItem("stats", JSON.stringify(stats))
     } else {
-      console.log("stats doesn't exist")
+      console.log("\nstats doesn't exist")
       const stats = {
         maxYear: trashYear,
         minYear: trashYear,
         year: {
-          [trashYear]: [
-            {
-              month: monthTable[trashMonth],
-              [trashType.split("#")[0]]: 1,
-              [trashType.split("#")[0] + "Color"]: trashList[index].color,
-            },
-          ],
+          [trashYear]: {
+            [trashType.split("#")[0]]: [
+              {
+                x: monthTable[trashMonth],
+                trash: 1,
+              },
+            ],
+          },
         },
       }
 
@@ -317,7 +331,7 @@ class Home extends React.Component {
                       type="submit"
                     >
                       <FontAwesomeIcon icon={faPlus} />
-                      <p>Add A New Trash</p>
+                      <p>Add a new event</p>
                     </button>
                   </div>
                 </form>
