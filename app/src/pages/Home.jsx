@@ -201,21 +201,11 @@ class Home extends React.Component {
           trashExist = true
           let monthExist = false
 
-          console.log(stats.year[trashYear][trashType.split("#")[0]].length)
-          console.log(trashYear, trashType.split("#")[0])
-
           for (
             let i = 0;
             i < stats.year[trashYear][trashType.split("#")[0]].length;
             i++
           ) {
-            console.log("checking if month exist...")
-            console.log(
-              `stats month: ${
-                stats.year[trashYear][trashType.split("#")[0]][i].x
-              }, monthTable: ${monthTable[trashMonth]}`
-            )
-
             if (
               stats.year[trashYear][trashType.split("#")[0]][i].x ===
               monthTable[trashMonth]
@@ -238,7 +228,7 @@ class Home extends React.Component {
           }
         } else {
           /**
-           * This statement add the new event name, color (provided by the trashList key in the localStorage)
+           * This statement add the new event name (provided by the trashList key in the localStorage)
            * and month in the existing year
            */
 
