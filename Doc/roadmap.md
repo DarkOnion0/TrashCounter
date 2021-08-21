@@ -24,3 +24,5 @@
 
 - [x] The _tab style_ in the 404 page is broken
 - [ ] Two scrollbar appeared when the screen width is too small
+- [x] The notice bar doesn't disappeared
+- [x] The button is not usable if no trash is set until a new trash is added and the page is reloaded
