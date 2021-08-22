@@ -6,6 +6,8 @@
 
   #graphContainer {
     display: flex;
+    align-content: center;
+    justify-content: space-around;
 
     #trashStats {
       height: 300px;
@@ -14,6 +16,17 @@
     #trashStatsGraph {
       height: 100% !important;
       width: 100% !important;
+    }
+  }
+
+  .datePickerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    input {
+      height: fit-content;
+      margin: auto 0;
     }
   }
 }
