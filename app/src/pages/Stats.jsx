@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react"
 
-import { ResponsiveBar } from "@nivo/bar"
+import { Bar } from "react-chartjs-2"
 
 import "./../css/Stats.css"
 import "./../css/Main.css"
 
 function Stats() {
   const [action, setAction] = useState("none")
-  const [dataNivo, setDataNivo] = useState("none")
+  const [dataChart, setDataChart] = useState("none")
   const [minYear, setMinYear] = useState("none")
   const [maxYear, setMaxYear] = useState("none")
   const [selectedYear, setSelectedYear] = useState("none")
@@ -21,13 +21,16 @@ function Stats() {
       let a = stats.minYear
       setMinYear(() => stats.minYear + "-01-01")
       setMaxYear(() => stats.maxYear + "-12-31")
-      getData(stats)
     } catch (e) {
       document.getElementById("statsContainer").style.display = "none"
 
       console.log(e)
     }
   }, [])
+
+  useEffect(() => {
+    getData()
+  }, [action])
 
   function getData(statsP) {
     const stats = statsP || JSON.parse(localStorage.getItem("stats"))
@@ -36,16 +39,49 @@ function Stats() {
     console.log(action)
 
     if (action === "currentYear") {
-      let keysForLoop = []
+      const data = {
+        labels: [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+        ],
+        datasets: [],
+      }
+      console.log(JSON.stringify(stats, null, 2))
+      console.log(stats.year[selectedYear.split("-")[0]])
 
-      for (let i = 0; i < trashList.length; i++) {
-        keysForLoop.push(trashList[i].name)
+      for (let i in stats.year[selectedYear.split("-")[0]]) {
+        console.log(i)
+        let trashColor = ""
+
+        for (let iColor = 0; iColor < trashList.length; iColor++) {
+          console.log("\n", i, trashList[iColor].name)
+          console.log(i === trashList[iColor].name)
+          if (i === trashList[iColor].name) {
+            trashColor = trashList[iColor].color
+            console.log(trashColor)
+          }
+        }
+
+        data.datasets.push({
+          label: i,
+          data: stats.year[selectedYear.split("-")[0]][i],
+          backgroundColor: trashColor,
+          stack: "Stack 0",
+        })
       }
 
-      setKeys(() => keysForLoop)
-
-      console.log(selectedYear.split("-")[0])
-      setDataNivo(() => stats.year[selectedYear.split("-")[0]])
+      console.log(selectedYear.split("-")[0], data)
+      setDataChart(() => data)
     } else if (action === "allYear") {
       console.log("not yet dev")
     }
@@ -65,47 +101,43 @@ function Stats() {
                   event.preventDefault()
                   setSelectedYear(() => event.target.value)
                   setAction(() => "currentYear")
-                  getData()
                 }}
               />
             </div>
-            <div id="statsContainer">
+            <div id="graphContainer">
               <div id="trashStats">
-                <p>sqjdkhjkdqsjkhqsdjhkhjkdqshjk</p>
-                {/* <ResponsiveBar
-                data={dataNivo}
-                keys={keys}
-                indexBy="month"
-                margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
-                padding={0.3}
-                valueScale={{ type: "linear" }}
-                indexScale={{ type: "band", round: true }}
-                valueFormat={{ format: "", enabled: false }}
-                colors={{ scheme: "nivo" }}
-                axisBottom={{
-                  tickSize: 5,
-                  tickPadding: 5,
-                  tickRotation: 0,
-                  legend: "month",
-                  legendPosition: "middle",
-                  legendOffset: 32,
-                }}
-                axisLeft={{
-                  tickSize: 5,
-                  tickPadding: 5,
-                  tickRotation: 0,
-                  legend: "trash",
-                  legendPosition: "middle",
-                  legendOffset: -40,
-                }}
-              /> */}
+                <Bar
+                  id="trashStatsGraph"
+                  data={dataChart}
+                  option={{
+                    responsive: true,
+                    plugins: {
+                      title: {
+                        display: true,
+                        text: `Trash in the ${selectedYear} year`,
+                      },
+                    },
+                    responsive: true,
+                    interaction: {
+                      intersect: false,
+                    },
+                    scales: {
+                      x: {
+                        stacked: true,
+                      },
+                      y: {
+                        stacked: true,
+                      },
+                    },
+                  }}
+                ></Bar>
               </div>
               <div id="priceStat"></div>
             </div>
           </div>
           <div id="allYear">
             <div className="datePickerContainer"></div>
-            <div id="statsContainer">
+            <div id="graphContainer">
               <div id="trashStats"></div>
               <div id="priceStat"></div>
             </div>
