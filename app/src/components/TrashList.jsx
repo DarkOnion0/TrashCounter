@@ -27,6 +27,7 @@ function TrashList(props) {
   const [trashName, setTrashName] = useState("none")
   const [trashColor, setTrashColor] = useState("none")
   const [trashTextColor, setTrashTextColor] = useState("none")
+  const [trashPrice, setTrashPrice] = useState(0)
   const [trashIndex, setTrashIndex] = useState("none")
 
   // this useEffect re-render the content of the popup when the color, the name or the text color is changed
@@ -40,7 +41,7 @@ function TrashList(props) {
       // console.log("updating content")
       setContent(contentUpdate)
     }
-  }, [trashName, trashColor, trashTextColor, title])
+  }, [trashName, trashColor, trashTextColor, trashPrice, title])
 
   const p1 = (
     <p className="labelText">
@@ -70,6 +71,13 @@ function TrashList(props) {
       ). You can also leave it blank if you just want the white default text
       color. If you have changed the default color you should check if you can
       read the text on the selected background.
+    </p>
+  )
+
+  const p4 = (
+    <p className="labelText">
+      Defined the price of your trash. <strong>PLEASE</strong> don't set any
+      currency like <code>$, €, £</code>... to avoid error
     </p>
   )
 
@@ -124,6 +132,21 @@ function TrashList(props) {
             className="formTextField"
           />
           {p3}
+        </label>
+
+        <label id="content-4" required>
+          <strong>Trash price (set no currency)</strong>
+          <input
+            id="trashPrice"
+            type="text"
+            className="formTextField"
+            // defaultValue={trashName}
+            value={trashPrice}
+            onChange={(event) => {
+              setTrashPrice(() => event.target.value)
+            }}
+          />
+          {p4}
         </label>
 
         <div id="buttonContainerTL" className="buttonContainerMul">
@@ -200,6 +223,21 @@ function TrashList(props) {
             className="formTextField"
           />
           {p3}
+
+          <label id="content-4" required>
+            <strong>Trash price (set no currency)</strong>
+            <input
+              id="trashPrice"
+              type="text"
+              className="formTextField"
+              // defaultValue={trashName}
+              value={trashPrice}
+              onChange={(event) => {
+                setTrashPrice(() => event.target.value)
+              }}
+            />
+            {p4}
+          </label>
         </label>
 
         <div id="buttonContainer" className="buttonContainerSi">
@@ -277,6 +315,7 @@ function TrashList(props) {
                     setTrashName(() => trash.name)
                     setTrashTextColor(() => trash.textColor)
                     setTrashColor(() => trash.color)
+                    setTrashPrice(() => trash.price)
 
                     setTrashIndex(() => trashType.split("#")[1])
 
@@ -343,6 +382,7 @@ function TrashList(props) {
             name: trashName,
             color: trashColor,
             textColor: trashTextColor,
+            price: trashPrice,
           })
 
           localStorage.setItem(
@@ -444,6 +484,7 @@ function TrashList(props) {
                 setTrashName(() => "")
                 setTrashColor(() => "#3788d8")
                 setTrashTextColor(() => "#ffffff")
+                setTrashPrice(() => 0)
 
                 setTitle(() => "Add a new trash")
 

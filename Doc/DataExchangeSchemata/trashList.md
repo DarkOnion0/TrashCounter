@@ -17,9 +17,9 @@ This object contain the trash information
 
 ```json
 [
-  { "name": "trash18", "color": "#3788d8", "textColor": "#ffffff" },
-  { "name": "trash19", "color": "#37d7af", "textColor": "#ffffff" },
-  { "name": "trash20", "color": "#ff0d00", "textColor": "#ffffff" }
+  { "name": "trash18", "color": "#3788d8", "textColor": "#ffffff", "price": 9 },
+  { "name": "trash19", "color": "#37d7af", "textColor": "#ffffff", "price": 3 },
+  { "name": "trash20", "color": "#ff0d00", "textColor": "#ffffff", "price": 6 }
 ]
 ```
 
