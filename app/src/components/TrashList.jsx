@@ -235,31 +235,28 @@ function TrashList(props) {
       if (props.type === "select") {
         const trashListItems = trashList.map((trashList, index) => (
           <option
-            value={`${trashList.name.toLowerCase()}#${index.toString()}`}
+            value={`${trashList.name}#${index.toString()}`}
             key={trashList.name.toString() + index.toString()}
           >
             {trashList.name}
           </option>
         ))
 
-        // console.log(trashListItems, trashList[0].name.toLowerCase())
-        sessionStorage.setItem(
-          "trashType",
-          `${trashList[0].name.toLowerCase()}#0`
-        )
+        // console.log(trashListItems, trashList[0].name)
+        sessionStorage.setItem("trashType", `${trashList[0].name}#0`)
 
         return trashListItems
       } else if (props.type === "settings") {
         const trashListItems = trashList.map((trashList, index) => (
           <li
-            value={`${trashList.name.toLowerCase()}#${index.toString()}`}
+            value={`${trashList.name}#${index.toString()}`}
             key={trashList.name.toString() + index.toString()}
             className="contentContainer"
           >
             <div id="trashListContent" className="flex-row">
               <strong>{trashList.name}</strong>
               <button
-                value={`${trashList.name.toLowerCase()}#${index.toString()}`}
+                value={`${trashList.name}#${index.toString()}`}
                 className="editContentButton buttonIcon"
                 onClick={(event) => {
                   if (event.target.value) {
@@ -336,7 +333,7 @@ function TrashList(props) {
         let sameName = false
 
         for (let i = 0; i < trashList.length; i++) {
-          if (trashList[i].name.toLowerCase() === trashName.toLowerCase()) {
+          if (trashList[i].name === trashName) {
             sameName = true
           }
         }
@@ -413,7 +410,8 @@ function TrashList(props) {
     event.preventDefault()
 
     const trashList = JSON.parse(localStorage.getItem("trashList"))
-    trashList.pop(trashIndex)
+    console.log(trashIndex)
+    trashList.splice(trashIndex, 1)
 
     localStorage.setItem("trashList", JSON.stringify(trashList))
     localStorage.removeItem(`calendar${trashName.toUpperCase()}`)
