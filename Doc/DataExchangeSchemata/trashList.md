@@ -10,6 +10,7 @@ This object contain the trash information
   - _`name` :_ any valid string **WITHOUT `#`**
   - _`color` :_ any valid css color in the string format
   - _`textColor` :_ any valid css color in the string format
+  - _`price` :_ a number representing the price of the trash
 
 ## Example
 
