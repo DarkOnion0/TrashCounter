@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react"
 
-import { Bar } from "react-chartjs-2"
+import { Bar, Doughnut } from "react-chartjs-2"
 
 import "./../css/Stats.css"
 import "./../css/Main.css"
 
 function Stats() {
   const [action, setAction] = useState("none")
-  const [dataChart, setDataChart] = useState("none")
+  const [dataChartT, setDataChartT] = useState("none")
+  const [dataChartP, setDataChartP] = useState(0)
   const [minYear, setMinYear] = useState("none")
   const [maxYear, setMaxYear] = useState("none")
   const [selectedYear, setSelectedYear] = useState("none")
@@ -39,7 +40,7 @@ function Stats() {
     console.log(action)
 
     if (action === "currentYear") {
-      const data = {
+      const dataT = {
         labels: [
           "Jan",
           "Feb",
@@ -56,6 +57,18 @@ function Stats() {
         ],
         datasets: [],
       }
+
+      const dataP = {
+        labels: [],
+        datasets: [
+          {
+            label: "trashPrice",
+            data: [],
+            backgroundColor: [],
+          },
+        ],
+      }
+
       console.log(JSON.stringify(stats, null, 2))
       console.log(stats.year[selectedYear.split("-")[0]])
 
@@ -66,13 +79,25 @@ function Stats() {
         for (let iColor = 0; iColor < trashList.length; iColor++) {
           console.log("\n", i, trashList[iColor].name)
           console.log(i === trashList[iColor].name)
+
           if (i === trashList[iColor].name) {
             trashColor = trashList[iColor].color
             console.log(trashColor)
+
+            dataP.labels.push(i)
+
+            let price = 0
+
+            stats.year[selectedYear.split("-")[0]][i].forEach((element) => {
+              price += element
+            })
+
+            dataP.datasets[0].data.push(price * trashList[iColor].price)
+            dataP.datasets[0].backgroundColor.push(trashColor)
           }
         }
 
-        data.datasets.push({
+        dataT.datasets.push({
           label: i,
           data: stats.year[selectedYear.split("-")[0]][i],
           backgroundColor: trashColor,
@@ -80,8 +105,9 @@ function Stats() {
         })
       }
 
-      console.log(selectedYear.split("-")[0], data)
-      setDataChart(() => data)
+      console.log(selectedYear.split("-")[0], dataT, dataP)
+      setDataChartT(() => dataT)
+      setDataChartP(() => dataP)
     } else if (action === "allYear") {
       console.log("not yet dev")
     }
@@ -93,6 +119,7 @@ function Stats() {
         <div id="statsContainer" className="grid-container">
           <div id="currentYear">
             <div className="datePickerContainer">
+              <h1>Stats of the year </h1>
               <input
                 type="date"
                 min={minYear}
@@ -108,15 +135,8 @@ function Stats() {
               <div id="trashStats">
                 <Bar
                   id="trashStatsGraph"
-                  data={dataChart}
+                  data={dataChartT}
                   option={{
-                    responsive: true,
-                    plugins: {
-                      title: {
-                        display: true,
-                        text: `Trash in the ${selectedYear} year`,
-                      },
-                    },
                     responsive: true,
                     interaction: {
                       intersect: false,
@@ -130,9 +150,15 @@ function Stats() {
                       },
                     },
                   }}
-                ></Bar>
+                />
               </div>
-              <div id="priceStat"></div>
+              <div id="priceStat">
+                <Doughnut
+                  id="priceStatGraph"
+                  data={dataChartP}
+                  options={{ responsive: true }}
+                />
+              </div>
             </div>
           </div>
           <div id="allYear">
