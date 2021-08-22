@@ -1,8 +1,19 @@
 #stats {
   #statsContainer {
     display: grid;
-    grid-template-rows: 1fr 50vh;
+    grid-template-rows: 50vh 50vh;
   }
-  #trashStats {
+
+  #graphContainer {
+    display: flex;
+
+    #trashStats {
+      height: 300px;
+      width: 600px;
+    }
+    #trashStatsGraph {
+      height: 100% !important;
+      width: 100% !important;
+    }
   }
 }
