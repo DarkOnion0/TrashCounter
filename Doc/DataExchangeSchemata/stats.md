@@ -11,9 +11,7 @@ This object contains all the stats of the app displayed in the stats tab
   - _`maxYear` :_ any valid number representing a year
   - _`year` :_ An object containing all the year
     - _`YEAR` :_ An array containing the MONTH
-      - _`month` :_ the month name
-      - _`trashName` :_ the trash name with how many trashes there are in the month as a value
-      - _`trashNameColor` :_ the trash color
+      - _`trashName` :_ the trash name containing an array of 12 values representing a full year counting each trash use
 
 ## Example
 
@@ -23,24 +21,8 @@ This object contains all the stats of the app displayed in the stats tab
   "maxYear": 2021,
   "year": {
     "YEAR": {
-      "trashName": [
-        {
-          "x": "Jan"
-          "trash": 2
-        }, {
-          "x": "May"
-          "trash": 15
-        }
-      ],
-      "trashName": [
-        {
-          "x": "Feb"
-          "trash": 8
-        }, {
-          "x": "Jul"
-          "trash": 1
-        }
-      ]
+      "trashName": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "trashName2": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     }
   }
 }
