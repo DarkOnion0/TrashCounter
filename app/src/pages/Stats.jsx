@@ -22,6 +22,8 @@ function Stats() {
       let a = stats.minYear
       setMinYear(() => stats.minYear + "-01-01")
       setMaxYear(() => stats.maxYear + "-12-31")
+      setSelectedYear(() => `${new Date().getFullYear()}-01-01`)
+      setAction(() => "currentYear")
     } catch (e) {
       document.getElementById("statsContainer").style.display = "none"
 
@@ -124,6 +126,7 @@ function Stats() {
                 type="date"
                 min={minYear}
                 max={maxYear}
+                value={selectedYear}
                 onChange={(event) => {
                   event.preventDefault()
                   setSelectedYear(() => event.target.value)
@@ -136,7 +139,13 @@ function Stats() {
                 <Bar
                   id="trashStatsGraph"
                   data={dataChartT}
-                  option={{
+                  options={{
+                    plugins: {
+                      title: {
+                        text: `Trash by month in ${selectedYear.split("-")[0]}`,
+                        display: true,
+                      },
+                    },
                     responsive: true,
                     interaction: {
                       intersect: false,
@@ -156,13 +165,47 @@ function Stats() {
                 <Doughnut
                   id="priceStatGraph"
                   data={dataChartP}
-                  options={{ responsive: true }}
+                  options={{
+                    plugins: {
+                      title: {
+                        text: `Total spend money by trash in ${
+                          selectedYear.split("-")[0]
+                        }`,
+                        display: true,
+                      },
+                    },
+                    responsive: true,
+                  }}
                 />
               </div>
             </div>
           </div>
           <div id="allYear">
-            <div className="datePickerContainer"></div>
+            <div className="datePickerContainer">
+              <h1>Stats of years </h1>
+              <div id="inputContainer">
+                <input
+                  type="date"
+                  min={minYear}
+                  max={maxYear}
+                  onChange={(event) => {
+                    event.preventDefault()
+                    setSelectedYear(() => event.target.value)
+                    setAction(() => "currentYear")
+                  }}
+                />
+                <input
+                  type="date"
+                  min={minYear}
+                  max={maxYear}
+                  onChange={(event) => {
+                    event.preventDefault()
+                    setSelectedYear(() => event.target.value)
+                    setAction(() => "currentYear")
+                  }}
+                />
+              </div>
+            </div>
             <div id="graphContainer">
               <div id="trashStats"></div>
               <div id="priceStat"></div>
