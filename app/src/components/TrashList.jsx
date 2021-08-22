@@ -138,7 +138,7 @@ function TrashList(props) {
           <strong>Trash price (set no currency)</strong>
           <input
             id="trashPrice"
-            type="text"
+            type="number"
             className="formTextField"
             // defaultValue={trashName}
             value={trashPrice}
@@ -228,7 +228,7 @@ function TrashList(props) {
             <strong>Trash price (set no currency)</strong>
             <input
               id="trashPrice"
-              type="text"
+              type="number"
               className="formTextField"
               // defaultValue={trashName}
               value={trashPrice}
