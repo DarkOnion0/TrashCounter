@@ -121,20 +121,6 @@ class Home extends React.Component {
     const index = trashType.split("#")[1]
     // console.log(index)
     const calendarName = "calendar" + trashList[index].name.toUpperCase()
-    const monthTable = {
-      "01": "Jan",
-      "02": "Feb",
-      "03": "Mar",
-      "04": "Apr",
-      "05": "May",
-      "06": "Jun",
-      "07": "Jul",
-      "08": "Aug",
-      "09": "Sep",
-      10: "Oct",
-      11: "Nov",
-      12: "Dec",
-    }
 
     // console.log(calendar)
 
@@ -193,39 +179,13 @@ class Home extends React.Component {
         // This block is executed until the end if the event year already exists in the localStorage
         console.log("check if trash exist")
 
-        let trashExist = false
-
         if (stats.year[trashYear][trashType.split("#")[0]]) {
           // This statement check if the event is already set in the event year in the localStorage
           console.log("trash exist")
-          trashExist = true
-          let monthExist = false
 
-          for (
-            let i = 0;
-            i < stats.year[trashYear][trashType.split("#")[0]].length;
-            i++
-          ) {
-            if (
-              stats.year[trashYear][trashType.split("#")[0]][i].x ===
-              monthTable[trashMonth]
-            ) {
-              monthExist = true
-
-              console.log("trash month is set")
-
-              stats.year[trashYear][trashType.split("#")[0]][i].trash =
-                stats.year[trashYear][trashType.split("#")[0]][i].trash + 1
-            }
-          }
-
-          if (!monthExist) {
-            console.log("trash month is not set")
-            stats.year[trashYear][trashType.split("#")[0]].push({
-              x: monthTable[trashMonth],
-              trash: 1,
-            })
-          }
+          stats.year[trashYear][trashType.split("#")[0]][
+            parseInt(trashMonth) - 1
+          ]++
         } else {
           /**
            * This statement add the new event name (provided by the trashList key in the localStorage)
@@ -233,12 +193,13 @@ class Home extends React.Component {
            */
 
           console.log("trash doesn't exist")
-          stats.year[trashYear][trashType.split("#")[0]] = {
-            x: monthTable[trashMonth],
-            trash: {
-              [trashType.split("#")[0]]: 1,
-            },
-          }
+          stats.year[trashYear][trashType.split("#")[0]] = [
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          ]
+
+          stats.year[trashYear][trashType.split("#")[0]][
+            parseInt(trashMonth) - 1
+          ] = 1
         }
       } catch (e) {
         /**
@@ -248,13 +209,12 @@ class Home extends React.Component {
          */
         console.log("year is not set", "\n", e)
         stats.year[trashYear] = {
-          [trashType.split("#")[0]]: [
-            {
-              x: monthTable[trashMonth],
-              trash: 1,
-            },
-          ],
+          [trashType.split("#")[0]]: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         }
+
+        stats.year[trashYear][trashType.split("#")[0]][
+          parseInt(trashMonth) - 1
+        ] = 1
       }
 
       localStorage.setItem("stats", JSON.stringify(stats))
@@ -265,15 +225,14 @@ class Home extends React.Component {
         minYear: trashYear,
         year: {
           [trashYear]: {
-            [trashType.split("#")[0]]: [
-              {
-                x: monthTable[trashMonth],
-                trash: 1,
-              },
-            ],
+            [trashType.split("#")[0]]: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
           },
         },
       }
+
+      stats.year[trashYear][trashType.split("#")[0]][
+        parseInt(trashMonth) - 1
+      ] = 1
 
       localStorage.setItem("stats", JSON.stringify(stats))
     }
