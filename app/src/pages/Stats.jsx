@@ -6,13 +6,21 @@ import "./../css/Stats.css"
 import "./../css/Main.css"
 
 function Stats() {
-  const [action, setAction] = useState("none")
+  // currentYear variables
+
   const [dataChartT, setDataChartT] = useState("none")
   const [dataChartP, setDataChartP] = useState(0)
+
   const [minYear, setMinYear] = useState("none")
   const [maxYear, setMaxYear] = useState("none")
   const [selectedYear, setSelectedYear] = useState("none")
-  const [keys, setKeys] = useState("none")
+
+  // allYear variables
+
+  const [dataChartT2, setDataChartT2] = useState("none")
+  const [dataChartP2, setDataChartP2] = useState(0)
+
+  const [maxGraphSize, setMaxGraphSize] = useState(12)
 
   useEffect(() => {
     var stats = localStorage.getItem("stats")
@@ -23,7 +31,10 @@ function Stats() {
       setMinYear(() => stats.minYear + "-01-01")
       setMaxYear(() => stats.maxYear + "-12-31")
       setSelectedYear(() => `${new Date().getFullYear()}-01-01`)
-      setAction(() => "currentYear")
+
+      getDataAll()
+
+      console.log("component is mounted")
     } catch (e) {
       document.getElementById("statsContainer").style.display = "none"
 
@@ -32,87 +43,152 @@ function Stats() {
   }, [])
 
   useEffect(() => {
-    getData()
-  }, [action])
+    getDataCurrent()
+  }, [selectedYear])
 
-  function getData(statsP) {
+  function getDataCurrent(statsP) {
     const stats = statsP || JSON.parse(localStorage.getItem("stats"))
     const trashList = JSON.parse(localStorage.getItem("trashList"))
 
-    console.log(action)
+    console.log("Defined stats for the current year")
 
-    if (action === "currentYear") {
-      const dataT = {
-        labels: [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec",
-        ],
-        datasets: [],
+    const dataT = {
+      labels: [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ],
+      datasets: [],
+    }
+
+    const dataP = {
+      labels: [],
+      datasets: [
+        {
+          label: "trashPrice",
+          data: [],
+          backgroundColor: [],
+        },
+      ],
+    }
+
+    console.log(stats)
+    console.log(stats.year[selectedYear.split("-")[0]])
+
+    for (let i in stats.year[selectedYear.split("-")[0]]) {
+      console.log(i)
+      let trashColor = ""
+
+      for (let iColor = 0; iColor < trashList.length; iColor++) {
+        console.log("\n", i, trashList[iColor].name)
+        console.log(i === trashList[iColor].name)
+
+        if (i === trashList[iColor].name) {
+          trashColor = trashList[iColor].color
+          console.log(trashColor)
+
+          dataP.labels.push(i)
+
+          let price = 0
+
+          stats.year[selectedYear.split("-")[0]][i].forEach((element) => {
+            console.log(price)
+            price += element
+          })
+
+          console.log(trashList[iColor].price)
+          console.log(price * trashList[iColor].price)
+
+          dataP.datasets[0].data.push(price * trashList[iColor].price)
+          dataP.datasets[0].backgroundColor.push(trashColor)
+        }
       }
 
-      const dataP = {
-        labels: [],
-        datasets: [
-          {
-            label: "trashPrice",
-            data: [],
-            backgroundColor: [],
-          },
-        ],
-      }
+      dataT.datasets.push({
+        label: i,
+        data: stats.year[selectedYear.split("-")[0]][i],
+        backgroundColor: trashColor,
+        stack: "Stack 0",
+      })
+    }
 
-      console.log(JSON.stringify(stats, null, 2))
-      console.log(stats.year[selectedYear.split("-")[0]])
+    console.log(selectedYear.split("-")[0], dataT, dataP)
+    setDataChartT(() => dataT)
+    setDataChartP(() => dataP)
+  }
 
-      for (let i in stats.year[selectedYear.split("-")[0]]) {
-        console.log(i)
-        let trashColor = ""
+  function getDataAll(statsP) {
+    console.log("getDataAll")
+    const stats = statsP || JSON.parse(localStorage.getItem("stats"))
+    const trashList = JSON.parse(localStorage.getItem("trashList"))
 
-        for (let iColor = 0; iColor < trashList.length; iColor++) {
-          console.log("\n", i, trashList[iColor].name)
-          console.log(i === trashList[iColor].name)
+    const dataT2 = {
+      labels: [],
+      datasets: [],
+    }
 
-          if (i === trashList[iColor].name) {
-            trashColor = trashList[iColor].color
-            console.log(trashColor)
+    const dataP2 = {
+      labels: [],
+      datasets: [
+        {
+          label: "trashPrice",
+          data: [],
+          backgroundColor: [],
+        },
+      ],
+    }
 
-            dataP.labels.push(i)
+    dataT2.labels = Object.keys(stats.year)
 
-            let price = 0
+    for (let i = 0; i < dataT2.labels.length; i++) {
+      for (let iTrash in stats.year[dataT2.labels[i]]) {
+        let trashExist = false
+        let trashCount = 0
 
-            stats.year[selectedYear.split("-")[0]][i].forEach((element) => {
-              price += element
+        dataT2.datasets.forEach((element, index) => {
+          if (iTrash === element.label) {
+            trashExist = true
+
+            stats.year[dataT2.labels[i]][iTrash].forEach((count) => {
+              trashCount += count
             })
 
-            dataP.datasets[0].data.push(price * trashList[iColor].price)
-            dataP.datasets[0].backgroundColor.push(trashColor)
+            dataT2.datasets[index].data[i] = trashCount
           }
-        }
-
-        dataT.datasets.push({
-          label: i,
-          data: stats.year[selectedYear.split("-")[0]][i],
-          backgroundColor: trashColor,
-          stack: "Stack 0",
         })
-      }
 
-      console.log(selectedYear.split("-")[0], dataT, dataP)
-      setDataChartT(() => dataT)
-      setDataChartP(() => dataP)
-    } else if (action === "allYear") {
-      console.log("not yet dev")
+        if (!trashExist) {
+          trashList.forEach((element) => {
+            if (element.name === iTrash) {
+              dataT2.datasets.push({
+                label: iTrash,
+                data: new Array(dataT2.labels.length),
+                backgroundColor: element.color,
+              })
+
+              stats.year[dataT2.labels[i]][iTrash].forEach((count) => {
+                trashCount += count
+              })
+
+              dataT2.datasets[dataT2.datasets.length - 1].data[i] = trashCount
+            }
+          })
+        }
+      }
     }
+
+    console.log(dataT2)
+    setDataChartT2(() => dataT2)
+    // setDataChartP2(() => dataP2)
   }
 
   return (
@@ -130,7 +206,7 @@ function Stats() {
                 onChange={(event) => {
                   event.preventDefault()
                   setSelectedYear(() => event.target.value)
-                  setAction(() => "currentYear")
+                  getDataCurrent()
                 }}
               />
             </div>
@@ -183,32 +259,49 @@ function Stats() {
           <div id="allYear">
             <div className="datePickerContainer">
               <h1>Stats of years </h1>
-              <div id="inputContainer">
-                <input
-                  type="date"
-                  min={minYear}
-                  max={maxYear}
-                  onChange={(event) => {
-                    event.preventDefault()
-                    setSelectedYear(() => event.target.value)
-                    setAction(() => "currentYear")
-                  }}
-                />
-                <input
-                  type="date"
-                  min={minYear}
-                  max={maxYear}
-                  onChange={(event) => {
-                    event.preventDefault()
-                    setSelectedYear(() => event.target.value)
-                    setAction(() => "currentYear")
+            </div>
+            <div id="graphContainer">
+              <div id="trashStats">
+                <Bar
+                  id="trashStatsGraph"
+                  data={dataChartT2}
+                  options={{
+                    plugins: {
+                      title: {
+                        text: `All years trash`,
+                        display: true,
+                      },
+                    },
+                    responsive: true,
+                    interaction: {
+                      intersect: false,
+                    },
+                    scales: {
+                      x: {
+                        stacked: true,
+                      },
+                      y: {
+                        stacked: true,
+                      },
+                    },
                   }}
                 />
               </div>
-            </div>
-            <div id="graphContainer">
-              <div id="trashStats"></div>
-              <div id="priceStat"></div>
+              <div id="priceStat">
+                <Doughnut
+                  id="priceStatGraph"
+                  // data={dataChartP2}
+                  options={{
+                    plugins: {
+                      title: {
+                        text: `All spends money`,
+                        display: true,
+                      },
+                    },
+                    responsive: true,
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>
