@@ -382,13 +382,15 @@ function TrashList(props) {
             name: trashName,
             color: trashColor,
             textColor: trashTextColor,
-            price: trashPrice,
+            price: parseInt(trashPrice),
           })
 
           localStorage.setItem(
             `calendar${trashName.toUpperCase()}`,
             JSON.stringify([{}])
           )
+
+          console.log(trashList)
         } else {
           alert("Please provide a different name than already existing one")
         }
@@ -409,6 +411,7 @@ function TrashList(props) {
           name: trashName,
           color: trashColor,
           textColor: trashTextColor,
+          price: parseInt(trashPrice),
         }
 
         oldCalendar.forEach((event) => {
