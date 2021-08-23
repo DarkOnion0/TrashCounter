@@ -6,6 +6,8 @@
 
 - [ ] Finish the design of the app
 - [ ] Test the APP on multiple screen sizes **/** devices
+- [ ] Finish stats page
+- [ ] Display the whole spend money in the stats
 
 ### Idea
 
