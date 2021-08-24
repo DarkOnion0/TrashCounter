@@ -34,11 +34,11 @@ function Stats() {
 
       getDataAll()
 
-      console.log("component is mounted")
+      // // console.log("component is mounted")
     } catch (e) {
       document.getElementById("statsContainer").style.display = "none"
 
-      console.log(e)
+      // console.log(e)
     }
   }, [])
 
@@ -50,7 +50,7 @@ function Stats() {
     const stats = statsP || JSON.parse(localStorage.getItem("stats"))
     const trashList = JSON.parse(localStorage.getItem("trashList"))
 
-    console.log("Defined stats for the current year")
+    // console.log("Defined stats for the current year")
 
     const dataT = {
       labels: [
@@ -81,32 +81,32 @@ function Stats() {
       ],
     }
 
-    console.log(stats)
-    console.log(stats.year[selectedYear.split("-")[0]])
+    // console.log(stats)
+    // console.log(stats.year[selectedYear.split("-")[0]])
 
     for (let i in stats.year[selectedYear.split("-")[0]]) {
-      console.log(i)
+      // console.log(i)
       let trashColor = ""
 
       for (let iColor = 0; iColor < trashList.length; iColor++) {
-        console.log("\n", i, trashList[iColor].name)
-        console.log(i === trashList[iColor].name)
+        // console.log("\n", i, trashList[iColor].name)
+        // console.log(i === trashList[iColor].name)
 
         if (i === trashList[iColor].name) {
           trashColor = trashList[iColor].color
-          console.log(trashColor)
+          // console.log(trashColor)
 
           dataP.labels.push(i)
 
           let price = 0
 
           stats.year[selectedYear.split("-")[0]][i].forEach((element) => {
-            console.log(price)
+            // console.log(price)
             price += element
           })
 
-          console.log(trashList[iColor].price)
-          console.log(price * trashList[iColor].price)
+          // console.log(trashList[iColor].price)
+          // console.log(price * trashList[iColor].price)
 
           dataP.datasets[0].data.push(price * trashList[iColor].price)
           dataP.datasets[0].backgroundColor.push(trashColor)
@@ -121,13 +121,13 @@ function Stats() {
       })
     }
 
-    console.log(selectedYear.split("-")[0], dataT, dataP)
+    // console.log(selectedYear.split("-")[0], dataT, dataP)
     setDataChartT(() => dataT)
     setDataChartP(() => dataP)
   }
 
   function getDataAll(statsP) {
-    console.log("getDataAll")
+    // console.log("getDataAll")
     const stats = statsP || JSON.parse(localStorage.getItem("stats"))
     const trashList = JSON.parse(localStorage.getItem("trashList"))
 
@@ -147,7 +147,17 @@ function Stats() {
       ],
     }
 
+    const dataP2Info = {}
+
     dataT2.labels = Object.keys(stats.year)
+
+    trashList.forEach((element) => {
+      dataP2.labels.push(element.name)
+      dataP2Info[element.name] = { price: element.price, color: element.color }
+    })
+
+    dataP2.datasets[0].data = new Array(dataP2.labels.length)
+    dataP2.datasets[0].backgroundColor = new Array(dataP2.labels.length)
 
     for (let i = 0; i < dataT2.labels.length; i++) {
       for (let iTrash in stats.year[dataT2.labels[i]]) {
@@ -186,9 +196,37 @@ function Stats() {
       }
     }
 
-    console.log(dataT2)
+    for (let iYear in stats.year) {
+      for (let iTrash in stats.year[iYear]) {
+        let index = dataP2.labels.findIndex((element) => element === iTrash)
+
+        if (index === -1) {
+          console.error("ERROR WHILE CREATING DATAP2, index is equal to -1")
+        } else {
+          let price = 0
+
+          stats.year[iYear][iTrash].forEach((element) => {
+            price += element
+          })
+
+          // console.log(dataP2Info[iTrash], iTrash, price)
+
+          if (dataP2.datasets[0].data[index]) {
+            dataP2.datasets[0].data[index] += price * dataP2Info[iTrash].price
+          } else {
+            dataP2.datasets[0].data[index] = price * dataP2Info[iTrash].price
+          }
+
+          if (!dataP2.datasets[0].backgroundColor[index]) {
+            dataP2.datasets[0].backgroundColor[index] = dataP2Info[iTrash].color
+          }
+        }
+      }
+    }
+
+    // console.log(dataT2, dataP2, dataP2Info)
     setDataChartT2(() => dataT2)
-    // setDataChartP2(() => dataP2)
+    setDataChartP2(() => dataP2)
   }
 
   return (
@@ -197,7 +235,9 @@ function Stats() {
         <div id="statsContainer" className="grid-container">
           <div id="currentYear">
             <div className="datePickerContainer">
-              <h1>Stats of the year </h1>
+              <h1>
+                Stats of the year <em>{selectedYear.split("-")[0]}</em>
+              </h1>
               <input
                 type="date"
                 min={minYear}
@@ -290,7 +330,7 @@ function Stats() {
               <div id="priceStat">
                 <Doughnut
                   id="priceStatGraph"
-                  // data={dataChartP2}
+                  data={dataChartP2}
                   options={{
                     plugins: {
                       title: {
