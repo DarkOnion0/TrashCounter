@@ -8,6 +8,7 @@
 - [ ] Test the APP on multiple screen sizes **/** devices
 - [ ] Finish stats page
 - [ ] Display the whole spend money in the stats
+- [ ] Make an updater (to update the data structures)
 
 ### Idea
 
@@ -16,7 +17,7 @@
 - [ ] Display the release content after an update
 - [ ] ~~Display a text when the user click on a specific button or overflow during `x` times the navbar~~
 - [ ] ~~Add a top menu bar for sub categories~~
-- [ ] Add a sync features
+- [ ] Add a sync features (probably with github gist to prevent spamming)
 - [ ] Let the user choose the color of the UI and change colorscheme
 - [ ] Make a desktop **/** mobile app
 - [ ] Let the user create new events by clicking on the calendar
