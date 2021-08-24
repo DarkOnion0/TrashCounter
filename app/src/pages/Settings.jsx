@@ -53,11 +53,8 @@ function Settings(props) {
     const localData = {}
     const calendar = {}
 
-    let trashList = localStorage.getItem("trashList")
-    localData["trashList"] = JSON.parse(trashList)
-
-    // localData.push(JSON.parse(trashList))
-    // localData.push(JSON.parse(calendar))
+    localData["trashList"] = JSON.parse(localStorage.getItem("trashList"))
+    localData["stats"] = JSON.parse(localStorage.getItem("stats"))
 
     for (let i = 0; i < localData["trashList"].length; i++) {
       calendar[`calendar${localData["trashList"][i].name.toUpperCase()}`] =
@@ -70,7 +67,7 @@ function Settings(props) {
 
     localData["calendar"] = calendar
 
-    const file = new Blob([JSON.stringify(localData)], {
+    const file = new Blob([JSON.stringify(localData, null, 2)], {
       type: "application/json",
     })
 
