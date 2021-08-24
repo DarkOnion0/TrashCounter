@@ -46,7 +46,7 @@ function Stats() {
     getDataCurrent()
   }, [selectedYear])
 
-  function getDataCurrent(statsP) {
+  async function getDataCurrent(statsP) {
     const stats = statsP || JSON.parse(localStorage.getItem("stats"))
     const trashList = JSON.parse(localStorage.getItem("trashList"))
 
@@ -126,7 +126,7 @@ function Stats() {
     setDataChartP(() => dataP)
   }
 
-  function getDataAll(statsP) {
+  async function getDataAll(statsP) {
     // console.log("getDataAll")
     const stats = statsP || JSON.parse(localStorage.getItem("stats"))
     const trashList = JSON.parse(localStorage.getItem("trashList"))

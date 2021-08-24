@@ -31,6 +31,10 @@ class Home extends React.Component {
   calendarRef = React.createRef()
 
   componentDidMount() {
+    this.setCalendar()
+  }
+
+  async setCalendar() {
     let calendarApi = this.calendarRef.current.getApi()
 
     let trashList = localStorage.getItem("trashList")
