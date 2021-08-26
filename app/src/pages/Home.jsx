@@ -2,13 +2,9 @@ import React from "react"
 import FullCalendar from "@fullcalendar/react" // must go before plugins
 import dayGridPlugin from "@fullcalendar/daygrid" // a plugin!
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPlus } from "@fortawesome/free-solid-svg-icons"
-
 // components
-import DateSelector from "../components/DateSelector"
-import TrashList from "../components/TrashList"
 import Banner from "../components/Banner"
+import InputContainer from "../components/InputContainer"
 
 // css
 import "./../css/Home.css"
@@ -26,6 +22,7 @@ class Home extends React.Component {
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
   calendarRef = React.createRef()
@@ -86,10 +83,12 @@ class Home extends React.Component {
   }
 
   noTrashSet() {
-    document.querySelector("[type='date']").setAttribute("disabled", "true")
-    document
-      .querySelector("[name='TrashList']")
-      .setAttribute("disabled", "true")
+    document.querySelectorAll("[type='date']").forEach((element) => {
+      element.setAttribute("disabled", "true")
+    })
+    document.querySelectorAll("[name='TrashList']").forEach((element) => {
+      element.setAttribute("disabled", "true")
+    })
 
     console.log("trashList DOESNT EXIST")
 
@@ -114,8 +113,12 @@ class Home extends React.Component {
     this.setState({ display: false })
     this.setState({ disabled: false })
 
-    document.querySelector("[type='date']").removeAttribute("disabled")
-    document.querySelector("[name='TrashList']").removeAttribute("disabled")
+    document.querySelectorAll("[type='date']").forEach((element) => {
+      element.removeAttribute("disabled")
+    })
+    document.querySelectorAll("[name='TrashList']").forEach((element) => {
+      element.removeAttribute("disabled")
+    })
   }
 
   handleSubmit(event) {
@@ -242,6 +245,56 @@ class Home extends React.Component {
     }
   }
 
+  handleDelete(event) {
+    event.preventDefault()
+    console.log("delete event")
+
+    const [trashYear, trashMonth, trashDay] = document
+      .querySelector("[id='delete'] input")
+      .value.split("-")
+
+    console.log(trashDay)
+
+    if (trashDay !== "") {
+      console.log("delete begin")
+      const stats = JSON.parse(localStorage.getItem("stats"))
+      const [trash, unused] = document
+        .querySelector("[id='delete'] select")
+        .value.split("#")
+
+      const calendarName = "calendar" + trash.toUpperCase()
+      const calendar = JSON.parse(localStorage.getItem(calendarName))
+
+      let deleted = false
+
+      calendar.forEach((element, index) => {
+        if (
+          deleted === false &&
+          element.date === `${trashYear}-${trashMonth}-${trashDay}`
+        ) {
+          calendar.splice(index, 1)
+          deleted = true
+        }
+      })
+
+      if (deleted === true) {
+        console.log(stats, trashYear, trash, parseInt(trashMonth))
+        stats.year[trashYear][trash][parseInt(trashMonth) - 1]--
+
+        localStorage.setItem(calendarName, JSON.stringify(calendar))
+        localStorage.setItem("stats", JSON.stringify(stats))
+
+        var calendarApi = this.calendarRef.current.getApi()
+
+        calendarApi.refetchEvents()
+      } else {
+        alert(
+          `No trash set for ${trash} the ${trashYear}-${trashMonth}-${trashDay}`
+        )
+      }
+    }
+  }
+
   render() {
     return (
       <div className="pageWrapper">
@@ -263,31 +316,25 @@ class Home extends React.Component {
                 />
               </div>
               <div id="input-container" className="display-container">
-                <h1>Add new event</h1>
-                <form onSubmit={this.handleSubmit} autoComplete="on" required>
-                  <div id="input-zone" className="flex-row">
-                    <label id="content-1">
-                      <h2>Trash Selector</h2>
-                      <TrashList type="select" />
-                    </label>
+                <div className="inputBox">
+                  <h1 className="titleUnderline">Add new event</h1>
+                  <InputContainer
+                    id="add"
+                    disabled={this.state.disabled}
+                    buttonMessage={"Add a new event"}
+                    handleSubmit={this.handleSubmit}
+                  />
+                </div>
 
-                    <label id="content-2" required>
-                      <h2>Time picker</h2>
-                      <DateSelector />
-                    </label>
-                  </div>
-
-                  <div className="buttonContainerSi">
-                    <button
-                      disabled={this.state.disabled}
-                      className="buttonIcon"
-                      type="submit"
-                    >
-                      <FontAwesomeIcon icon={faPlus} />
-                      <p>Add a new event</p>
-                    </button>
-                  </div>
-                </form>
+                <div className="inputBox">
+                  <h1 className="titleUnderline">Remove event</h1>
+                  <InputContainer
+                    id="delete"
+                    disabled={this.state.disabled}
+                    buttonMessage={"Delete an Event"}
+                    handleSubmit={this.handleDelete}
+                  />
+                </div>
               </div>
             </div>
           </div>
