@@ -20,30 +20,35 @@ function Stats() {
   const [dataChartT2, setDataChartT2] = useState("none")
   const [dataChartP2, setDataChartP2] = useState(0)
 
-  const [maxGraphSize, setMaxGraphSize] = useState(12)
+  const [displayStats, setDisplayStats] = useState(false)
 
   useEffect(() => {
     var stats = localStorage.getItem("stats")
 
     try {
       stats = JSON.parse(stats)
-      let a = stats.minYear
-      setMinYear(() => stats.minYear + "-01-01")
-      setMaxYear(() => stats.maxYear + "-12-31")
-      setSelectedYear(() => `${new Date().getFullYear()}-01-01`)
+      if (Object.keys(stats.year[stats.minYear]).length > 0) {
+        setMinYear(() => stats.minYear + "-01-01")
+        setMaxYear(() => stats.maxYear + "-12-31")
+        setSelectedYear(() => `${new Date().getFullYear()}-01-01`)
 
-      getDataAll()
+        setDisplayStats(() => true)
+
+        getDataAll()
+      }
 
       // // console.log("component is mounted")
     } catch (e) {
       document.getElementById("statsContainer").style.display = "none"
 
-      // console.log(e)
+      console.log("no trash set")
     }
   }, [])
 
   useEffect(() => {
-    getDataCurrent()
+    if (displayStats === true) {
+      getDataCurrent()
+    }
   }, [selectedYear])
 
   async function getDataCurrent(statsP) {
