@@ -84,6 +84,20 @@ function Settings(props) {
     exportData.remove()
   }
 
+  function deleteData(event) {
+    event.preventDefault()
+
+    console.log("All was deleted")
+
+    Object.keys(localStorage).forEach((element) => {
+      localStorage.removeItem(element)
+    })
+
+    Object.keys(sessionStorage).forEach((element) => {
+      sessionStorage.removeItem(element)
+    })
+  }
+
   return (
     <div className="pageWrapper">
       <div className="pageScrollContainer">
@@ -115,10 +129,6 @@ function Settings(props) {
               <TrashList type="settings" />
             </div>
 
-            <div id="dangerZone-container" className="display-container">
-              <h2>Danger Zone</h2>
-            </div>
-
             <div id="news-container" className="display-container">
               <div>
                 <h2>News</h2>
@@ -130,6 +140,13 @@ function Settings(props) {
                 <code>
                   App version: {JSON.parse(localStorage.getItem("version"))}
                 </code>
+              </div>
+            </div>
+
+            <div id="dangerZone-container" className="display-container">
+              <h2>Danger Zone</h2>
+              <div className="flex-row">
+                <button onClick={deleteData}>Delete data</button>
               </div>
             </div>
           </div>
