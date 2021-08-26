@@ -1,5 +1,6 @@
 // React
 import React from "react"
+import { useEffect } from "react"
 import ReactDOM from "react-dom"
 import reportWebVitals from "./reportWebVitals"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
@@ -15,29 +16,62 @@ import Stats from "./pages/Stats"
 // components
 import Nav from "./components/Nav"
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Router>
-      {/* The navigation bar */}
-      <Nav />
+import { version } from "../package.json"
 
-      <div id="invisibleZone"></div>
+function Index(props) {
+  useEffect(() => {
+    screenWarning()
+    checkVersion()
+  }, [])
 
-      <Switch>
-        {/* The project links */}
-        <Route path="/" exact component={Home} />
-        <Route path="/stats" component={Stats} />
-        <Route path="/settings" component={Settings} />
+  async function screenWarning(props) {
+    console.log(
+      "Width:",
+      window.screen.availWidth,
+      "Height:",
+      window.screen.availHeight
+    )
+    if (window.screen.availHeight > window.screen.availWidth) {
+      alert(
+        "You are opening this webapp on a phone or a small screen, please open it on a computer or a large screen"
+      )
+    }
+  }
 
-        {/* The 404 error page */}
-        <Route path="/">
-          <ErrorPage errorCode="404" />
-        </Route>
-      </Switch>
-    </Router>
-  </React.StrictMode>,
-  document.getElementById("root")
-)
+  async function checkVersion(props) {
+    const version = localStorage.getItem("version")
+
+    if (!version) {
+    } else {
+      localStorage.setItem("version", version)
+    }
+  }
+
+  return (
+    <React.StrictMode>
+      <Router>
+        {/* The navigation bar */}
+        <Nav />
+
+        <div id="invisibleZone"></div>
+
+        <Switch>
+          {/* The project links */}
+          <Route path="/" exact component={Home} />
+          <Route path="/stats" component={Stats} />
+          <Route path="/settings" component={Settings} />
+
+          {/* The 404 error page */}
+          <Route path="/">
+            <ErrorPage errorCode="404" />
+          </Route>
+        </Switch>
+      </Router>
+    </React.StrictMode>
+  )
+}
+
+ReactDOM.render(<Index />, document.getElementById("root"))
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
