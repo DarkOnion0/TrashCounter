@@ -120,10 +120,17 @@ function Settings(props) {
             </div>
 
             <div id="news-container" className="display-container">
-              <h2>News</h2>
-              <strong>
-                <p>Not working Yet</p>
-              </strong>
+              <div>
+                <h2>News</h2>
+                <strong>Not working yet 😔</strong>
+              </div>
+
+              <div>
+                <h2>App information</h2>
+                <code>
+                  App version: {JSON.parse(localStorage.getItem("version"))}
+                </code>
+              </div>
             </div>
           </div>
         </div>
