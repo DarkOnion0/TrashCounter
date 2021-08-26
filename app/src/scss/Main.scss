@@ -79,6 +79,7 @@ h1 {
   padding: 2%;
 
   height: fit-content;
+  max-height: 100%;
 }
 
 button,
@@ -209,6 +210,11 @@ label {
 
 .clickable {
   cursor: pointer;
+}
+
+.titleUnderline {
+  border-bottom: thin solid grey;
+  padding-bottom: 5px;
 }
 
 #invisibleZone {
