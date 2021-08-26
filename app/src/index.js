@@ -22,9 +22,10 @@ function Index(props) {
   useEffect(() => {
     screenWarning()
     checkVersion()
+    console.log("Index is mounted")
   }, [])
 
-  async function screenWarning(props) {
+  function screenWarning(props) {
     console.log(
       "Width:",
       window.screen.availWidth,
@@ -38,12 +39,14 @@ function Index(props) {
     }
   }
 
-  async function checkVersion(props) {
-    const version = localStorage.getItem("version")
+  function checkVersion(props) {
+    const ver = localStorage.getItem("version")
 
-    if (!version) {
+    if (ver) {
+      console.log("not yet coded")
     } else {
-      localStorage.setItem("version", version)
+      console.log(`Set version: ${version}`)
+      localStorage.setItem("version", JSON.stringify(version))
     }
   }
 
