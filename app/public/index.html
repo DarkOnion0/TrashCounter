@@ -24,23 +24,4 @@
     >
     <div id="root"></div>
   </body>
-
-  <!-- Check the screen size of the device -->
-  <script>
-    console.log("Width:", screen.availWidth, "Height:", screen.availHeight)
-    if (screen.availHeight > screen.availWidth) {
-      alert(
-        "You are opening this webapp on a phone or a small screen, please open it on a computer or a large screen"
-      )
-    }
-  </script>
-
-  <!-- Check the app version and if it has already been launched -->
-  <script>
-    const version = JSON.parse(localStorage.getItem("version"))
-
-    if (!version) {
-      localStorage.setItem("version", JSON.stringify("0.0.0"))
-    }
-  </script>
 </html>
