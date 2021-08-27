@@ -2,10 +2,18 @@
 
 #home {
   .grid {
-    max-height: 100vh;
+    min-height: 100vh;
+    height: fit-content;
 
-    grid-template-columns: minmax(100px, 50vw) 1fr;
-    column-gap: 1vw;
+    @media (min-width: 600px) {
+      grid-template-columns: minmax(100px, 50vw) 1fr;
+      column-gap: 1vw;
+    }
+
+    @media (max-width: 599px) {
+      grid-template-rows: 75vh 1fr;
+      row-gap: 1vh;
+    }
   }
 
   .inputBox {
@@ -13,6 +21,7 @@
   }
 
   #input-container {
+    height: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
