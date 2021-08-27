@@ -5,7 +5,7 @@ import ReactDOM from "react-dom"
 import reportWebVitals from "./reportWebVitals"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 // css
-import "./index.css"
+import "./css/index.css"
 
 // pages
 import Home from "./pages/Home"
