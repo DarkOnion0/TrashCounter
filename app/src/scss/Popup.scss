@@ -43,8 +43,16 @@
     position: relative;
     box-sizing: border-box;
     transform: translate(0, 0);
-    width: 45vw;
-    margin: 5vh auto;
+
+    @media (min-width: 600px) {
+      width: 45vw;
+      margin: 5vh auto;
+    }
+
+    @media (max-width: 599px) {
+      width: 85vw;
+      margin: 2.5vh auto;
+    }
   }
 
   .popup {
