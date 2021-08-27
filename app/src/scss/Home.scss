@@ -11,7 +11,7 @@
     }
 
     @media (max-width: 599px) {
-      grid-template-rows: 75vh 1fr;
+      grid-template-rows: auto 1fr;
       row-gap: 1vh;
     }
   }
