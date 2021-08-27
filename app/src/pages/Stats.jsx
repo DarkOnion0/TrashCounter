@@ -235,117 +235,121 @@ function Stats() {
   }
 
   return (
-    <div className="pageScrollContainer">
-      <div id="stats" className="page-frame">
-        <div id="statsContainer" className="grid-container">
-          <div id="currentYear">
-            <div className="datePickerContainer">
-              <h1>
-                Stats of the year <em>{selectedYear.split("-")[0]}</em>
-              </h1>
-              <input
-                type="date"
-                min={minYear}
-                max={maxYear}
-                value={selectedYear}
-                onChange={(event) => {
-                  event.preventDefault()
-                  setSelectedYear(() => event.target.value)
-                  getDataCurrent()
-                }}
-              />
-            </div>
-            <div id="graphContainer">
-              <div id="trashStats">
-                <Bar
-                  id="trashStatsGraph"
-                  data={dataChartT}
-                  options={{
-                    plugins: {
-                      title: {
-                        text: `Trash by month in ${selectedYear.split("-")[0]}`,
-                        display: true,
-                      },
-                    },
-                    responsive: true,
-                    interaction: {
-                      intersect: false,
-                    },
-                    scales: {
-                      x: {
-                        stacked: true,
-                      },
-                      y: {
-                        stacked: true,
-                      },
-                    },
+    <div className="pageWrapper">
+      <div className="pageScrollContainer">
+        <div id="stats" className="page-frame">
+          <div id="statsContainer" className="grid-container">
+            <div id="currentYear">
+              <div className="datePickerContainer">
+                <h1>
+                  Stats of the year <em>{selectedYear.split("-")[0]}</em>
+                </h1>
+                <input
+                  type="date"
+                  min={minYear}
+                  max={maxYear}
+                  value={selectedYear}
+                  onChange={(event) => {
+                    event.preventDefault()
+                    setSelectedYear(() => event.target.value)
+                    getDataCurrent()
                   }}
                 />
               </div>
-              <div id="priceStat">
-                <Doughnut
-                  id="priceStatGraph"
-                  data={dataChartP}
-                  options={{
-                    plugins: {
-                      title: {
-                        text: `Total spend money by trash in ${
-                          selectedYear.split("-")[0]
-                        }`,
-                        display: true,
+              <div id="graphContainer">
+                <div id="trashStats">
+                  <Bar
+                    id="trashStatsGraph"
+                    data={dataChartT}
+                    options={{
+                      plugins: {
+                        title: {
+                          text: `Trash by month in ${
+                            selectedYear.split("-")[0]
+                          }`,
+                          display: true,
+                        },
                       },
-                    },
-                    responsive: true,
-                  }}
-                />
+                      responsive: true,
+                      interaction: {
+                        intersect: false,
+                      },
+                      scales: {
+                        x: {
+                          stacked: true,
+                        },
+                        y: {
+                          stacked: true,
+                        },
+                      },
+                    }}
+                  />
+                </div>
+                <div id="priceStat">
+                  <Doughnut
+                    id="priceStatGraph"
+                    data={dataChartP}
+                    options={{
+                      plugins: {
+                        title: {
+                          text: `Total spend money by trash in ${
+                            selectedYear.split("-")[0]
+                          }`,
+                          display: true,
+                        },
+                      },
+                      responsive: true,
+                    }}
+                  />
+                </div>
               </div>
             </div>
-          </div>
-          <div id="allYear">
-            <div className="datePickerContainer">
-              <h1>Stats of years </h1>
-            </div>
-            <div id="graphContainer">
-              <div id="trashStats">
-                <Bar
-                  id="trashStatsGraph"
-                  data={dataChartT2}
-                  options={{
-                    plugins: {
-                      title: {
-                        text: `All years trash`,
-                        display: true,
-                      },
-                    },
-                    responsive: true,
-                    interaction: {
-                      intersect: false,
-                    },
-                    scales: {
-                      x: {
-                        stacked: true,
-                      },
-                      y: {
-                        stacked: true,
-                      },
-                    },
-                  }}
-                />
+            <div id="allYear">
+              <div className="datePickerContainer">
+                <h1>Stats of years </h1>
               </div>
-              <div id="priceStat">
-                <Doughnut
-                  id="priceStatGraph"
-                  data={dataChartP2}
-                  options={{
-                    plugins: {
-                      title: {
-                        text: `All spends money`,
-                        display: true,
+              <div id="graphContainer">
+                <div id="trashStats">
+                  <Bar
+                    id="trashStatsGraph"
+                    data={dataChartT2}
+                    options={{
+                      plugins: {
+                        title: {
+                          text: `All years trash`,
+                          display: true,
+                        },
                       },
-                    },
-                    responsive: true,
-                  }}
-                />
+                      responsive: true,
+                      interaction: {
+                        intersect: false,
+                      },
+                      scales: {
+                        x: {
+                          stacked: true,
+                        },
+                        y: {
+                          stacked: true,
+                        },
+                      },
+                    }}
+                  />
+                </div>
+                <div id="priceStat">
+                  <Doughnut
+                    id="priceStatGraph"
+                    data={dataChartP2}
+                    options={{
+                      plugins: {
+                        title: {
+                          text: `All spends money`,
+                          display: true,
+                        },
+                      },
+                      responsive: true,
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </div>
