@@ -3,7 +3,7 @@ import FullCalendar from "@fullcalendar/react" // must go before plugins
 import dayGridPlugin from "@fullcalendar/daygrid" // a plugin!
 
 // components
-import Banner from "../components/Banner"
+// import Banner from "../components/Banner"
 import InputContainer from "../components/InputContainer"
 
 // css
@@ -298,11 +298,11 @@ class Home extends React.Component {
   render() {
     return (
       <div className="pageWrapper">
-        <Banner
+        {/* <Banner
           type={this.state.bannerType}
           content={this.state.bannerContent}
           display={this.state.display}
-        />
+        /> */}
         <div className="pageScrollContainer">
           <div id="home" className="page-frame">
             <div className="grid">
