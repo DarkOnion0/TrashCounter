@@ -83,19 +83,24 @@ h1 {
 
 button,
 .button {
-  height: fit-content;
   min-height: 3vh;
+  height: fit-content;
 
-  width: fit-content;
   min-width: 3vh;
+  width: fit-content;
 
   border-radius: 5px;
 
-  border: thin solid red;
+  // border: thin solid red;
+  background-color: $active-color;
+  color: white;
+  font-weight: bolder;
 
   cursor: pointer;
 
   white-space: nowrap;
+
+  padding: 1vh 2vw;
 }
 
 .formTextField {
