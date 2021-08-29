@@ -1,3 +1,9 @@
+:root {
+  // CSS variables
+  --navBarHeight: 50px;
+  --navBarWidth: 80px;
+}
+
 body {
   background-color: whitesmoke;
   margin: 0;
@@ -10,11 +16,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
-
-  // CSS variables
-  --navBarHeight: 50px;
-  --navBarWidth: 80px;
-  --bannerHeight: 4vh;
 }
 
 code {
