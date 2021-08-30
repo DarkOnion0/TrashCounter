@@ -1,7 +1,11 @@
 import React from "react"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faDownload, faUpload } from "@fortawesome/free-solid-svg-icons"
+import {
+  faDownload,
+  faTrashAlt,
+  faUpload,
+} from "@fortawesome/free-solid-svg-icons"
 
 import "./../css/Settings.css"
 import "./../css/Main.css"
@@ -108,7 +112,7 @@ function Settings(props) {
 
               <div id="data-button-container" className="flex-row">
                 <div>
-                  <button className="buttonIcon" onClick={importData}>
+                  <button className="buttonIcon button" onClick={importData}>
                     <FontAwesomeIcon icon={faUpload} />
                     <p>Import Data</p>
                   </button>
@@ -116,7 +120,7 @@ function Settings(props) {
                 </div>
 
                 <div>
-                  <button className="buttonIcon" onClick={exportData}>
+                  <button className="buttonIcon button" onClick={exportData}>
                     <FontAwesomeIcon icon={faDownload} />
                     <p>Export Data</p>
                   </button>
@@ -137,16 +141,21 @@ function Settings(props) {
 
               <div>
                 <h2>App information</h2>
-                <code>
-                  App version: {JSON.parse(localStorage.getItem("version"))}
-                </code>
+                <ul id="appInfo">
+                  <li>
+                    App version: {JSON.parse(localStorage.getItem("version"))}
+                  </li>
+                </ul>
               </div>
             </div>
 
             <div id="dangerZone-container" className="display-container">
               <h2>Danger Zone</h2>
               <div className="flex-row">
-                <button onClick={deleteData}>Delete data</button>
+                <button className="buttonIcon button" onClick={deleteData}>
+                  <FontAwesomeIcon icon={faTrashAlt} />
+                  <p>Export Data</p>
+                </button>
               </div>
             </div>
           </div>

@@ -46,6 +46,21 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    height: fit-content;
+
+    #appInfo {
+      font-family: "Fira Code", monospace;
+      background-color: rgb(224, 224, 224);
+
+      padding: 1vh 1vw;
+
+      border-radius: 5px;
+
+      list-style: none;
+
+      margin-left: 0;
+      margin-right: 0;
+    }
   }
 
   #dangerZone-container {

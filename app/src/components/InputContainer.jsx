@@ -37,7 +37,11 @@ function InputContainer(props) {
       </div>
 
       <div className="buttonContainerSi">
-        <button disabled={props.disabled} className="buttonIcon" type="submit">
+        <button
+          disabled={props.disabled}
+          className="buttonIcon button"
+          type="submit"
+        >
           <FontAwesomeIcon icon={faPlus} />
           <p>{props.buttonMessage}</p>
         </button>

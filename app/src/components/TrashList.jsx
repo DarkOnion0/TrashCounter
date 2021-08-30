@@ -223,24 +223,24 @@ function TrashList(props) {
             className="formTextField"
           />
           {p3}
-
-          <label id="content-4" required>
-            <strong>Trash price (set no currency)</strong>
-            <input
-              id="trashPrice"
-              type="number"
-              className="formTextField"
-              // defaultValue={trashName}
-              value={trashPrice}
-              onChange={(event) => {
-                setTrashPrice(() => event.target.value)
-              }}
-            />
-            {p4}
-          </label>
         </label>
 
-        <div id="buttonContainer" className="buttonContainerSi">
+        <label id="content-4" required>
+          <strong>Trash price (set no currency)</strong>
+          <input
+            id="trashPrice"
+            type="number"
+            className="formTextField"
+            // defaultValue={trashName}
+            value={trashPrice}
+            onChange={(event) => {
+              setTrashPrice(() => event.target.value)
+            }}
+          />
+          {p4}
+        </label>
+
+        <div id="buttonContainer" className="buttonContainerMul">
           <button className="button buttonIcon" type="submit">
             <FontAwesomeIcon icon={faSave} />
             <p>Save</p>
@@ -295,7 +295,7 @@ function TrashList(props) {
               <strong>{trashList.name}</strong>
               <button
                 value={`${trashList.name}#${index.toString()}`}
-                className="editContentButton buttonIcon"
+                className="editContentButton buttonIcon button"
                 onClick={(event) => {
                   if (event.target.value) {
                     sessionStorage.setItem("action", "update")
@@ -478,7 +478,7 @@ function TrashList(props) {
 
           <div className="buttonContainerSi">
             <button
-              className="buttonIcon"
+              className="buttonIcon button"
               onClick={() => {
                 sessionStorage.setItem("action", "add")
 

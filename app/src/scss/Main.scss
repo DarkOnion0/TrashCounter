@@ -81,26 +81,29 @@ h1 {
   max-height: 100%;
 }
 
-button,
 .button {
-  min-height: 3vh;
-  height: fit-content;
-
-  min-width: 3vh;
-  width: fit-content;
+  display: inline-block;
 
   border-radius: 5px;
 
-  // border: thin solid red;
+  // width: 15vw;
+
+  border: none;
   background-color: $active-color;
   color: white;
-  font-weight: bolder;
-
-  cursor: pointer;
+  font-weight: 700 !important;
 
   white-space: nowrap;
 
-  padding: 1vh 2vw;
+  cursor: pointer;
+
+  @media (max-width: 599px) {
+    padding: 1vh 5vw;
+  }
+
+  @media (min-width: 600px) {
+    padding: 0.5vh 2.5vw;
+  }
 }
 
 .formTextField {
@@ -123,12 +126,6 @@ label {
   flex-direction: row;
 
   justify-content: flex-end;
-
-  * {
-    width: fit-content;
-    margin-left: 0.5vw;
-    margin-bottom: 0;
-  }
 }
 
 .buttonContainerMul {
@@ -155,16 +152,15 @@ label {
   display: flex;
   flex-direction: row;
 
+  width: fit-content;
+
   justify-content: center;
   align-items: center;
 
-  height: fit-content;
-  min-height: 3vh;
-  width: fit-content;
-  min-width: 3vh;
+  box-sizing: border-box;
 
   * {
-    margin: 2%;
+    margin: 5%;
   }
 }
 
