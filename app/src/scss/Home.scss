@@ -2,11 +2,11 @@
 
 #home {
   .grid {
-    min-height: 100vh;
+    //min-height: 100vh;
     height: fit-content;
 
     @media (min-width: 600px) {
-      grid-template-columns: minmax(100px, 50vw) 1fr;
+      grid-template-columns: minmax(100px, 55vw) 1fr;
       column-gap: 1vw;
     }
 
@@ -21,9 +21,15 @@
   }
 
   #input-container {
-    height: fit-content;
+    @media (max-width: 599px) {
+      height: fit-content;
+    }
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+
+  #calendar-container {
+    height: fit-content;
   }
 }
