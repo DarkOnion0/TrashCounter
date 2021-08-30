@@ -2,7 +2,7 @@
 
 #NavBar {
   position: relative;
-  z-index: 10000;
+  z-index: 2;
 
   @media (min-width: 600px) {
     --navBarWidth: 80px;
