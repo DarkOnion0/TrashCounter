@@ -154,7 +154,7 @@ function Settings(props) {
               <div className="flex-row">
                 <button className="buttonIcon button" onClick={deleteData}>
                   <FontAwesomeIcon icon={faTrashAlt} />
-                  <p>Export Data</p>
+                  <p>Delete all local data</p>
                 </button>
               </div>
             </div>
