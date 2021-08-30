@@ -1,7 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;0,900;1,300;1,400;1,600;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code&display=swap");
+
 :root {
   // CSS variables
   --navBarHeight: 50px;
   --navBarWidth: 80px;
+
+  * {
+    // font-family: "Rubik", sans-serif;
+    font-family: "Source Sans Pro", sans-serif;
+  }
 }
 
 body {
@@ -16,11 +24,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
 }
 
 #root {
