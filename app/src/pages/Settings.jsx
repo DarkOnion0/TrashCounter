@@ -100,6 +100,8 @@ function Settings(props) {
     Object.keys(sessionStorage).forEach((element) => {
       sessionStorage.removeItem(element)
     })
+
+    window.location.reload(true)
   }
 
   return (
