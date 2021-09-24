@@ -74,12 +74,7 @@ function TrashList(props) {
     </p>
   )
 
-  const p4 = (
-    <p className="labelText">
-      Defined the price of your trash. <strong>PLEASE</strong> don't set any
-      currency like <code>$, €, £</code>... to avoid error
-    </p>
-  )
+  const p4 = <p className="labelText">Defined the price of your trash.</p>
 
   const contentUpdate = (
     <form id="contentEdit" onSubmit={handleSubmit} autoComplete="off">
