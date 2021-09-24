@@ -32,7 +32,8 @@
     "eject": "react-scripts eject",
     "compile-scss": "npx sass ./src/scss/:./src/css/",
     "compile-scss-watch": "npx sass --watch ./src/scss/:./src/css/",
-    "deploy": "npm run build && npx gh-pages -d build"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
