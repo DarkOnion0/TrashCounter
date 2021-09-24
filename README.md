@@ -1,5 +1,7 @@
 # TrashCounter 🗑️
 
+[![site](https://img.shields.io/badge/website-TrashCounter-green?style=flat&logo=github)](https://darkonion0.github.io/TrashCounter/)
+
 > _TrashCounter is a little react web app which help you to track how many trashes you get out and how much it will cost you_
 
 **⚠️ WARNING:** this project is actually under active development, breaking changes may append at any times
