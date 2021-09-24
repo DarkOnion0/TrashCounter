@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/TrashCounter/static/css/main.fb7f36f4.chunk.css",
-    "main.js": "/TrashCounter/static/js/main.e67b9c81.chunk.js",
-    "main.js.map": "/TrashCounter/static/js/main.e67b9c81.chunk.js.map",
+    "main.js": "/TrashCounter/static/js/main.e5ccf081.chunk.js",
+    "main.js.map": "/TrashCounter/static/js/main.e5ccf081.chunk.js.map",
     "runtime-main.js": "/TrashCounter/static/js/runtime-main.86d304f6.js",
     "runtime-main.js.map": "/TrashCounter/static/js/runtime-main.86d304f6.js.map",
     "static/css/2.8f4532ec.chunk.css": "/TrashCounter/static/css/2.8f4532ec.chunk.css",
@@ -21,6 +21,6 @@
     "static/css/2.8f4532ec.chunk.css",
     "static/js/2.3fd82f1a.chunk.js",
     "static/css/main.fb7f36f4.chunk.css",
-    "static/js/main.e67b9c81.chunk.js"
+    "static/js/main.e5ccf081.chunk.js"
   ]
 }
