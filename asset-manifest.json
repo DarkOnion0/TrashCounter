@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/trashcounter/static/css/main.fb7f36f4.chunk.css",
+    "main.js": "/trashcounter/static/js/main.7d231218.chunk.js",
+    "main.js.map": "/trashcounter/static/js/main.7d231218.chunk.js.map",
+    "runtime-main.js": "/trashcounter/static/js/runtime-main.2fa57d97.js",
+    "runtime-main.js.map": "/trashcounter/static/js/runtime-main.2fa57d97.js.map",
+    "static/css/2.8f4532ec.chunk.css": "/trashcounter/static/css/2.8f4532ec.chunk.css",
+    "static/js/2.142456d9.chunk.js": "/trashcounter/static/js/2.142456d9.chunk.js",
+    "static/js/2.142456d9.chunk.js.map": "/trashcounter/static/js/2.142456d9.chunk.js.map",
+    "static/js/3.d7c0af44.chunk.js": "/trashcounter/static/js/3.d7c0af44.chunk.js",
+    "static/js/3.d7c0af44.chunk.js.map": "/trashcounter/static/js/3.d7c0af44.chunk.js.map",
+    "index.html": "/trashcounter/index.html",
+    "static/css/2.8f4532ec.chunk.css.map": "/trashcounter/static/css/2.8f4532ec.chunk.css.map",
+    "static/css/main.fb7f36f4.chunk.css.map": "/trashcounter/static/css/main.fb7f36f4.chunk.css.map",
+    "static/js/2.142456d9.chunk.js.LICENSE.txt": "/trashcounter/static/js/2.142456d9.chunk.js.LICENSE.txt",
+    "static/media/undraw_lost_1.a5d55033.svg": "/trashcounter/static/media/undraw_lost_1.a5d55033.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2fa57d97.js",
+    "static/css/2.8f4532ec.chunk.css",
+    "static/js/2.142456d9.chunk.js",
+    "static/css/main.fb7f36f4.chunk.css",
+    "static/js/main.7d231218.chunk.js"
+  ]
+}
