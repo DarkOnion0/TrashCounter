@@ -20,24 +20,24 @@ import { version } from "../package.json"
 
 function Index(props) {
   useEffect(() => {
-    screenWarning()
+    // screenWarning()
     checkVersion()
     console.log("Index is mounted")
   }, [])
 
-  function screenWarning(props) {
-    console.log(
-      "Width:",
-      window.screen.availWidth,
-      "Height:",
-      window.screen.availHeight
-    )
-    if (window.screen.availHeight > window.screen.availWidth) {
-      alert(
-        "You are opening this webapp on a phone or a small screen, please open it on a computer or a large screen"
-      )
-    }
-  }
+  // function screenWarning(props) {
+  //   console.log(
+  //     "Width:",
+  //     window.screen.availWidth,
+  //     "Height:",
+  //     window.screen.availHeight
+  //   )
+  //   if (window.screen.availHeight > window.screen.availWidth) {
+  //     alert(
+  //       "You are opening this webapp on a phone or a small screen, please open it on a computer or a large screen"
+  //     )
+  //   }
+  // }
 
   function checkVersion(props) {
     const ver = localStorage.getItem("version")
