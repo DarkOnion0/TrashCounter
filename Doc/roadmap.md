@@ -16,7 +16,7 @@
 - [ ] Make a desktop **/** mobile app (just for android)
 - [ ] Update the 404 page
 
-### Idea 💡
+### Ideas 💡
 
 > Can be realized or not 🤷‍♂️
 
@@ -30,7 +30,7 @@
 - [ ] Let the user create new events by clicking on the calendar
 - [x] Make a little notice bar like the discord one
 
-## Bug 🐛
+## Bugs 🐛
 
 > The list of known bug to patch
 
