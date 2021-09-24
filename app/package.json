@@ -1,7 +1,7 @@
 {
-  "name": "trashcounter",
+  "name": "app",
   "version": "0.0.0",
-  "homepage": "https://darkonion0.github.io/trashcounter/",
+  "homepage": "https://darkonion0.github.io/TrashCounter",
   "private": false,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
