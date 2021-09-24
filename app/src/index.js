@@ -60,9 +60,9 @@ function Index(props) {
 
         <Switch>
           {/* The project links */}
-          <Route path="/" exact component={Home} />
-          <Route path="/stats" component={Stats} />
-          <Route path="/settings" component={Settings} />
+          <Route path="/TrashCounter/" exact component={Home} />
+          <Route path="/TrashCounter/stats" component={Stats} />
+          <Route path="/TrashCounter/settings" component={Settings} />
 
           {/* The 404 error page */}
           <Route path="/">
