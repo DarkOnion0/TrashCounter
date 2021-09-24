@@ -14,7 +14,7 @@ class Nav extends React.Component {
         <div id="NavBarContent" className="flex-col">
           <div id="home" className="flex-row">
             <NavLink
-              to="/"
+              to="/TrashCounter/"
               className="link-normal"
               exact
               activeClassName="link-active"
@@ -29,7 +29,7 @@ class Nav extends React.Component {
 
           <div id="stats" className="flex-row">
             <NavLink
-              to="/stats"
+              to="/TrashCounter/stats"
               className="link-normal"
               exact
               activeClassName="link-active"
@@ -46,7 +46,7 @@ class Nav extends React.Component {
 
           <div id="settings" className="flex-row">
             <NavLink
-              to="/settings"
+              to="/TrashCounter/settings"
               className="link-normal"
               exact
               activeClassName="link-active"
