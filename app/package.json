@@ -1,7 +1,8 @@
 {
-  "name": "app",
+  "name": "trashcounter",
   "version": "0.0.0",
-  "private": true,
+  "homepage": "https://darkonion0.github.io/trashcounter/",
+  "private": false,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
@@ -31,7 +32,7 @@
     "eject": "react-scripts eject",
     "compile-scss": "npx sass ./src/scss/:./src/css/",
     "compile-scss-watch": "npx sass --watch ./src/scss/:./src/css/",
-    "deploy": "npm run build && netlify deploy --prod"
+    "deploy": "npm run build && npx gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -51,6 +52,7 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^3.2.3",
     "netlify-cli": "^6.0.8"
   }
 }
