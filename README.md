@@ -1,4 +1,8 @@
-# TrashCounter 🗑️
+<p align="center">
+  <a href="https://darkonion0.github.io/TrashCounter/">
+    <img src="./images/trashcounterBanner.jpg" />
+  </a>
+</p>
 
 [![site](https://img.shields.io/badge/website-TrashCounter-green?style=flat&logo=github)](https://darkonion0.github.io/TrashCounter/)
 
