@@ -51,12 +51,18 @@
 
   .datePickerContainer {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+
     justify-content: space-between;
+    align-content: center;
+    align-items: center;
+
+    flex-wrap: wrap;
 
     input {
       height: fit-content;
       width: 15vw;
+      min-width: 127px;
 
       margin: auto 0;
 
