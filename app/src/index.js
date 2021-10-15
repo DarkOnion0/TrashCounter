@@ -3,7 +3,7 @@ import React from "react"
 import { useEffect } from "react"
 import ReactDOM from "react-dom"
 import reportWebVitals from "./reportWebVitals"
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import { HashRouter as Router, Route, Switch } from "react-router-dom"
 // css
 import "./css/index.css"
 
@@ -52,7 +52,7 @@ function Index(props) {
 
   return (
     <React.StrictMode>
-      <Router>
+      <Router basename={"TrashCounter"}>
         {/* The navigation bar */}
         <Nav />
 
@@ -60,9 +60,9 @@ function Index(props) {
 
         <Switch>
           {/* The project links */}
-          <Route path="/TrashCounter/" exact component={Home} />
-          <Route path="/TrashCounter/stats" component={Stats} />
-          <Route path="/TrashCounter/settings" component={Settings} />
+          <Route path="/" exact component={Home} />
+          <Route path="/stats" component={Stats} />
+          <Route path="/settings" component={Settings} />
 
           {/* The 404 error page */}
           <Route path="/">
