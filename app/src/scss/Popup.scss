@@ -48,12 +48,12 @@
     box-sizing: border-box;
     transform: translate(0, 0);
 
-    @media (min-width: 600px) {
+    @media (min-width: 720px) {
       width: 45vw;
       margin: 5vh auto;
     }
 
-    @media (max-width: 599px) {
+    @media (max-width: 719px) {
       width: 85vw;
       margin: 2.5vh auto;
     }

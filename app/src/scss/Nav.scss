@@ -4,7 +4,7 @@
   position: relative;
   // z-index: 2;
 
-  @media (min-width: 600px) {
+  @media (min-width: 720px) {
     --navBarWidth: 80px;
     top: 0;
     bottom: 0;
@@ -15,7 +15,7 @@
     width: var(--navBarWidth);
   }
 
-  @media (max-width: 599px) {
+  @media (max-width: 719px) {
     bottom: 0;
     left: 0;
     right: 0;
@@ -36,7 +36,7 @@
   }
 
   #NavBarContent {
-    @media (max-width: 599px) {
+    @media (max-width: 719px) {
       flex-direction: row;
       align-items: center;
 
@@ -61,11 +61,11 @@
     }
 
     #home {
-      @media (min-width: 600px) {
+      @media (min-width: 720px) {
         margin-top: 3.5vh;
       }
 
-      @media (max-width: 599px) {
+      @media (max-width: 719px) {
         margin: 0;
       }
     }
@@ -75,7 +75,7 @@
     }
 
     #settings {
-      @media (max-width: 599px) {
+      @media (max-width: 719px) {
         margin: 0;
       }
     }

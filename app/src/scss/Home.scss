@@ -5,12 +5,12 @@
     //min-height: 100vh;
     height: fit-content;
 
-    @media (min-width: 600px) {
+    @media (min-width: 720px) {
       grid-template-columns: minmax(100px, 55vw) 1fr;
       column-gap: 1vw;
     }
 
-    @media (max-width: 599px) {
+    @media (max-width: 719px) {
       grid-template-rows: auto 1fr;
       row-gap: 1vh;
     }
@@ -21,7 +21,7 @@
   }
 
   #input-container {
-    @media (max-width: 599px) {
+    @media (max-width: 719px) {
       height: fit-content;
     }
     display: flex;
