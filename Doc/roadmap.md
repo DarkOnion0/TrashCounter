@@ -9,7 +9,7 @@
 - [ ] Finish the design of the app
 - [ ] Test the APP on multiple screen sizes **/** devices
 - [ ] Finish stats page
-  - [ ] Mobile device support
+  - [x] Mobile device support
   - [ ] Remake the year selection list
   - [x] Display the whole spend money in the stats
 - [ ] Make an updater (to update the data structures)
