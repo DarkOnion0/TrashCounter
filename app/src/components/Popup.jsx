@@ -9,7 +9,7 @@ import "./../css/Main.css"
 function Popup(props) {
   function closePopup(event) {
     event.preventDefault()
-    document.getElementById("popupContainer").style.display = "none"
+    document.getElementById(props.id).style.display = "none"
   }
 
   function renderContent() {
