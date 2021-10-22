@@ -69,4 +69,22 @@
       align-items: center;
     }
   }
+
+  #syncFrame {
+    display: grid;
+    grid-template-rows: auto auto;
+
+    height: 100%;
+    width: 100%;
+
+    #githubSecretContainer {
+      display: flex;
+      align-items: center;
+
+      #githubSecretInput {
+        width: 100%;
+        height: 3vh;
+      }
+    }
+  }
 }
