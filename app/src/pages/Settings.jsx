@@ -1,5 +1,6 @@
 import React from "react"
 import { useEffect, useState } from "react"
+import data from "../JS/data"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
@@ -24,84 +25,6 @@ function Settings(props) {
   }, [])
 
   const [content, setContent] = useState(<p>Anythings has been set</p>)
-
-  function importData() {
-    const importData = document.createElement("input")
-    importData.setAttribute("type", "file")
-    importData.setAttribute("id", "inputDoc")
-
-    document.getElementById("invisibleZone").appendChild(importData)
-
-    importData.click()
-
-    importData.addEventListener("change", () => {
-      try {
-        document
-          .getElementById("inputDoc")
-          .files[0].text()
-          .then((text) => {
-            const textJSON = JSON.parse(text)
-
-            // console.log(textJSON)
-
-            for (const i in textJSON) {
-              // console.log(i, textJSON[i])*
-              if (i === "calendar") {
-                for (const iCalendar in textJSON[i]) {
-                  localStorage.setItem(
-                    iCalendar,
-                    JSON.stringify(textJSON[i][iCalendar])
-                  )
-                }
-              } else {
-                localStorage.setItem(i, JSON.stringify(textJSON[i]))
-              }
-            }
-            importData.remove()
-          })
-      } catch (e) {
-        console.log(e)
-        importData.remove()
-      }
-    })
-  }
-
-  function exportData() {
-    const localData = {}
-    const calendar = {}
-
-    localData["trashList"] = JSON.parse(localStorage.getItem("trashList"))
-    localData["stats"] = JSON.parse(localStorage.getItem("stats"))
-
-    if (localData["trashList"]) {
-      for (let i = 0; i < localData["trashList"].length; i++) {
-        calendar[`calendar${localData["trashList"][i].name.toUpperCase()}`] =
-          JSON.parse(
-            localStorage.getItem(
-              `calendar${localData["trashList"][i].name.toUpperCase()}`
-            )
-          )
-      }
-
-      localData["calendar"] = calendar
-    }
-
-    const file = new Blob([JSON.stringify(localData, null, 2)], {
-      type: "application/json",
-    })
-
-    const fileUrl = URL.createObjectURL(file)
-
-    const exportData = document.createElement("a")
-    exportData.setAttribute("href", fileUrl)
-    exportData.setAttribute("download", "TrashCounterSettings.json")
-
-    document.getElementById("invisibleZone").appendChild(exportData)
-
-    exportData.click()
-
-    exportData.remove()
-  }
 
   function deleteData(event) {
     event.preventDefault()
@@ -157,7 +80,7 @@ function Settings(props) {
                   alert("Please don't set an empty token !")
                 } else {
                   const res = axios
-                    .get("https://api.github.com/user", {
+                    .get("https://api.github.com/gists", {
                       headers: {
                         Authorization: `token ${token}`,
                       },
@@ -168,6 +91,53 @@ function Settings(props) {
                       localStorage.setItem("githubToken", JSON.stringify(token))
                       localStorage.setItem("sync", JSON.stringify(true))
                       dynamicGithubConnection()
+
+                      response.data.forEach((element) => {
+                        if (element.files["TrashCounterInformation.json"]) {
+                          console.log("Gists already exist")
+                          localStorage.setItem(
+                            "gistId",
+                            JSON.stringify(element.id)
+                          )
+                          data.importData("github")
+                        }
+                      })
+
+                      if (!localStorage.getItem("gistId")) {
+                        console.log("Gists don't exist")
+                        const gistRequest = axios
+                          .post(
+                            "https://api.github.com/gists",
+                            {
+                              files: {
+                                "TrashCounterInformation.json": {
+                                  content: JSON.stringify({
+                                    dataStructureVersion: "1.0.0",
+                                  }),
+                                },
+                                "localStorage.json": {
+                                  content: JSON.stringify({
+                                    dontUseMe: true,
+                                  }),
+                                },
+                              },
+                            },
+                            {
+                              headers: {
+                                Accept: "application/vnd.github.v3+json",
+                                Authorization: `token ${token}`,
+                              },
+                            }
+                          )
+                          .then((gistRequestResponse) => {
+                            console.log(gistRequestResponse)
+                            localStorage.setItem(
+                              "gistId",
+                              JSON.stringify(gistRequestResponse.data.id)
+                            )
+                            data.exportData("github")
+                          })
+                      }
                       document.getElementById("syncPopup").style.display =
                         "none"
                     })
@@ -193,6 +163,7 @@ function Settings(props) {
     } else {
       localStorage.setItem("sync", JSON.stringify(false))
       localStorage.removeItem("githubToken")
+      localStorage.removeItem("gistId")
       dynamicGithubConnection()
     }
   }
@@ -229,7 +200,10 @@ function Settings(props) {
               <h2>Data</h2>
               <div id="data-button-container" className="flex-row">
                 <div>
-                  <button className="buttonIcon button" onClick={importData}>
+                  <button
+                    className="buttonIcon button"
+                    onClick={() => data.importData("local")}
+                  >
                     <FontAwesomeIcon icon={faUpload} />
                     <p>Import Data</p>
                   </button>
@@ -237,7 +211,10 @@ function Settings(props) {
                 </div>
 
                 <div>
-                  <button className="buttonIcon button" onClick={exportData}>
+                  <button
+                    className="buttonIcon button"
+                    onClick={() => data.exportData("local")}
+                  >
                     <FontAwesomeIcon icon={faDownload} />
                     <p>Export Data</p>
                   </button>

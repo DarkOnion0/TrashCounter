@@ -4,6 +4,7 @@ import { useEffect } from "react"
 import ReactDOM from "react-dom"
 import reportWebVitals from "./reportWebVitals"
 import { HashRouter as Router, Route, Switch } from "react-router-dom"
+import data from "./JS/data"
 // css
 import "./css/index.css"
 
@@ -22,6 +23,7 @@ function Index(props) {
   useEffect(() => {
     // screenWarning()
     checkVersion()
+    initSync()
     console.log("Index is mounted")
   }, [])
 
@@ -47,6 +49,17 @@ function Index(props) {
     } else {
       console.log(`Set version: ${version}`)
       localStorage.setItem("version", JSON.stringify(version))
+      localStorage.setItem("sync", JSON.stringify(false))
+    }
+  }
+
+  async function initSync() {
+    if (JSON.parse(localStorage.getItem("sync"))) {
+      console.log("sync is activated")
+      data.importData("github")
+    } else {
+      console.log("sync is not activated")
+      localStorage.setItem("sync", JSON.stringify(false))
     }
   }
 
