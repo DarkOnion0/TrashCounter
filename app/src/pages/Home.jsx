@@ -1,6 +1,7 @@
 import React from "react"
 import FullCalendar from "@fullcalendar/react" // must go before plugins
 import dayGridPlugin from "@fullcalendar/daygrid" // a plugin!
+import data from "../JS/data"
 
 // components
 // import Banner from "../components/Banner"
@@ -243,6 +244,10 @@ class Home extends React.Component {
 
       localStorage.setItem("stats", JSON.stringify(stats))
     }
+
+    if (JSON.parse(localStorage.getItem("sync"))) {
+      data.exportData("github")
+    }
   }
 
   handleDelete(event) {
@@ -292,6 +297,10 @@ class Home extends React.Component {
           `No trash set for ${trash} the ${trashYear}-${trashMonth}-${trashDay}`
         )
       }
+    }
+
+    if (JSON.parse(localStorage.getItem("sync"))) {
+      data.exportData("github")
     }
   }
 

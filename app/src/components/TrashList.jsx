@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import data from "../JS/data"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
@@ -426,6 +427,10 @@ function TrashList(props) {
     }
 
     closePopup(event, true)
+
+    if (JSON.parse(localStorage.getItem("sync"))) {
+      data.exportData("github")
+    }
   }
 
   function closePopup(event, submit) {
