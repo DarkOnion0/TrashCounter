@@ -10,7 +10,7 @@
 
 **⚠️ WARNING:** this project is actually under active development, breaking changes may append at any times
 
-## Features
+## ✨ Features
 
 - Track Trash usage and set price for each trash
 - Make graphs of the usage
