@@ -399,6 +399,44 @@ function TrashList(props) {
             `calendar${oldValue.split("#")[0].toUpperCase()}`
           )
         )
+
+        const oldStats = JSON.parse(localStorage.getItem("stats"))
+
+        const yearKeyList = Object.keys(oldStats.year)
+
+        for (let yearKey in yearKeyList) {
+          console.log(yearKey, yearKeyList[yearKey])
+          let trashKeyList = Object.keys(oldStats.year[yearKeyList[yearKey]])
+
+          for (let trashKey in trashKeyList) {
+            console.log(
+              trashKey,
+              trashKeyList[trashKey],
+              oldValue.split("#")[0],
+              trashKeyList[trashKey] === oldValue.split("#")[0]
+            )
+            if (trashKeyList[trashKey] === oldValue.split("#")[0]) {
+              // console.log(yearKeyList[yearKey], oldValue.split("#")[0])
+              // console.log(yearKeyList[yearKey], trashKeyList[trashKey])
+
+              if (trashKeyList[trashKey] !== trashName) {
+                //console.log("updating stats...")
+                oldStats.year[yearKeyList[yearKey]][trashName] =
+                  oldStats.year[yearKeyList[yearKey]][trashKeyList[trashKey]]
+                delete oldStats.year[yearKeyList[yearKey]][
+                  trashKeyList[trashKey]
+                ]
+              }
+
+              // console.log("stats doesn't change")
+
+              console.log(oldStats)
+            }
+          }
+        }
+
+        localStorage.setItem("stats", JSON.stringify(oldStats))
+
         localStorage.removeItem(
           `calendar${oldValue.split("#")[0].toUpperCase()}`
         )
