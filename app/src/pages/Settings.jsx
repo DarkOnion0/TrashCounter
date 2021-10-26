@@ -189,6 +189,12 @@ function Settings(props) {
         .then((gistRequestResponse) => {
           console.log(gistRequestResponse)
         })
+
+      localStorage.removeItem("gistId")
+      localStorage.removeItem("githubToken")
+      localStorage.setItem("sync", JSON.stringify(false))
+
+      dynamicGithubConnection()
     }
   }
 
