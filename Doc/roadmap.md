@@ -15,6 +15,7 @@
 - [ ] Make an updater (to update the data structures)
 - [ ] Make a desktop **/** mobile app (just for android)
 - [ ] Update the 404 page
+- [ ] Add logs in the console
 
 ### Ideas 💡
 
