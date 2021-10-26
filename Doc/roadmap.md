@@ -8,14 +8,15 @@
 
 - [ ] Finish the design of the app
 - [ ] Test the APP on multiple screen sizes **/** devices
-- [ ] Finish stats page
+- [x] Finish stats page
   - [x] Mobile device support
-  - [ ] Remake the year selection list
+  - [x] Remake the year selection list
   - [x] Display the whole spend money in the stats
 - [ ] Make an updater (to update the data structures)
 - [ ] Make a desktop **/** mobile app (just for android)
 - [ ] Update the 404 page
 - [ ] Add logs in the console
+- [ ] Add images credits
 
 ### Ideas 💡
 
