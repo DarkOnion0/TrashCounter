@@ -26,7 +26,7 @@
 - [ ] Display the release content after an update
 - [ ] ~~Display a text when the user click on a specific button or overflow during `x` times the navbar~~
 - [ ] ~~Add a top menu bar for sub categories~~
-- [ ] Add a sync features (probably with github gist to prevent spamming)
+- [x] Add a sync features (probably with github gist to prevent spamming)
 - [ ] Let the user choose the color of the UI and change colorscheme
 - [ ] Let the user create new events by clicking on the calendar
 - [x] Make a little notice bar like the discord one
@@ -40,5 +40,5 @@
 - [x] The notice bar doesn't disappeared
 - [x] The button is not usable if no trash is set until a new trash is added and the page is reloaded
 - [ ] Fix the notice bar (currently disabled)
-- [ ] You can scroll page when it's not needed
-- [ ] Graphs are cute
+- [x] You can scroll page when it's not needed
+- [x] Graphs are cute
