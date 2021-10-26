@@ -1,4 +1,9 @@
 #stats {
+  #currentYearSelect {
+    min-width: 150px;
+    font-weight: bolder;
+  }
+
   #statsContainer {
     display: grid;
     grid-template-rows: minmax(50vh, auto) minmax(50vh, auto);

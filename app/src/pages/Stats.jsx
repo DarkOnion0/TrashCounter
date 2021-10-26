@@ -11,9 +11,8 @@ function Stats() {
   const [dataChartT, setDataChartT] = useState("none")
   const [dataChartP, setDataChartP] = useState(0)
 
-  const [minYear, setMinYear] = useState("none")
-  const [maxYear, setMaxYear] = useState("none")
   const [selectedYear, setSelectedYear] = useState("none")
+  const [yearList, setYearList] = useState("none")
 
   // allYear variables
 
@@ -28,12 +27,24 @@ function Stats() {
     try {
       stats = JSON.parse(stats)
       if (Object.keys(stats.year[stats.minYear]).length > 0) {
-        setMinYear(() => stats.minYear + "-01-01")
-        setMaxYear(() => stats.maxYear + "-12-31")
-        setSelectedYear(() => `${new Date().getFullYear()}-01-01`)
+        setSelectedYear(() => stats.minYear)
+        //console.log(stats.minYear)
+        const yearSelect = []
 
+        for (
+          let tmpMinYear = parseInt(stats.minYear);
+          tmpMinYear <= stats.maxYear;
+          tmpMinYear++
+        ) {
+          yearSelect.push(
+            <option value={tmpMinYear} key={tmpMinYear}>
+              {tmpMinYear}
+            </option>
+          )
+        }
+
+        setYearList(() => yearSelect)
         setDisplayStats(() => true)
-
         getDataAll()
       }
 
@@ -89,7 +100,7 @@ function Stats() {
     // console.log(stats)
     // console.log(stats.year[selectedYear.split("-")[0]])
 
-    for (let i in stats.year[selectedYear.split("-")[0]]) {
+    for (let i in stats.year[selectedYear]) {
       // console.log(i)
       let trashColor = ""
 
@@ -105,7 +116,7 @@ function Stats() {
 
           let price = 0
 
-          stats.year[selectedYear.split("-")[0]][i].forEach((element) => {
+          stats.year[selectedYear][i].forEach((element) => {
             // console.log(price)
             price += element
           })
@@ -120,7 +131,7 @@ function Stats() {
 
       dataT.datasets.push({
         label: i,
-        data: stats.year[selectedYear.split("-")[0]][i],
+        data: stats.year[selectedYear][i],
         backgroundColor: trashColor,
         stack: "Stack 0",
       })
@@ -242,19 +253,20 @@ function Stats() {
             <div id="currentYear">
               <div className="datePickerContainer">
                 <h1>
-                  Stats of the year <em>{selectedYear.split("-")[0]}</em>
+                  Stats of the year <em>{selectedYear}</em>
                 </h1>
-                <input
-                  type="date"
-                  min={minYear}
-                  max={maxYear}
-                  value={selectedYear}
+                <select
+                  name="Select trash year"
+                  id="currentYearSelect"
                   onChange={(event) => {
                     event.preventDefault()
                     setSelectedYear(() => event.target.value)
                     getDataCurrent()
+                    console.log(event.target.value)
                   }}
-                />
+                >
+                  {yearList}
+                </select>
               </div>
               <div id="graphContainer">
                 <div id="trashStats">
@@ -264,9 +276,7 @@ function Stats() {
                     options={{
                       plugins: {
                         title: {
-                          text: `Trash by month in ${
-                            selectedYear.split("-")[0]
-                          }`,
+                          text: `Trash by month in ${selectedYear}`,
                           display: true,
                         },
                       },
@@ -292,9 +302,7 @@ function Stats() {
                     options={{
                       plugins: {
                         title: {
-                          text: `Total spend money by trash in ${
-                            selectedYear.split("-")[0]
-                          }`,
+                          text: `Total spend money by trash in ${selectedYear}`,
                           display: true,
                         },
                       },
