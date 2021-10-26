@@ -168,6 +168,30 @@ function Settings(props) {
     }
   }
 
+  async function deleteRemoteData(event) {
+    event.preventDefault()
+
+    if (JSON.parse(localStorage.getItem("gistId"))) {
+      const gistRequest = axios
+        .delete(
+          `https://api.github.com/gists/${JSON.parse(
+            localStorage.getItem("gistId")
+          )}`,
+          {
+            headers: {
+              Accept: "application/vnd.github.v3+json",
+              Authorization: `token ${JSON.parse(
+                localStorage.getItem("githubToken")
+              )}`,
+            },
+          }
+        )
+        .then((gistRequestResponse) => {
+          console.log(gistRequestResponse)
+        })
+    }
+  }
+
   return (
     <div className="pageWrapper">
       <div className="pageScrollContainer">
@@ -249,6 +273,14 @@ function Settings(props) {
                 <button className="buttonIcon button" onClick={deleteData}>
                   <FontAwesomeIcon icon={faTrashAlt} />
                   <p>Delete all local data</p>
+                </button>
+
+                <button
+                  className="buttonIcon button"
+                  onClick={deleteRemoteData}
+                >
+                  <FontAwesomeIcon icon={faTrashAlt} />
+                  <p>Delete all remote data</p>
                 </button>
               </div>
             </div>
