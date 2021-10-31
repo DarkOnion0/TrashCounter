@@ -13,7 +13,6 @@
   - [x] Remake the year selection list
   - [x] Display the whole spend money in the stats
 - [ ] Make an updater (to update the data structures)
-- [ ] Make a desktop **/** mobile app (just for android)
 - [x] Update the 404 page
 - [ ] Add logs in the console
 
@@ -21,6 +20,7 @@
 
 > Can be realized or not 🤷‍♂️
 
+- [ ] Make a desktop **/** mobile app (just for android)
 - [x] Update the 404 images to match with the color scheme
 - [x] Add icons instead of words in the **[`Nav`]("./../app/src/components/Nav.jsx)** components and in all the app
 - [ ] Display the release content after an update
