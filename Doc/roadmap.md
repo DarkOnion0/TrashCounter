@@ -16,7 +16,7 @@
 - [x] Update the 404 page
 - [ ] Add logs in the console
 
-### Ideas 💡
+## Ideas 💡
 
 > Can be realized or not 🤷‍♂️
 
