@@ -14,7 +14,7 @@
   - [x] Display the whole spend money in the stats
 - [ ] Make an updater (to update the data structures)
 - [ ] Make a desktop **/** mobile app (just for android)
-- [ ] Update the 404 page
+- [x] Update the 404 page
 - [ ] Add logs in the console
 - [ ] Add images credits
 
@@ -28,7 +28,7 @@
 - [ ] ~~Display a text when the user click on a specific button or overflow during `x` times the navbar~~
 - [ ] ~~Add a top menu bar for sub categories~~
 - [x] Add a sync features (probably with github gist to prevent spamming)
-- [ ] Let the user choose the color of the UI and change colorscheme
+- ~~[ ] Let the user choose the color of the UI and change colorscheme~~
 - [ ] Let the user create new events by clicking on the calendar
 - [x] Make a little notice bar like the discord one
 
