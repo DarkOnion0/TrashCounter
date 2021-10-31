@@ -16,7 +16,6 @@
 - [ ] Make a desktop **/** mobile app (just for android)
 - [x] Update the 404 page
 - [ ] Add logs in the console
-- [ ] Add images credits
 
 ### Ideas 💡
 
