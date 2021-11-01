@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/TrashCounter/static/css/main.0cdc4ccd.chunk.css",
-    "main.js": "/TrashCounter/static/js/main.0a4bf54a.chunk.js",
-    "main.js.map": "/TrashCounter/static/js/main.0a4bf54a.chunk.js.map",
+    "main.css": "/TrashCounter/static/css/main.d153920c.chunk.css",
+    "main.js": "/TrashCounter/static/js/main.22d9ab9a.chunk.js",
+    "main.js.map": "/TrashCounter/static/js/main.22d9ab9a.chunk.js.map",
     "runtime-main.js": "/TrashCounter/static/js/runtime-main.584b19e6.js",
     "runtime-main.js.map": "/TrashCounter/static/js/runtime-main.584b19e6.js.map",
     "static/css/2.7d441899.chunk.css": "/TrashCounter/static/css/2.7d441899.chunk.css",
@@ -12,7 +12,7 @@
     "static/js/3.7a99b886.chunk.js.map": "/TrashCounter/static/js/3.7a99b886.chunk.js.map",
     "index.html": "/TrashCounter/index.html",
     "static/css/2.7d441899.chunk.css.map": "/TrashCounter/static/css/2.7d441899.chunk.css.map",
-    "static/css/main.0cdc4ccd.chunk.css.map": "/TrashCounter/static/css/main.0cdc4ccd.chunk.css.map",
+    "static/css/main.d153920c.chunk.css.map": "/TrashCounter/static/css/main.d153920c.chunk.css.map",
     "static/js/2.45ed5419.chunk.js.LICENSE.txt": "/TrashCounter/static/js/2.45ed5419.chunk.js.LICENSE.txt",
     "static/media/undraw_lost_1.a5d55033.svg": "/TrashCounter/static/media/undraw_lost_1.a5d55033.svg"
   },
@@ -20,7 +20,7 @@
     "static/js/runtime-main.584b19e6.js",
     "static/css/2.7d441899.chunk.css",
     "static/js/2.45ed5419.chunk.js",
-    "static/css/main.0cdc4ccd.chunk.css",
-    "static/js/main.0a4bf54a.chunk.js"
+    "static/css/main.d153920c.chunk.css",
+    "static/js/main.22d9ab9a.chunk.js"
   ]
 }
