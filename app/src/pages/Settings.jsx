@@ -66,6 +66,12 @@ function Settings(props) {
               type="password"
               placeholder="Paste your GitHub GIST secret there"
             />
+            <p className="labelText">
+              For more information on how to generate a GitHub token you can see{" "}
+              <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token">
+                the github documentation
+              </a>
+            </p>
           </div>
 
           <div id="buttonContainer" className="buttonContainerMul">

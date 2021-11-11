@@ -6,6 +6,7 @@
 
   align-items: center;
   justify-content: center;
+  text-align: center;
 
   img {
     // margin-top: 10vh;
@@ -17,5 +18,16 @@
     color: $active-color;
     font-size: calc(20px + 2vmin);
     margin: 4vh;
+    line-height: 1.5em;
+  }
+
+  code {
+    background-color: rgb(212, 212, 212);
+  }
+
+  span.autoHideText {
+    @media (max-width: 815px) {
+      display: none;
+    }
   }
 }
