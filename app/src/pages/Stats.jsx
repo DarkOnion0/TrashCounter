@@ -8,16 +8,53 @@ import "./../css/Main.css"
 function Stats() {
   // currentYear variables
 
-  const [dataChartT, setDataChartT] = useState("none")
-  const [dataChartP, setDataChartP] = useState(0)
+  const [dataChartT, setDataChartT] = useState({
+    labels: [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
+    datasets: [],
+  })
+  const [dataChartP, setDataChartP] = useState({
+    labels: [],
+    datasets: [
+      {
+        label: "trashPrice",
+        data: [],
+        backgroundColor: [],
+      },
+    ],
+  })
 
   const [selectedYear, setSelectedYear] = useState("none")
   const [yearList, setYearList] = useState("none")
 
   // allYear variables
 
-  const [dataChartT2, setDataChartT2] = useState("none")
-  const [dataChartP2, setDataChartP2] = useState(0)
+  const [dataChartT2, setDataChartT2] = useState({
+    labels: [],
+    datasets: [],
+  })
+  const [dataChartP2, setDataChartP2] = useState({
+    labels: [],
+    datasets: [
+      {
+        label: "trashPrice",
+        data: [],
+        backgroundColor: [],
+      },
+    ],
+  })
 
   const [displayStats, setDisplayStats] = useState(false)
 
