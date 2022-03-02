@@ -4,7 +4,7 @@
   "homepage": "https://darkonion0.github.io/TrashCounter",
   "private": false,
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/fontawesome-svg-core": "^1.3.0",
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
     "@fortawesome/free-regular-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
