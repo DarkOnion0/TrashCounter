@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/TrashCounter/static/css/main.1fd222f8.chunk.css",
-    "main.js": "/TrashCounter/static/js/main.03277361.chunk.js",
-    "main.js.map": "/TrashCounter/static/js/main.03277361.chunk.js.map",
-    "runtime-main.js": "/TrashCounter/static/js/runtime-main.43a0b85e.js",
-    "runtime-main.js.map": "/TrashCounter/static/js/runtime-main.43a0b85e.js.map",
+    "main.css": "/TrashCounter/static/css/main.d153920c.chunk.css",
+    "main.js": "/TrashCounter/static/js/main.b343fca8.chunk.js",
+    "main.js.map": "/TrashCounter/static/js/main.b343fca8.chunk.js.map",
+    "runtime-main.js": "/TrashCounter/static/js/runtime-main.7e48fede.js",
+    "runtime-main.js.map": "/TrashCounter/static/js/runtime-main.7e48fede.js.map",
     "static/css/2.7d441899.chunk.css": "/TrashCounter/static/css/2.7d441899.chunk.css",
-    "static/js/2.297e0fa4.chunk.js": "/TrashCounter/static/js/2.297e0fa4.chunk.js",
-    "static/js/2.297e0fa4.chunk.js.map": "/TrashCounter/static/js/2.297e0fa4.chunk.js.map",
-    "static/js/3.621ab6b0.chunk.js": "/TrashCounter/static/js/3.621ab6b0.chunk.js",
-    "static/js/3.621ab6b0.chunk.js.map": "/TrashCounter/static/js/3.621ab6b0.chunk.js.map",
+    "static/js/2.7f872445.chunk.js": "/TrashCounter/static/js/2.7f872445.chunk.js",
+    "static/js/2.7f872445.chunk.js.map": "/TrashCounter/static/js/2.7f872445.chunk.js.map",
+    "static/js/3.bf152d4f.chunk.js": "/TrashCounter/static/js/3.bf152d4f.chunk.js",
+    "static/js/3.bf152d4f.chunk.js.map": "/TrashCounter/static/js/3.bf152d4f.chunk.js.map",
     "index.html": "/TrashCounter/index.html",
     "static/css/2.7d441899.chunk.css.map": "/TrashCounter/static/css/2.7d441899.chunk.css.map",
-    "static/css/main.1fd222f8.chunk.css.map": "/TrashCounter/static/css/main.1fd222f8.chunk.css.map",
-    "static/js/2.297e0fa4.chunk.js.LICENSE.txt": "/TrashCounter/static/js/2.297e0fa4.chunk.js.LICENSE.txt",
+    "static/css/main.d153920c.chunk.css.map": "/TrashCounter/static/css/main.d153920c.chunk.css.map",
+    "static/js/2.7f872445.chunk.js.LICENSE.txt": "/TrashCounter/static/js/2.7f872445.chunk.js.LICENSE.txt",
     "static/media/undraw_lost_1.a5d55033.svg": "/TrashCounter/static/media/undraw_lost_1.a5d55033.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.43a0b85e.js",
+    "static/js/runtime-main.7e48fede.js",
     "static/css/2.7d441899.chunk.css",
-    "static/js/2.297e0fa4.chunk.js",
-    "static/css/main.1fd222f8.chunk.css",
-    "static/js/main.03277361.chunk.js"
+    "static/js/2.7f872445.chunk.js",
+    "static/css/main.d153920c.chunk.css",
+    "static/js/main.b343fca8.chunk.js"
   ]
 }
