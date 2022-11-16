@@ -8,7 +8,7 @@
 
 > _TrashCounter is a little react web app which help you to track how many trashes you get out and how much it will cost you_
 
-**⚠️ WARNING:** this project is actually under active development, breaking changes may append at any times
+**⚠️ WARNING:** this project is no longer mantained, but I plan to do a V2 of this app in the future.
 
 ## ✨ Features
 
