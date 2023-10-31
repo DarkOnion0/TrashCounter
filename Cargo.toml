@@ -1,5 +1,6 @@
 [workspace]
 members = ["frontend", "logic"]
+resolver = "2"
 
 [workspace.package]
 edition = "2021"

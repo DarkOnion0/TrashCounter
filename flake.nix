@@ -103,11 +103,11 @@
 
             # Rust
             (fenixToolchain.withComponents [
-              rustc
-              cargo
-              rust-analyser
-              rustfmt
-              clippy
+              "rustc"
+              "cargo"
+              "rust-analyzer"
+              "rustfmt"
+              "clippy"
             ])
           ];
         };
