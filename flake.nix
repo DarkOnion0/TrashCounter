@@ -6,7 +6,7 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
-    devenv.url = "github:cachix/devenv";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
 
     fenix = {
       url = "github:nix-community/fenix";
@@ -22,14 +22,18 @@
     self,
     nixpkgs,
     flake-parts,
-    devenv,
     fenix,
     crane,
+    treefmt-nix,
     ...
   }:
     flake-parts.lib.mkFlake {inherit inputs;} {
       debug = true;
       systems = ["x86_64-linux" "aarch64-linux"];
+      imports = [
+        inputs.treefmt-nix.flakeModule
+      ];
+
       perSystem = {
         config,
         self',
@@ -39,13 +43,14 @@
         lib,
         ...
       }: let
-        fenixToolchain = fenix.packages.${system}.fromToolchainFile {
-          file = ./rust-toolchain.toml;
-          sha256 = "sha256-gdYqng0y9iHYzYPAdkC/ka3DRny3La/S5G8ASj0Ayyc=";
-        };
+        #fenixToolchain = fenix.packages.${system}.fromToolchainFile {
+        #  file = ./rust-toolchain.toml;
+        #  sha256 = "sha256-rLP8+fTxnPHoR96ZJiCa/5Ans1OojI7MLsmSqR2ip8o=";
+        #};
+        fenixToolchain = fenix.packages.${system}.stable;
 
         craneLib =
-          crane.lib.${system}.overrideToolchain fenixToolchain;
+          crane.lib.${system}.overrideToolchain fenixToolchain.minimalToolchain;
 
         workspace = let
           mkMember = {
@@ -85,39 +90,38 @@
           })
         ];
       in {
-        devShells = let
-          defaultConfig = {
-            packages = with pkgs; [
-              # MISC
-              git
+        devShells.default = pkgs.mkShell {
+          shellHook = ''
+            export RUST_BACKTRACE=1
+            export CARGO_INSTALL_ROOT=${toString ./.}/.cargo
+          '';
 
-              # NIX
-              alejandra
-              nil
-            ];
-          };
-        in {
-          default = devenv.lib.mkShell {
-            inherit inputs pkgs;
-            modules = [
-              defaultConfig
-              (import ./rust.nix {inherit pkgs fenixToolchain;})
-              (import ./frontend.nix)
-            ];
-          };
-          rust = devenv.lib.mkShell {
-            inherit inputs pkgs;
-            modules = [
-              defaultConfig
-              (import ./rust.nix {inherit pkgs fenixToolchain;})
-            ];
-          };
-          frontend = devenv.lib.mkShell {
-            inherit inputs pkgs;
-            modules = [
-              defaultConfig
-              (import ./frontend.nix)
-            ];
+          nativeBuildInputs = with pkgs; [
+            # Nix
+            alejandra
+            nil
+
+            # Rust
+            (fenixToolchain.withComponents [
+              rustc
+              cargo
+              rust-analyser
+              rustfmt
+              clippy
+            ])
+          ];
+        };
+
+        treefmt.config = {
+          projectRootFile = "flake.nix";
+          programs = {
+            prettier.enable = true;
+            alejandra.enable = true;
+            rustfmt = {
+              enable = true;
+              package = fenixToolchain.rustfmt;
+            };
+            leptosfmt.enable = true;
           };
         };
 
@@ -133,8 +137,8 @@
               lib.nameValuePair pname (craneLib.buildPackage {
                 inherit pname cargoArtifacts CARGO_PROFILE;
                 src = ./.;
-                version = (builtins.fromTOML (builtins.readFile ./${name}/Cargo.toml)).package.version;
-                cargoExtraArgs = "-p ${name} -p pomolib";
+                version = (builtins.fromTOML (builtins.readFile ./Cargo.toml)).workspace.package.version;
+                cargoExtraArgs = "-p ${name}";
               })
           )
           workspace
