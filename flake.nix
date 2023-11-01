@@ -28,7 +28,6 @@
     ...
   }:
     flake-parts.lib.mkFlake {inherit inputs;} {
-      debug = true;
       systems = ["x86_64-linux" "aarch64-linux"];
       imports = [
         inputs.treefmt-nix.flakeModule
@@ -43,57 +42,22 @@
         lib,
         ...
       }: let
-        #fenixToolchain = fenix.packages.${system}.fromToolchainFile {
-        #  file = ./rust-toolchain.toml;
-        #  sha256 = "sha256-rLP8+fTxnPHoR96ZJiCa/5Ans1OojI7MLsmSqR2ip8o=";
-        #};
-        fenixToolchain = fenix.packages.${system}.stable;
+        Fenix = fenix.packages.${system};
+        fenixChannel = "stable";
+        fenixToolchain = Fenix.combine [
+          Fenix.targets.wasm32-unknown-unknown.${fenixChannel}.rust-std
+          Fenix.${fenixChannel}.cargo
+          Fenix.${fenixChannel}.rust-analyzer
+          Fenix.${fenixChannel}.rustfmt
+          Fenix.${fenixChannel}.clippy
+        ];
 
         craneLib =
-          crane.lib.${system}.overrideToolchain fenixToolchain.minimalToolchain;
-
-        workspace = let
-          mkMember = {
-            name,
-            profile ? builtins.null,
-          }: let
-            CARGO_PROFILE =
-              if builtins.isNull profile
-              then "release"
-              else "${profile}";
-            cargoArtifacts = craneLib.buildDepsOnly {
-              inherit CARGO_PROFILE;
-              pname =
-                if builtins.isNull profile
-                then "pomolib-release"
-                else "pomolib-${profile}";
-              src = ./.;
-            };
-          in {
-            inherit name cargoArtifacts CARGO_PROFILE;
-            pname =
-              if builtins.isNull profile
-              then "${name}"
-              else "${name}-${profile}";
-          };
-        in [
-          (mkMember {name = "frontend";})
-          (mkMember {
-            name = "frontend";
-            profile = "dev";
-          })
-
-          (mkMember {name = "logic";})
-          (mkMember {
-            name = "logic";
-            profile = "dev";
-          })
-        ];
+          crane.lib.${system}.overrideToolchain fenixToolchain;
       in {
         devShells.default = pkgs.mkShell {
           shellHook = ''
             export RUST_BACKTRACE=1
-            export CARGO_INSTALL_ROOT=${toString ./.}/.cargo
           '';
 
           nativeBuildInputs = with pkgs; [
@@ -102,13 +66,7 @@
             nil
 
             # Rust
-            (fenixToolchain.withComponents [
-              "rustc"
-              "cargo"
-              "rust-analyzer"
-              "rustfmt"
-              "clippy"
-            ])
+            fenixToolchain
           ];
         };
 
@@ -119,45 +77,25 @@
             alejandra.enable = true;
             rustfmt = {
               enable = true;
-              package = fenixToolchain.rustfmt;
+              package = Fenix.${fenixChannel}.rustfmt;
             };
             leptosfmt.enable = true;
           };
         };
 
-        packages = builtins.listToAttrs (
-          map (
-            {
-              pname,
-              name,
-              cargoArtifacts,
-              CARGO_PROFILE,
-              ...
-            }:
-              lib.nameValuePair pname (craneLib.buildPackage {
-                inherit pname cargoArtifacts CARGO_PROFILE;
-                src = ./.;
-                version = (builtins.fromTOML (builtins.readFile ./Cargo.toml)).workspace.package.version;
-                cargoExtraArgs = "-p ${name}";
-              })
-          )
-          workspace
-        );
-
-        apps = builtins.listToAttrs (
-          map (
-            {
-              pname,
-              name,
-              ...
-            }:
-              lib.nameValuePair pname {
-                type = "app";
-                program = "${self.packages.${system}.${pname}}/bin/${name}";
-              }
-          )
-          workspace
-        );
+        apps = rec {
+          default = dev;
+          dev = {
+            program =
+              (pkgs.substituteAll
+                {
+                  inherit (pkgs) trunk;
+                  isExecutable = true;
+                  src = ./scripts/dev.sh;
+                })
+              .outPath;
+          };
+        };
       };
     };
 }

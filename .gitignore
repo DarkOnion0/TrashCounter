@@ -1,1 +1,7 @@
-/target
+# Rust
+target/
+dist/
+
+# Nix
+result
+
