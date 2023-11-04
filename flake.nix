@@ -46,6 +46,7 @@
         fenixChannel = "stable";
         fenixToolchain = Fenix.combine [
           Fenix.targets.wasm32-unknown-unknown.${fenixChannel}.rust-std
+          Fenix.${fenixChannel}.rust-src
           Fenix.${fenixChannel}.cargo
           Fenix.${fenixChannel}.rust-analyzer
           Fenix.${fenixChannel}.rustfmt
@@ -83,15 +84,24 @@
           };
         };
 
-        apps = rec {
-          default = dev;
-          dev = {
+        apps = {
+          trunk = {
             program =
               (pkgs.substituteAll
                 {
                   inherit (pkgs) trunk;
                   isExecutable = true;
-                  src = ./scripts/dev.sh;
+                  src = ./scripts/trunk.sh;
+                })
+              .outPath;
+          };
+          tailwind = {
+            program =
+              (pkgs.substituteAll
+                {
+                  inherit (pkgs.nodePackages) tailwindcss;
+                  isExecutable = true;
+                  src = ./scripts/tailwind.sh;
                 })
               .outPath;
           };
