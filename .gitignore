@@ -2,6 +2,9 @@
 target/
 dist/
 
+# Web
+style/
+
 # Nix
 result
 
