@@ -1,7 +1,7 @@
 use leptos::*;
 
 #[component]
-pub fn Trash() -> impl IntoView {
+pub fn Calendar() -> impl IntoView {
     view! { <p class="text-amber-600">"Trash"</p> }
 }
 #[component]

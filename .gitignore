@@ -4,6 +4,7 @@ dist/
 
 # Web
 style/
+node_modules/
 
 # Nix
 result
