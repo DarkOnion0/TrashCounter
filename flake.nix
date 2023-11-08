@@ -66,6 +66,9 @@
             alejandra
             nil
 
+            # Node.js
+            yarn
+
             # Rust
             fenixToolchain
           ];
