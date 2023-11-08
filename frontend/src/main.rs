@@ -12,18 +12,18 @@ fn App() -> impl IntoView {
     view! {
         <Router>
             <div class="flex flex-col-reverse lg:flex-col w-screen h-screen">
-        <div class="tabs tabs-boxed w-fit mx-auto my-3">
-                        <A class="tab" active_class="tab-active" href="/">
-                            Calendar
-                        </A>
-                        <A class="tab" active_class="tab-active" href="/stats">
-                           Stats
-                        </A>
-                        <A class="tab" active_class="tab-active" href="/settings">
-                            Settings
-                        </A>
-    </div>
-                <main class="grow">
+                <div class="tabs tabs-boxed w-fit mx-auto my-3">
+                    <A class="tab" active_class="tab-active" href="/">
+                        Calendar
+                    </A>
+                    <A class="tab" active_class="tab-active" href="/stats">
+                        Stats
+                    </A>
+                    <A class="tab" active_class="tab-active" href="/settings">
+                        Settings
+                    </A>
+                </div>
+                <main class="grow p-8">
                     // all our routes will appear inside <main>
                     <Routes>
                         <Route path="/" view=Calendar/>
