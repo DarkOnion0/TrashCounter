@@ -5,3 +5,6 @@ edition.workspace = true
 license.workspace = true
 
 [dependencies]
+surrealdb = {version = "1.0.0", features = ["kv-indxdb", "rustls"]}
+serde = { version = "1.0.192", features = ["derive"] }
+tokio = { version = "1.34.0", features = ["macros", "rt-multi-thread"] }
